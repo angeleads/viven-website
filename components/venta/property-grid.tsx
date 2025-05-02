@@ -13,7 +13,7 @@ export default function PropertyGrid() {
 
           <div className="flex items-center space-x-4">
             <label className="text-gray-700 font-medium">Ordenar por:</label>
-            <select className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            <select className="p-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
               <option>Más recientes</option>
               <option>Precio: menor a mayor</option>
               <option>Precio: mayor a menor</option>

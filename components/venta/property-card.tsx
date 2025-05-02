@@ -14,7 +14,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 relative h-full">
+    <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg hover:shadow-red-400 transition-shadow duration-300 relative h-full">
       {/* Image section with hover effect */}
       <div className="relative" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
         <div className="aspect-w-16 aspect-h-10 relative overflow-hidden">
@@ -101,7 +101,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
       <div className="px-5 pb-5">
         <Link
           href={`/propiedades/${property.id}`}
-          className="block w-full text-center bg-gray-100 hover:bg-blue-600 hover:text-white text-gray-800 font-medium py-2 rounded-xl transition-colors duration-300"
+          className="block w-full text-center bg-gray-200 hover:bg-black hover:text-white text-gray-800 font-medium py-2 rounded-xl transition-colors duration-300"
         >
           Ver detalles
         </Link>

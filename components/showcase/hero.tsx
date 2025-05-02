@@ -3,8 +3,18 @@ import { Search, MapPin, Home, Euro } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative pt-20 md:pt-0 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900">
-      <div className="container mx-auto px-4 py-20 md:py-32">
+    <section className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 py-20 md:py-28">
+      <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-black/70 z-10"></div>
+          <div
+            className="absolute inset-0 z-0 bg-cover bg-center"
+            style={{
+              backgroundImage: "url('/pictures/showcase-hero-background.png')",
+            }}
+          ></div>
+        </div>
+  
+      <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-3xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
             Encuentra en tu Agencia Inmobiliaria en Vilanova i La Geltrú
@@ -69,7 +79,7 @@ export default function Hero() {
 
           <div className="mt-8 flex flex-wrap gap-4 text-white">
             <Link
-              href="/propiedades"
+              href="/venta"
               className="flex items-center gap-2 hover:underline"
             >
               <span className="bg-white/20 p-1 rounded">

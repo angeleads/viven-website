@@ -74,19 +74,19 @@ export default function Footer() {
             <h4 className="text-lg font-bold mb-6">Mapas</h4>
             <ul className="space-y-4">
               <FooterMap
-                phone="930 267 436"
+                phone="+34 930 267 436"
                 email="hola@viven.es"
                 mapTitle="VIVEN - VILANOVA"
                 mapLink="https://maps.app.goo.gl/t6yvtApknygLCB1e8"
               />
               <FooterMap
-                phone="930 267 436"
+                phone="+34 930 267 436"
                 email="hola@viven.es"
                 mapTitle="VIVEN - SITGES"
                 mapLink="https://maps.app.goo.gl/nARgQY1L7nFAGEvg8"
               />
               <FooterMap
-                phone="930 267 436"
+                phone="+34 930 267 436"
                 email="hola@viven.es"
                 mapTitle="VIVEN - COSTA DAURADA"
                 mapLink="https://maps.app.goo.gl/ZVa8YqNDNxtaiJUA8"
@@ -105,11 +105,11 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Tu email"
-                  className="flex-grow p-3 bg-gray-800 text-white border border-gray-700 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="flex-grow p-3 bg-gray-800 text-white border border-gray-700 rounded-l-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <button
                   type="submit"
-                  className="bg-blue-600 hover:bg-blue-700 p-3 rounded-r-md transition-colors duration-300"
+                  className="bg-blue-600 hover:bg-blue-700 p-3 rounded-r-xl transition-colors duration-300"
                 >
                   <ArrowRight size={20} />
                 </button>
