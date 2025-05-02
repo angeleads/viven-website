@@ -100,12 +100,11 @@ export default function ContactSection() {
               <h3 className="text-2xl font-bold mb-6">Información de contacto</h3>
 
               <div className="space-y-6">
-                <ContactItem
-                  icon={<MapPin className="h-6 w-6" />}
-                  title="Dirección"
-                  content="Pelegrí Ballester, 23 Vilanova I La Geltrú 08800 (Barcelona)"
-                />
-
+                  <ContactItem
+                    icon={<MapPin className="h-6 w-6" />}
+                    title="Dirección"
+                    content="Pelegrí Ballester, 23 Vilanova I La Geltrú 08800 (Barcelona)"
+                  />
                 <ContactItem icon={<Phone className="h-6 w-6" />} title="Teléfono" content="930 267 436" />
 
                 <ContactItem icon={<Mail className="h-6 w-6" />} title="Email" content="hola@viven.es" />
@@ -113,7 +112,7 @@ export default function ContactSection() {
                 <ContactItem
                   icon={<Clock className="h-6 w-6" />}
                   title="Horario"
-                  content="Lunes a Viernes: 9:00 - 20:00 | Sábados: 10:00 - 14:00"
+                  content="Lunes a Viernes: 9:00 - 20:00"
                 />
               </div>
             </div>
