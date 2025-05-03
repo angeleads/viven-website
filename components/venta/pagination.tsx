@@ -45,7 +45,7 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
   const pageNumbers = getPageNumbers()
 
   return (
-    <div className="py-12 bg-gray-50">
+    <div className="py-12 bg-white">
       <div className="container mx-auto px-4">
         <div className="flex justify-center">
           <nav className="flex items-center space-x-1">

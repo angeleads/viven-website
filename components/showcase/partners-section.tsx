@@ -78,12 +78,12 @@ export default function PartnersSection() {
   }, [currentSlide, isMobile])
 
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
+    <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nuestros Partners</h2>
           <p className="text-lg text-gray-600">
-           En <span className="font-bold">Viven</span> tenemos el placer de trabajar conjuntamente con Empresas que comparten los mismos valores de <span className="">Compromiso, Transparencia y Profesionalismo</span> que nosotros.
+           En <span className="font-bold">Viven</span> tenemos el placer de trabajar conjuntamente con Empresas que comparten los mismos valores de <span className="font-bold">Compromiso, Transparencia y Profesionalismo</span> que nosotros.
           </p>
         </div>
 
@@ -115,14 +115,14 @@ export default function PartnersSection() {
           {/* Navigation buttons */}
           <button
             onClick={prevSlide}
-            className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 bg-white shadow-md rounded-full p-2 z-10"
+            className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 bg-white rounded-full p-2 z-10"
             aria-label="Previous partners"
           >
             <ChevronLeft className="h-5 w-5 text-gray-600" />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 bg-white shadow-md rounded-full p-2 z-10"
+            className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 bg-white rounded-full p-2 z-10"
             aria-label="Next partners"
           >
             <ChevronRight className="h-5 w-5 text-gray-600" />
@@ -156,7 +156,7 @@ function PartnerLogo({ partner }: PartnerLogoProps) {
         href={partner.website}
         target="_blank"
         rel="noopener noreferrer"
-        className="block bg-white rounded-lg p-6 h-32 flex items-center justify-center border border-gray-100 hover:border-blue-200 hover:shadow-md transition-all duration-300"
+        className=" bg-white rounded-lg p-6 h-32 flex items-center justify-center  hover:shadow-md transition-all duration-300"
       >
         <div className="relative w-full h-full">
           <Image

@@ -2,7 +2,7 @@ import { Download } from "lucide-react";
 
 export default function AppSection() {
   return (
-    <section id="app" className="py-20 bg-gray-50">
+    <section id="app" className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl p-12 text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-pattern opacity-10"></div>

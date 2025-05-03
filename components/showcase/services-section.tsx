@@ -3,7 +3,7 @@ import { Briefcase, ListChecks, Wrench, Scale, PieChart, Home } from "lucide-rea
 
 export default function ServicesSection() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-6">
           Nuestros Servicios Premium

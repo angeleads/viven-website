@@ -25,14 +25,14 @@ export default function Hero() {
           </p>
 
           {/* Search Box */}
-          <div className="bg-white p-6 rounded-xl shadow-lg">
+          <div className="bg-gray-400/40 p-6 rounded-xl shadow-lg">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                <label className="text-sm font-medium text-white-700 flex items-center gap-2">
                   <MapPin size={16} className="text-blue-600" />
                   Ubicación
                 </label>
-                <select className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <select className="w-full p-3 border bg-blue-100 rounded-full border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                   <option>Toda España</option>
                   <option>Madrid</option>
                   <option>Barcelona</option>
@@ -42,11 +42,11 @@ export default function Hero() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                <label className="text-sm font-medium text-white-700 flex items-center gap-2">
                   <Home size={16} className="text-blue-600" />
                   Tipo de propiedad
                 </label>
-                <select className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <select className="w-full p-3 border  bg-blue-100 rounded-full border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                   <option>Cualquier tipo</option>
                   <option>Piso</option>
                   <option>Casa</option>
@@ -56,11 +56,11 @@ export default function Hero() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                <label className="text-sm font-medium text-white-700 flex items-center gap-2">
                   <Euro size={16} className="text-blue-600" />
                   Precio máximo
                 </label>
-                <select className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <select className="w-full p-3 border  bg-blue-100 rounded-full border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                   <option>Sin límite</option>
                   <option>100.000 €</option>
                   <option>200.000 €</option>
@@ -71,7 +71,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <button className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-md font-medium flex items-center justify-center gap-2 transition-colors duration-300">
+            <button className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-3xl font-medium flex items-center justify-center gap-2 transition-colors duration-300">
               <Search size={20} />
               Buscar propiedades
             </button>

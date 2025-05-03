@@ -4,7 +4,7 @@ import { ArrowRight, Bed, Bath, Maximize, Euro } from "lucide-react";
 
 export default function PropertySection() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
@@ -96,7 +96,7 @@ function PropertyCard({ property }: { property: Property }) {
       <div className="px-6 pb-6">
         <Link
           href={`/propiedades/${property.id}`}
-          className="block w-full text-center bg-gray-100 hover:bg-blue-600 hover:text-white text-gray-800 font-medium py-3 rounded-lg transition-colors duration-300"
+          className="block w-full text-center bg-gray-200 hover:bg-black hover:text-white text-gray-800 font-medium py-2 rounded-xl transition-colors duration-300"
         >
           Ver detalles
         </Link>
