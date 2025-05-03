@@ -15,7 +15,7 @@ export default function ContactCTA() {
   
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-xl mx-auto">
               <a
-                href="tel:+34912345678"
+                href="tel:+34 930 267 436"
                 className="bg-white hover:bg-gray-100 text-blue-600 font-medium py-4 px-6 rounded-3xl transition-colors duration-300 flex items-center justify-center"
               >
                 <svg
@@ -32,7 +32,7 @@ export default function ContactCTA() {
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-                +34 91 234 56 78
+                +34 930 267 436
               </a>
               <a
                 href="https://wa.me/34623456789"

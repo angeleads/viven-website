@@ -59,7 +59,7 @@ export default function VivenPlusSection() {
             <div className="mt-8">
               <Link
                 href="/servicios/administracion-comunidades"
-                className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 inline-flex items-center"
+                className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-3xl font-medium transition-colors duration-300 inline-flex items-center"
               >
                 Más información
                 <svg
@@ -82,7 +82,7 @@ export default function VivenPlusSection() {
             <div className="relative">
               <div className="relative z-10 rounded-xl overflow-hidden shadow-xl">
                 <Image
-                  src="/placeholder.svg?height=600&width=800"
+                  src="/pictures/community.jpg"
                   alt="Administración de Comunidades"
                   width={800}
                   height={600}
@@ -95,9 +95,9 @@ export default function VivenPlusSection() {
           </div>
         </div>
 
-        <div className="mt-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-8 text-center">
-          <p className="text-xl md:text-2xl font-bold text-white">
-            En VIVEN administramos SU COMUNIDAD como si fuera NUESTRO HOGAR
+        <div className="mt-16 rounded-xl p-8 text-center">
+          <p className="text-xl md:text-2xl font-bold italic text-blue-700">
+            "En VIVEN administramos SU COMUNIDAD como si fuera NUESTRO HOGAR"
           </p>
         </div>
       </div>

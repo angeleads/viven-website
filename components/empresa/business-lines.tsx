@@ -24,10 +24,6 @@ export default function BusinessLines() {
               <h3 className="text-2xl font-bold text-blue-600">RE/MAX VIVEN</h3>
             </div>
 
-            <div className="relative h-48 mb-6 rounded-xl overflow-hidden">
-              <Image src="/placeholder.svg?height=400&width=600" alt="RE/MAX VIVEN" fill className="object-cover" />
-            </div>
-
             <p className="text-gray-700 mb-6 leading-relaxed">
               Tiene por objeto la comercialización de toda clase de Bienes Inmuebles. Cada cliente propietario es
               asignado a un Agente Asociado de REMAX VIVEN, el cual está capacitado para desarrollar con total garantía
@@ -90,10 +86,6 @@ export default function BusinessLines() {
                 <Building2 className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-red-600">VIVEN +Plus</h3>
-            </div>
-
-            <div className="relative h-48 mb-6 rounded-xl overflow-hidden">
-              <Image src="/placeholder.svg?height=400&width=600" alt="VIVEN +Plus" fill className="object-cover" />
             </div>
 
             <p className="text-gray-700 mb-6 leading-relaxed">

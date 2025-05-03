@@ -44,7 +44,7 @@ export default function MissionSection() {
           <div className="relative">
             <div className="relative z-10 rounded-xl overflow-hidden shadow-xl">
               <Image
-                src="/placeholder.svg?height=600&width=800"
+                src="/pictures/deal-house.jpg"
                 alt="Equipo Viven Inmobiliaria"
                 width={800}
                 height={600}

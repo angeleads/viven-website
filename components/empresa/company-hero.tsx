@@ -8,7 +8,7 @@ export default function CompanyHero() {
         <div
           className="absolute inset-0 z-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/placeholder.svg?height=800&width=1600')",
+            backgroundImage: "url('/pictures/building-empresa.jpg')",
             filter: "blur(1px)",
           }}
         ></div>
@@ -21,11 +21,7 @@ export default function CompanyHero() {
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            <div className="w-full md:w-1/3 flex justify-center">
-              <div className="relative w-48 h-48 md:w-64 md:h-64">
-                <Image src="/logo-white.svg" alt="Viven Inmobiliaria" fill className="object-contain" />
-              </div>
-            </div>
+           
             <div className="w-full md:w-2/3 text-center md:text-left">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">Sobre Nosotros</h1>
               <p className="text-xl text-white/90 leading-relaxed">

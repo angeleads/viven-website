@@ -83,10 +83,6 @@ export default function Footer() {
                 mapTitle="VIVEN - SITGES"
                 mapLink="https://maps.app.goo.gl/nARgQY1L7nFAGEvg8"
               />
-              <FooterMap
-                mapTitle="VIVEN - COSTA DAURADA"
-                mapLink="https://maps.app.goo.gl/ZVa8YqNDNxtaiJUA8"
-              />
             </ul>
             <ul className="space-y-1">
               <div className="flex items-center mb-3 mt-3">

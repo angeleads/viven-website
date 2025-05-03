@@ -13,7 +13,7 @@ export default function ContactMap() {
             <div className="bg-white rounded-xl shadow-lg overflow-hidden">
               <div className="aspect-w-16 aspect-h-9">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.6774994325566!2d-3.7031968846361758!3d40.41956397936263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42287d383b06f7%3A0x6a6fff77e7517fc!2sGran%20V%C3%ADa%2C%2028%2C%2028013%20Madrid!5e0!3m2!1ses!2ses!4v1651234567890!5m2!1ses!2ses"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001.013742250933!2d1.7202775!3d41.221471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a386fbdda9e279%3A0x1beaed70bdc17530!2sCarrer%20de%20Pelegr%C3%AD%20Ballester%2C%2023%2C%2008800%20Vilanova%20i%20la%20Geltr%C3%BA%2C%20Barcelona!5e0!3m2!1sfr!2ses!4v1746291062246!5m2!1sfr!2ses" 
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -26,18 +26,14 @@ export default function ContactMap() {
               </div>
             </div>
   
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gray-50 rounded-lg p-4 text-center">
-                <h3 className="font-bold text-gray-900 mb-2">Oficina Madrid</h3>
-                <p className="text-gray-600">Calle Gran Vía 28, 28013 Madrid</p>
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gray-50 rounded-3xl p-4 text-center">
+                <h3 className="font-bold text-gray-900 mb-2">Oficina Vilanova</h3>
+                <p className="text-gray-600">Carrer de Pelegrí Ballester, 23, 08800 Vilanova i la Geltrú, Barcelona</p>
               </div>
-              <div className="bg-gray-50 rounded-lg p-4 text-center">
-                <h3 className="font-bold text-gray-900 mb-2">Oficina Barcelona</h3>
-                <p className="text-gray-600">Passeig de Gràcia 43, 08007 Barcelona</p>
-              </div>
-              <div className="bg-gray-50 rounded-lg p-4 text-center">
-                <h3 className="font-bold text-gray-900 mb-2">Oficina Valencia</h3>
-                <p className="text-gray-600">Calle Colón 22, 46004 Valencia</p>
+              <div className="bg-gray-50 rounded-3xl p-4 text-center">
+                <h3 className="font-bold text-gray-900 mb-2">Oficina Sitges</h3>
+                <p className="text-gray-600">Passeig de Vilanova, 08870 Sitges, Barcelona</p>
               </div>
             </div>
           </div>

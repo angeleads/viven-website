@@ -6,20 +6,15 @@ export default function ContactInfo() {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ContactCard
               icon={<Phone className="h-8 w-8 text-blue-600" />}
               title="Llámanos"
               content={
                 <>
                   <p className="mb-2">
-                    <a href="tel:+34912345678" className="text-gray-700 hover:text-blue-600 transition-colors">
-                      +34 91 234 56 78
-                    </a>
-                  </p>
-                  <p>
-                    <a href="tel:+34623456789" className="text-gray-700 hover:text-blue-600 transition-colors">
-                      +34 62 345 67 89
+                    <a href="tel:+34930267436" className="text-gray-700 hover:text-blue-600 transition-colors">
+                    +34 930 267 436
                     </a>
                   </p>
                 </>
@@ -36,24 +31,6 @@ export default function ContactInfo() {
                       info@viven.es
                     </a>
                   </p>
-                  <p>
-                    <a href="mailto:ventas@viven.es" className="text-gray-700 hover:text-blue-600 transition-colors">
-                      ventas@viven.es
-                    </a>
-                  </p>
-                </>
-              }
-            />
-
-            <ContactCard
-              icon={<MessageSquare className="h-8 w-8 text-blue-600" />}
-              title="Chat en vivo"
-              content={
-                <>
-                  <p className="mb-2 text-gray-700">Chatea con nuestros agentes en tiempo real</p>
-                  <button className="text-blue-600 font-medium hover:text-blue-800 transition-colors">
-                    Iniciar chat
-                  </button>
                 </>
               }
             />
@@ -64,9 +41,9 @@ export default function ContactInfo() {
               content={
                 <>
                   <p className="text-gray-700">
-                    Calle Gran Vía 28
+                  Carrer de Pelegrí Ballester, 23,
                     <br />
-                    28013 Madrid, España
+                    08800 Vilanova i la Geltrú, Barcelona
                   </p>
                 </>
               }
@@ -78,21 +55,6 @@ export default function ContactInfo() {
               content={
                 <>
                   <p className="mb-2 text-gray-700">Lunes a Viernes: 9:00 - 20:00</p>
-                  <p className="text-gray-700">Sábados: 10:00 - 14:00</p>
-                </>
-              }
-            />
-
-            <ContactCard
-              icon={<Users className="h-8 w-8 text-blue-600" />}
-              title="Atención al cliente"
-              content={
-                <>
-                  <p className="text-gray-700">
-                    Servicio 24/7 para clientes
-                    <br />
-                    <span className="text-blue-600 font-medium">365 días al año</span>
-                  </p>
                 </>
               }
             />

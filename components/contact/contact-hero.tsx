@@ -6,7 +6,7 @@ export default function ContactHero() {
           <div
             className="absolute inset-0 z-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/placeholder.svg?height=800&width=1600')",
+              backgroundImage: "url('/pictures/deal-meat.jpg')",
               filter: "blur(1px)",
             }}
           ></div>
