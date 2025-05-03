@@ -1,5 +1,9 @@
 import CompanyHero from "@/components/empresa/company-hero";
+import MissionSection from "@/components/empresa/mission-section";
+import StaffSection from "@/components/empresa/staff-section";
 import BusinessLines from "@/components/empresa/business-lines";
+import VivenPlusSection from "@/components/empresa/viven-plus-section";
+import StatsSection from "@/components/empresa/stats-section";
 import TeamSection from "@/components/empresa/team-section";
 import ValuesSection from "@/components/empresa/values-section";
 import CallToAction from "@/components/empresa/call-to-action";
@@ -11,7 +15,11 @@ export default function EmpresaPage() {
     <main className="min-h-screen">
       <Navbar />
       <CompanyHero />
+      <MissionSection />
+      <StaffSection />
       <BusinessLines />
+      <VivenPlusSection />
+      <StatsSection />
       <TeamSection />
       <ValuesSection />
       <CallToAction />

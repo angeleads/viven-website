@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { Building2, Home, Users, Shield, Lightbulb, Award } from "lucide-react"
 
 export default function BusinessLines() {
@@ -21,6 +22,10 @@ export default function BusinessLines() {
                 <Home className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-blue-600">RE/MAX VIVEN</h3>
+            </div>
+
+            <div className="relative h-48 mb-6 rounded-xl overflow-hidden">
+              <Image src="/placeholder.svg?height=400&width=600" alt="RE/MAX VIVEN" fill className="object-cover" />
             </div>
 
             <p className="text-gray-700 mb-6 leading-relaxed">
@@ -55,6 +60,27 @@ export default function BusinessLines() {
                 </div>
               </div>
             </div>
+
+            <div className="mt-6">
+              <Link
+                href="/remax"
+                className="inline-flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors"
+              >
+                Ver estadísticas RE/MAX
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 ml-2"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </Link>
+            </div>
           </div>
 
           {/* VIVEN +Plus */}
@@ -64,6 +90,10 @@ export default function BusinessLines() {
                 <Building2 className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-red-600">VIVEN +Plus</h3>
+            </div>
+
+            <div className="relative h-48 mb-6 rounded-xl overflow-hidden">
+              <Image src="/placeholder.svg?height=400&width=600" alt="VIVEN +Plus" fill className="object-cover" />
             </div>
 
             <p className="text-gray-700 mb-6 leading-relaxed">
@@ -98,6 +128,27 @@ export default function BusinessLines() {
                   </p>
                 </div>
               </div>
+            </div>
+
+            <div className="mt-6">
+              <Link
+                href="/servicios/administracion-comunidades"
+                className="inline-flex items-center text-red-600 font-medium hover:text-red-800 transition-colors"
+              >
+                Más información
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 ml-2"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </Link>
             </div>
           </div>
         </div>

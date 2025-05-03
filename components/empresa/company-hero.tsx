@@ -29,9 +29,10 @@ export default function CompanyHero() {
             <div className="w-full md:w-2/3 text-center md:text-left">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">Sobre Nosotros</h1>
               <p className="text-xl text-white/90 leading-relaxed">
-                Viven es el nuevo concepto de negocio dentro del sector inmobiliario. Nació de las inquietudes de su
-                fundador, con amplia trayectoria en el sector, buscando un modelo de negocio que soportase las
-                fluctuaciones del mercado y estabilizase la rentabilidad de la agencia inmobiliaria.
+                VIVEN es la innovación y la búsqueda de la excelencia en el sector inmobiliario. Nació de las
+                inquietudes de su fundador, de promover un sistema de trabajo en que tanto los usuarios como los
+                trabajadores sean beneficiarios de una metodología de trabajo, unos principios sólidos y una búsqueda
+                continua de la excelencia en todos sus ámbitos.
               </p>
             </div>
           </div>

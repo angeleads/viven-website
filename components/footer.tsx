@@ -9,6 +9,8 @@ import {
   Youtube,
   MapPin,
   ArrowRight,
+  Phone,
+  MailCheck
 } from "lucide-react";
 
 export default function Footer() {
@@ -74,28 +76,47 @@ export default function Footer() {
             <h4 className="text-lg font-bold mb-6">Mapas</h4>
             <ul className="space-y-4">
               <FooterMap
-                phone="+34 930 267 436"
-                email="hola@viven.es"
                 mapTitle="VIVEN - VILANOVA"
                 mapLink="https://maps.app.goo.gl/t6yvtApknygLCB1e8"
               />
               <FooterMap
-                phone="+34 930 267 436"
-                email="hola@viven.es"
                 mapTitle="VIVEN - SITGES"
                 mapLink="https://maps.app.goo.gl/nARgQY1L7nFAGEvg8"
               />
               <FooterMap
-                phone="+34 930 267 436"
-                email="hola@viven.es"
                 mapTitle="VIVEN - COSTA DAURADA"
                 mapLink="https://maps.app.goo.gl/ZVa8YqNDNxtaiJUA8"
               />
             </ul>
+            <ul className="space-y-1">
+              <div className="flex items-center mb-3 mt-3">
+                <Phone className="text-blue-600 mr-2" />
+
+                <li>
+                  <a
+                    href="tel:+34930267436"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    +34 930 267 436
+                  </a>
+                </li>
+              </div>
+              <div className="flex items-center">
+              <MailCheck className="text-blue-600 mr-2" />
+                <li>
+                  <a
+                    href="mailto:hola@viven.es"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    hola@viven.es
+                  </a>
+                </li>
+              </div>
+            </ul>
           </div>
 
           <div>
-            <h4 className="text-lg font-bold mb-6">Newsletter</h4>
+            <h4 className="text-lg font-bold mb-3">Newsletter</h4>
             <p className="text-gray-400 mb-4">
               Suscríbete para recibir las últimas novedades del mercado
               inmobiliario.
@@ -174,56 +195,43 @@ function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
   );
 }
 
-function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+function FooterLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
   return (
     <li>
-      <Link href={href} className="text-gray-400 hover:text-white transition-colors duration-300">
+      <Link
+        href={href}
+        className="text-gray-400 hover:text-white transition-colors duration-300"
+      >
         {children}
       </Link>
     </li>
-  )
+  );
 }
 
 function FooterMap({
   mapLink,
   mapTitle,
-  phone,
-  email,
 }: {
   mapLink: string;
   mapTitle: string;
-  phone: string;
-  email: string;
 }) {
   return (
     <div>
       <div className="flex items-center">
         <MapPin className="text-blue-600 mr-2" />
         <Link
-            href={mapLink}
-            className="text-gray-400 hover:text-white hover:underline transition-colors"
-          >
-            {mapTitle}
-          </Link>
+          href={mapLink}
+          className="text-gray-400 hover:text-white hover:underline transition-colors"
+        >
+          {mapTitle}
+        </Link>
       </div>
-      <ul className="space-y-1">
-        <li>
-          <a
-            href={`tel:${phone}`}
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            {phone}
-          </a>
-        </li>
-        <li>
-          <a
-            href={`mailto:${email}`}
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            {email}
-          </a>
-        </li>
-      </ul>
     </div>
   );
 }
