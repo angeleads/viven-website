@@ -67,6 +67,7 @@ export default function ContactSection() {
                     <option>Venta de propiedad</option>
                     <option>Alquiler</option>
                     <option>Inversión</option>
+                    <option>Gestión de Comunidades</option>
                     <option>Otro</option>
                   </select>
                 </div>
@@ -112,7 +113,7 @@ export default function ContactSection() {
                 <ContactItem
                   icon={<Clock className="h-6 w-6" />}
                   title="Horario"
-                  content="Lunes a Viernes: 9:00 - 20:00"
+                  content="Lunes a Jueves: 9:00 - 19:00 y Viernes: 8:00 - 15:00"
                 />
               </div>
             </div>

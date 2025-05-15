@@ -146,6 +146,7 @@ export default function ContactForm() {
                         <option className="rounded-xl" value="compra">Compra de propiedad</option>
                         <option className="rounded-xl" value="venta">Venta de propiedad</option>
                         <option className="rounded-xl" value="alquiler">Alquiler</option>
+                        <option className="rounded-xl" value="alquiler">Gestión de Communidades</option>
                         <option className="rounded-xl" value="comunidades">Administración de comunidades</option>
                         <option className="rounded-xl" value="inversion">Inversión inmobiliaria</option>
                       </select>

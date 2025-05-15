@@ -27,8 +27,8 @@ export default function ContactInfo() {
               content={
                 <>
                   <p className="mb-2">
-                    <a href="mailto:info@viven.es" className="text-gray-700 hover:text-blue-600 transition-colors">
-                      info@viven.es
+                    <a href="mailto:hola@viven.es" className="text-gray-700 hover:text-blue-600 transition-colors">
+                      hola@viven.es
                     </a>
                   </p>
                 </>
@@ -54,7 +54,7 @@ export default function ContactInfo() {
               title="Horario"
               content={
                 <>
-                  <p className="mb-2 text-gray-700">Lunes a Viernes: 9:00 - 20:00</p>
+                  <p className="mb-2 text-gray-700">Lunes a Jueves: 9:00 - 19:00 y Viernes: 8:00 - 15:00</p>
                 </>
               }
             />
