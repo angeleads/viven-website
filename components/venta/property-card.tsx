@@ -29,7 +29,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           {property.type}
         </div>
         <div className="absolute top-4 right-4 bg-red-600 text-white text-sm font-medium px-3 py-1 rounded-full">
-          {property.status}
+          status
         </div>
 
         {/* Agent information overlay on hover - only on the image */}
@@ -41,21 +41,21 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           <div className="text-center">
             <div className="relative w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border-2 border-white">
               <Image
-                src={property.agent.photo || "/placeholder.svg?height=200&width=200"}
-                alt={property.agent.name}
+                src={"/placeholder.svg?height=200&width=200"}
+                alt={"Cesar Sanjurjo - Agente inmobiliario"}
                 fill
                 className="object-cover"
               />
             </div>
-            <h4 className="text-white font-bold text-base mb-1">{property.agent.name}</h4>
+            <h4 className="text-white font-bold text-base mb-1">Cesar Sanjurjo</h4>
             <p className="text-white/80 text-xs mb-3">Agente inmobiliario</p>
 
             <a
-              href={`tel:${property.agent.phone}`}
+              href={`tel:+34 667881370`}
               className="flex items-center justify-center gap-2 bg-white text-blue-600 hover:bg-blue-50 font-medium py-1.5 px-3 rounded-xl transition-colors text-sm"
             >
               <Phone size={14} />
-              {property.agent.phone}
+              +34 667 881 370
             </a>
           </div>
         </div>
