@@ -62,7 +62,6 @@ export default function Footer() {
             <ul className="space-y-4">
               <FooterLink href="/">Inicio</FooterLink>
               <FooterLink href="/venta">Venta</FooterLink>
-              <FooterLink href="/alquiler">Alquiler</FooterLink>
               <FooterLink href="/administrador-de-fincas">
                 Administrador de fincas
               </FooterLink>
@@ -82,6 +81,10 @@ export default function Footer() {
               <FooterMap
                 mapTitle="VIVEN - SITGES"
                 mapLink="https://maps.app.goo.gl/nARgQY1L7nFAGEvg8"
+              />
+              <FooterMap
+                mapTitle="VIVEN - COSTA DAURADA"
+                mapLink="https://maps.app.goo.gl/dTj7q3wAVyJEZxQk8"
               />
             </ul>
             <ul className="space-y-1">

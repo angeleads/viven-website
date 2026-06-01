@@ -28,9 +28,9 @@ export default function Navbar() {
           <nav className="hidden md:flex items-center space-x-8">
             <NavLink href="/">Inicio</NavLink>
             <NavLink href="/venta">Venta</NavLink>
-            <NavLink href="/alquiler">Alquiler</NavLink>
             <NavLink href="/administrador-de-fincas">Administrador de fincas</NavLink>
             <NavLink href="/empresa">Empresa</NavLink>
+            <NavLink href="/comunidades">Comunidades</NavLink>
             <NavLink href="/inversion">Inversión</NavLink>
             <NavLink href="/contacto">Contacto</NavLink>
           </nav>
@@ -60,12 +60,6 @@ export default function Navbar() {
                 Venta
               </MobileNavLink>
               <MobileNavLink
-                href="/alquiler"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Alquiler
-              </MobileNavLink>
-              <MobileNavLink
                 href="/administrador-de-fincas"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -76,6 +70,12 @@ export default function Navbar() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Empresa
+              </MobileNavLink>
+              <MobileNavLink
+                href="/comunidades"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Comunidades
               </MobileNavLink>
               <MobileNavLink
                 href="/inversion"
