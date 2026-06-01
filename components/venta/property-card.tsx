@@ -29,7 +29,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           {property.type}
         </div>
         <div className="absolute top-4 right-4 bg-red-600 text-white text-sm font-medium px-3 py-1 rounded-full">
-          status
+          {property.priceFreq}
         </div>
 
         {/* Agent information overlay on hover - only on the image */}

@@ -6,6 +6,7 @@ export interface Property {
   town: string;
   locationDetail?: string;
   price: number;
+  priceFreq: string;
   image: string; // Imagen principal
   images: string[]; // Lista de todas las imágenes
   beds: number;

@@ -62,6 +62,7 @@ export async function GET() {
         title: title,
         location: `${item.province || ""}, ${item.town || ""}`,
         price: Number(item.price) || 0,
+        priceFreq: item.price_freq || "N/A",
         image: mainImage,
         beds: Number(item.beds) || 0,
         baths: Number(item.baths) || 0,

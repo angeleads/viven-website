@@ -63,7 +63,7 @@ export async function GET(
 
     // Traducir tipos para consistencia visual
     let propertyType = item.type || "Propiedad";
-    if (propertyType === "urban plot") propertyType = "Terreno Urbano";
+    if (propertyType === "Urban plot") propertyType = "Terreno Urbano";
 
     const title = `${propertyType} en ${item.town || ""}${item.location_detail ? `, ${item.location_detail}` : ""}`;
 
@@ -75,6 +75,7 @@ export async function GET(
       town: item.town || "",
       locationDetail: item.location_detail,
       price: Number(item.price) || 0,
+      priceFreq: item.price_freq || "N/A",
       image: mainImage,
       images: allImages.length > 0 ? allImages : [mainImage],
       beds: Number(item.beds) || 0,
