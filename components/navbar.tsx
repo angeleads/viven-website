@@ -31,6 +31,7 @@ export default function Navbar() {
             <NavLink href="/alquiler">Alquiler</NavLink>
             <NavLink href="/administrador-de-fincas">Administrador de fincas</NavLink>
             <NavLink href="/empresa">Empresa</NavLink>
+            <NavLink href="/comunidades">Comunidades</NavLink>
             <NavLink href="/inversion">Inversión</NavLink>
             <NavLink href="/contacto">Contacto</NavLink>
           </nav>
@@ -76,6 +77,12 @@ export default function Navbar() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Empresa
+              </MobileNavLink>
+              <MobileNavLink
+                href="/comunidades"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Comunidades
               </MobileNavLink>
               <MobileNavLink
                 href="/inversion"

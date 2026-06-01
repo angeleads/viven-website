@@ -147,19 +147,6 @@ export default function CoverageSection() {
               ))}
             </div>
           </div>
-
-          {/* Interactive Map Preview */}
-          <div className="bg-white rounded-3xl shadow-2xl p-8 sticky top-24">
-            <div className="text-center p-8">
-              <Image
-                src="/pictures/mapa-oficinas.png"
-                alt="Mapa de cobertura"
-                width={256}
-                height={256}
-                className="w-64 max-w-md mx-auto mb-6"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </section>

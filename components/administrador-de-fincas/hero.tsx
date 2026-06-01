@@ -4,7 +4,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-white"></div>
       <div className="container mx-auto px-6 relative text-white">
         <div className="max-w-4xl">
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-red-500 to-blue-800 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-red-500 to-blue-800 bg-clip-text text-transparent">
             Administración de Fincas Premium
           </h1>
           <p className="text-xl md:text-2xl mb-12 max-w-2xl text-gray-600">
