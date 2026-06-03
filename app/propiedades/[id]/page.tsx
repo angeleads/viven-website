@@ -81,6 +81,11 @@ export default function PropertyDetailPage({
     );
   }
 
+  // Helper opcional para limpiar y formatear los saltos de línea de la descripción
+  const formattedDescription = property.description
+    ? property.description.replaceAll("~~", "\n\n")
+    : "No hay una descripción extendida disponible para este inmueble.";
+
   return (
     <main className="min-h-screen bg-gray-50 py-12">
       <Navbar />
@@ -201,9 +206,9 @@ export default function PropertyDetailPage({
                 <FileText size={20} className="text-blue-600 mr-2" />
                 Descripción de la propiedad
               </h3>
+              {/* 👇 Renderiza la variable formateada con saltos de línea reales */}
               <div className="text-gray-600 leading-relaxed space-y-4 whitespace-pre-line text-justify">
-                {property.description ||
-                  "No hay una descripción extendida disponible para este inmueble."}
+                {formattedDescription}
               </div>
             </div>
 

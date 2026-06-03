@@ -16,11 +16,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center">
             <Image
-              src="/logos/viven-remax-logo.png"
+              src="/logos/remax-viven-logo.png"
               alt="Viven Inmobiliaria"
               width={120}
               height={40}
-              className="h-10 w-auto"
+              className="h-14 w-auto"
             />
           </Link>
 

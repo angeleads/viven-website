@@ -21,7 +21,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="inline-block mb-6">
               <Image
-                src="/logos/viven-remax-logo.png"
+                src="/logos/remax-viven-logo.png"
                 alt="Viven Inmobiliaria"
                 width={150}
                 height={50}

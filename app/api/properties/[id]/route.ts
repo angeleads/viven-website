@@ -70,6 +70,7 @@ export async function GET(
     const formattedProperty: Property = {
       id: String(item.id),
       title: title,
+      date: item.date || "",
       location: `${item.province || ""}, ${item.town || ""}`,
       province: item.province || "",
       town: item.town || "",
