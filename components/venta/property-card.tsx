@@ -19,17 +19,17 @@ export default function PropertyCard({ property }: PropertyCardProps) {
       <div className="relative" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
         <div className="aspect-w-16 aspect-h-10 relative overflow-hidden">
           <Image
-            src={property.image || "/placeholder.svg?height=400&width=600"}
+            src={property.images[0] || "/placeholder.svg?height=400&width=600"}
             alt={property.title}
             fill
             className="object-cover transition-transform duration-500 hover:scale-105"
           />
         </div>
         <div className="absolute top-4 left-4 bg-blue-600 text-white text-sm font-medium px-3 py-1 rounded-full">
-          {property.type}
+          {property.operationType}
         </div>
         <div className="absolute top-4 right-4 bg-red-600 text-white text-sm font-medium px-3 py-1 rounded-full">
-          {property.priceFreq}
+          {property.price.toLocaleString("es-ES")} €
         </div>
 
         {/* Agent information overlay on hover - only on the image */}

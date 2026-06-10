@@ -1,32 +1,53 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Navbar from "@/components/navbar";
 import Hero from "@/components/venta/hero";
 import PropertyGrid from "@/components/venta/property-grid";
 import Pagination from "@/components/venta/pagination";
+import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Property } from "@/types/property";
 
 export default function VentaPage() {
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function loadAllProperties() {
+    let isMounted = true;
+
+    async function getProperties() {
       try {
+        setLoading(true);
         const res = await fetch("/api/properties");
-        if (res.ok) {
-          const data = await res.json();
-          setProperties(data);
+        
+        if (!res.ok) {
+          throw new Error(`Server returned code: ${res.status}`);
         }
-      } catch (error) {
-        console.error("Error cargando propiedades en sección venta:", error);
+        
+        const data = await res.json();
+        
+        if (isMounted) {
+          setProperties(Array.isArray(data) ? data : []);
+          setError(null);
+        }
+      } catch (err: any) {
+        console.error("Error client-fetching properties:", err);
+        if (isMounted) {
+          setError("No se pudieron cargar las propiedades. Inténtalo de nuevo más tarde.");
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false); // 👈 This guarantees the loading spinner turns off no matter what!
+        }
       }
     }
-    loadAllProperties();
+
+    getProperties();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
@@ -34,20 +55,22 @@ export default function VentaPage() {
       <Navbar />
       <Hero />
       
-      {loading ? (
-        <div className="flex justify-center items-center py-20">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
-        </div>
-      ) : (
-        /* Le pasamos las propiedades reales directamente al componente Grid */
-        <PropertyGrid properties={properties} />
-      )}
+      <div className="container mx-auto px-4">
+        {loading ? (
+          <div className="flex flex-col justify-center items-center py-24 gap-4">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
+            <p className="text-gray-500 animate-pulse text-sm">Conectando con el catálogo de Inmovilla...</p>
+          </div>
+        ) : error ? (
+          <div className="text-center py-16 text-red-600 font-medium">
+            {error}
+          </div>
+        ) : (
+          <PropertyGrid properties={properties} />
+        )}
+      </div>
 
-      {/* Paginación opcional: por ahora muestra 1 de 1 ya que cargamos las 28 de golpe */}
-      {!loading && properties.length > 0 && (
-        <Pagination currentPage={1} totalPages={1} />
-      )}
-      
+      <Pagination currentPage={1} totalPages={1} />
       <Footer />
     </main>
   );

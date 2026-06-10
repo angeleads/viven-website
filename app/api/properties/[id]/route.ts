@@ -1,101 +1,65 @@
 import { NextResponse } from "next/server";
-import { XMLParser } from "fast-xml-parser";
 import { Property } from "@/types/property";
 
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
-  const { id } = await params;
+  const id = params.id;
+  const token = "6A6AEE65E14D04F0164418EA3C212A42";
 
   try {
-    const response = await fetch(
-      "https://procesos.apinmo.com/portal/kyeroagencias3/6926-kyero-xk3ouwyefacilitea.xml",
-      { next: { revalidate: 1800 } } // Cache por 30 minutos para velocidad
-    );
-
-    if (!response.ok) throw new Error("Error fetching XML source");
-
-    const xmlData = await response.text();
-    const parser = new XMLParser({
-      ignoreAttributes: false,
-      parseTagValue: true,
-      trimValues: true,
+    const res = await fetch(`https://procesos.apinmo.com/api/v1/propiedades/?cod_ofer=${id}`, {
+      method: "GET",
+      headers: {
+        "token": token,
+        "Content-Type": "application/json"
+      }
     });
-    
-    const jsonObj = parser.parse(xmlData);
-    const rawProperties = jsonObj?.root?.property;
 
-    if (!rawProperties) {
-      return NextResponse.json({ error: "No properties found" }, { status: 404 });
+    if (!res.ok) {
+      return NextResponse.json({ error: "Propiedad no encontrada" }, { status: 404 });
     }
 
-    const propertyList = Array.isArray(rawProperties) ? rawProperties : [rawProperties];
-    
-    // Buscar la propiedad exacta usando el ID de la URL
-    const item = propertyList.find((p: any) => String(p.id) === id);
+    const d = await res.json();
 
-    if (!item) {
-      return NextResponse.json({ error: "Property not found" }, { status: 404 });
-    }
+    // Mapeamos los campos exactamente igual que en la ruta general
+    const features: string[] = [];
+    if (d.piscina_prop === 1) features.push("piscina privada");
+    if (d.jardin === 1) features.push("jardín");
+    if (d.terraza === 1) features.push("terraza");
+    if (d.trastero === 1) features.push("trastero");
+    if (d.chimenea === 1) features.push("chimenea");
+    if (d.arma_empo === 1) features.push("armarios empotrados");
 
-    // Extraer array completo de imágenes
-    let allImages: string[] = [];
-    if (item.images?.image) {
-      const imgs = Array.isArray(item.images.image) ? item.images.image : [item.images.image];
-      allImages = imgs.map((img: any) => img.url).filter(Boolean);
-    }
-    const mainImage = allImages[0] || "/placeholder.svg";
+    const mockImages = [
+      "/placeholder.svg?height=400&width=600",
+      "/placeholder.svg?height=400&width=600"
+    ];
 
-    // Extraer array de características (features)
-    let featuresList: string[] = [];
-    if (item.features?.feature) {
-      featuresList = Array.isArray(item.features.feature) 
-        ? item.features.feature 
-        : [item.features.feature];
-    }
-
-    // Limpieza de descripción de bloques CDATA
-    let cleanDescription = item.desc?.es || "";
-    if (typeof cleanDescription === "object") {
-      cleanDescription = cleanDescription["#text"] || "";
-    }
-
-    // Traducir tipos para consistencia visual
-    let propertyType = item.type || "Propiedad";
-    if (propertyType === "Urban plot") propertyType = "Terreno Urbano";
-
-    const title = `${propertyType} en ${item.town || ""}${item.location_detail ? `, ${item.location_detail}` : ""}`;
-
-    const formattedProperty: Property = {
-      id: String(item.id),
-      title: title,
-      date: item.date || "",
-      location: `${item.province || ""}, ${item.town || ""}`,
-      province: item.province || "",
-      town: item.town || "",
-      locationDetail: item.location_detail,
-      price: Number(item.price) || 0,
-      priceFreq: item.price_freq || "N/A",
-      image: mainImage,
-      images: allImages.length > 0 ? allImages : [mainImage],
-      beds: Number(item.beds) || 0,
-      baths: Number(item.baths) || 0,
-      area: Number(item.surface_area?.built) || Number(item.surface_area?.plot) || 0,
-      plotArea: Number(item.surface_area?.plot) || 0,
-      type: propertyType,
-      operationType: item.operation_type === "For sale" ? "En Venta" : item.operation_type || "Disponible",
-      reference: item.ref || "",
-      agency: item.agencia || "Inmobiliaria",
-      agencyPhone: item.telefono,
-      agencyEmail: item.email,
-      description: cleanDescription,
-      features: featuresList,
+    const propertyDetail: Property = {
+      id: String(d.cod_ofer),
+      reference: d.ref || String(d.cod_ofer),
+      title: d.tituloes || "Propiedad exclusiva",
+      description: d.descripciones || "",
+      location: "Sant Pere de Ribes",
+      locationDetail: d.calle ? `${d.calle}, ${d.numero || ""}` : "",
+      price: Number(d.precioinmo) || Number(d.precio) || 0,
+      image: mockImages[0],
+      images: mockImages,
+      beds: d.habitaciones || 0,
+      baths: d.banyos || 0,
+      area: d.m_cons || 0,
+      operationType: d.precioalq > 0 ? "Alquiler" : "Venta",
+      date: d.fechaact || "",
+      features: features,
+      agency: "Inmobiliaria Profesional",
+      agencyPhone: "+34 641 173 416", // Número del agente extraído del feed de ejemplo
+      agencyEmail: "contacto@agencia.com"
     };
 
-    return NextResponse.json(formattedProperty, { status: 200 });
-  } catch (error) {
-    console.error("Error loading specific property detail:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(propertyDetail);
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
