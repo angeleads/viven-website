@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Property } from "@/types/property";
 
-const API_URL = "https://apiweb.inmovilla.com/apiweb/apiweb.php";
+const API_URL = process.env.INMOVILLA_API_URL || "https://apiweb.inmovilla.com/apiweb/apiweb.php";
 
 export async function GET(request: NextRequest) {
   try {
