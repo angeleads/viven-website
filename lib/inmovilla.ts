@@ -24,9 +24,7 @@ export async function queryInmovilla(options: QueryOptions) {
   const carpeta = process.env.INMOVILLA_CARPETA!;
   const password = process.env.INMOVILLA_PASSWORD!;
   const dominio = process.env.INMOVILLA_DOMINIO!;
-  
-  // Tu variable FIXIE_URL: http://fixie:LZxLWiFU0XdvX0b@ventoux.usefixie.com:80
-  const fixieUrl = process.env.FIXIE_URL; 
+  const fixieUrl = process.env.FIXIE_URL; // Tu variable en Vercel
 
   const primerTipo = consultas[0];
   const restoTipos = consultas.slice(1).join(";");
@@ -52,22 +50,24 @@ export async function queryInmovilla(options: QueryOptions) {
     json: "1",
   });
 
-  // PREPARACIÓN DE URL Y CABECERAS PARA ENTORNO SERVERLESS (VERCEL COMPATIBLE)
+  // Configuración base de cabeceras estándar
   let targetUrl = API_URL;
   const headers: Record<string, string> = {
     "Content-Type": "application/x-www-form-urlencoded",
   };
 
+  // MÈTODO SERVERLESS: Si existe FIXIE_URL, reescribimos el destino por HTTP nativo
   if (fixieUrl) {
-    // 1. Extraemos las credenciales y el host de Fixie para no usar HttpsProxyAgent
-    // fixieUrl mapeado da: user -> "fixie", pass -> "LZxLWiFU0XdvX0b", host -> "ventoux.usefixie.com:80"
+    // Codificamos las credenciales de tu proxy en Base64 de manera limpia
     const fixieAuth = Buffer.from("fixie:LZxLWiFU0XdvX0b").toString("base64");
     
-    // 2. Le inyectamos la cabecera del Proxy de manera nativa al fetch estándar
+    // Inyectamos la cabecera Proxy obligatoria
     headers["Proxy-Authorization"] = `Basic ${fixieAuth}`;
     
-    // 3. Forzamos a que el destino pase por el puerto HTTP de Fixie reescribiendo la llamada
+    // Cambiamos el endpoint para apuntar directamente al túnel proxy de Fixie
     targetUrl = "http://ventoux.usefixie.com:80/apiweb/apiweb.php";
+    
+    // Le indicamos a Fixie a qué servidor real debe redirigir el tráfico final
     headers["Host"] = "apiweb.inmovilla.com";
   }
 
@@ -78,7 +78,6 @@ export async function queryInmovilla(options: QueryOptions) {
     next: { revalidate: 60 },
   };
 
-  // Hacemos la petición nativa que Vercel entiende a la perfección
   const response = await fetch(targetUrl, fetchOptions);
 
   if (!response.ok) {
@@ -91,7 +90,7 @@ export async function queryInmovilla(options: QueryOptions) {
   try {
     return JSON.parse(cleanedText);
   } catch (parseError) {
-    console.error("Error parseando JSON. Texto original:", cleanedText.substring(0, 200));
+    console.error("Error parseando JSON de Inmovilla. Texto original:", cleanedText.substring(0, 200));
     throw new Error(`Respuesta inesperada de la API: ${cleanedText.substring(0, 100)}`);
   }
 }
