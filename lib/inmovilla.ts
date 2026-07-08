@@ -49,18 +49,33 @@ export async function queryInmovilla(options: QueryOptions) {
     json: "1",
   });
 
-  const fetchOptions: RequestInit = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: body.toString(),
-    next: { revalidate: 60 },
+  // Construcción de cabeceras estándar
+  const headers: Record<string, string> = {
+    "Content-Type": "application/x-www-form-urlencoded",
   };
 
-  // Hacemos un fetch directo y limpio. Vercel se encargará de pasarlo por Fixie 
-  // automáticamente gracias a las variables HTTP_PROXY / HTTPS_PROXY.
-  const response = await fetch(API_URL, fetchOptions);
+  // Autenticación limpia con Fixie codificada en Base64
+  // Credenciales extraídas de tu variable: fixie:LZxLWiFU0XdvX0b
+  const fixieAuth = Buffer.from("fixie:LZxLWiFU0XdvX0b").toString("base64");
+  headers["Proxy-Authorization"] = `Basic ${fixieAuth}`;
+
+  // Forzamos a Next.js a enviar la petición directamente al proxy HTTP de Fixie.
+  // Fixie leerá los encabezados y se encargará de hacer la petición real a Inmovilla
+  const proxyTargetUrl = "http://ventoux.usefixie.com:80/apiweb/apiweb.php";
+  
+  // Le indicamos a Fixie cuál es el servidor real de destino al que debe redirigir el tráfico final
+  headers["Host"] = "apiweb.inmovilla.com";
+
+  const fetchOptions: RequestInit = {
+    method: "POST",
+    headers: headers,
+    body: body.toString(),
+    // Desactivamos la caché persistente para que siempre consulte datos reales en tiempo real
+    cache: "no-store", 
+  };
+
+  // Hacemos el fetch directamente al túnel de Fixie
+  const response = await fetch(proxyTargetUrl, fetchOptions);
 
   if (!response.ok) {
     throw new Error(`Error HTTP de Inmovilla: ${response.status}`);
@@ -69,10 +84,14 @@ export async function queryInmovilla(options: QueryOptions) {
   const text = await response.text();
   const cleanedText = text.trim();
 
+  if (cleanedText.includes("IP NO VALIDADA")) {
+    throw new Error(`Inmovilla rechazó la IP de origen. Respuesta: ${cleanedText}`);
+  }
+
   try {
     return JSON.parse(cleanedText);
   } catch (parseError) {
-    console.error("Error parseando JSON de Inmovilla. Texto recibido:", cleanedText.substring(0, 200));
+    console.error("Error parseando JSON de Inmovilla. Texto original recibido:", cleanedText.substring(0, 200));
     throw new Error(`Respuesta inesperada de la API: ${cleanedText.substring(0, 100)}`);
   }
 }
