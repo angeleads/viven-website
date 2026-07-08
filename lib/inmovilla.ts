@@ -1,5 +1,3 @@
-import { HttpsProxyAgent } from "https-proxy-agent";
-
 const API_URL = "https://apiweb.inmovilla.com/apiweb/apiweb.php";
 
 interface QueryOptions {
@@ -23,13 +21,13 @@ export async function queryInmovilla(options: QueryOptions) {
     userIp,
   } = options;
 
-  // Recuperación segura de credenciales del lado del servidor
   const carpeta = process.env.INMOVILLA_CARPETA!;
   const password = process.env.INMOVILLA_PASSWORD!;
   const dominio = process.env.INMOVILLA_DOMINIO!;
-  const fixieUrl = process.env.FIXIE_URL; // Tu endpoint seguro de Fixie
+  
+  // Tu variable FIXIE_URL: http://fixie:LZxLWiFU0XdvX0b@ventoux.usefixie.com:80
+  const fixieUrl = process.env.FIXIE_URL; 
 
-  // Construcción del parámetro string separado por ";" exigido por Inmovilla
   const primerTipo = consultas[0];
   const restoTipos = consultas.slice(1).join(";");
 
@@ -54,34 +52,46 @@ export async function queryInmovilla(options: QueryOptions) {
     json: "1",
   });
 
+  // PREPARACIÓN DE URL Y CABECERAS PARA ENTORNO SERVERLESS (VERCEL COMPATIBLE)
+  let targetUrl = API_URL;
+  const headers: Record<string, string> = {
+    "Content-Type": "application/x-www-form-urlencoded",
+  };
+
+  if (fixieUrl) {
+    // 1. Extraemos las credenciales y el host de Fixie para no usar HttpsProxyAgent
+    // fixieUrl mapeado da: user -> "fixie", pass -> "LZxLWiFU0XdvX0b", host -> "ventoux.usefixie.com:80"
+    const fixieAuth = Buffer.from("fixie:LZxLWiFU0XdvX0b").toString("base64");
+    
+    // 2. Le inyectamos la cabecera del Proxy de manera nativa al fetch estándar
+    headers["Proxy-Authorization"] = `Basic ${fixieAuth}`;
+    
+    // 3. Forzamos a que el destino pase por el puerto HTTP de Fixie reescribiendo la llamada
+    targetUrl = "http://ventoux.usefixie.com:80/apiweb/apiweb.php";
+    headers["Host"] = "apiweb.inmovilla.com";
+  }
+
   const fetchOptions: RequestInit = {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    headers: headers,
     body: body.toString(),
-    // Revalidación cada 60 segundos para proteger los límites de peticiones gratuitos de Fixie
     next: { revalidate: 60 },
   };
 
-  // Enrutamiento forzado a través de las IPs de Fixie (solo si la variable existe)
-  if (fixieUrl) {
-    (fetchOptions as any).agent = new HttpsProxyAgent(fixieUrl);
-  }
-
-  const response = await fetch(API_URL, fetchOptions);
+  // Hacemos la petición nativa que Vercel entiende a la perfección
+  const response = await fetch(targetUrl, fetchOptions);
 
   if (!response.ok) {
     throw new Error(`Error HTTP de Inmovilla: ${response.status}`);
   }
 
   const text = await response.text();
-  
-  // SOLUCIÓN: Limpiamos espacios en blanco o retornos de carro invisibles que envía Inmovilla
   const cleanedText = text.trim();
 
   try {
     return JSON.parse(cleanedText);
   } catch (parseError) {
-    console.error("Error parseando JSON de Inmovilla. Texto recibido:", cleanedText.substring(0, 200));
+    console.error("Error parseando JSON. Texto original:", cleanedText.substring(0, 200));
     throw new Error(`Respuesta inesperada de la API: ${cleanedText.substring(0, 100)}`);
   }
 }
