@@ -1,3 +1,6 @@
+import axios from "axios";
+import { HttpsProxyAgent } from "https-proxy-agent";
+
 const API_URL = "https://apiweb.inmovilla.com/apiweb/apiweb.php";
 
 interface QueryOptions {
@@ -24,6 +27,9 @@ export async function queryInmovilla(options: QueryOptions) {
   const carpeta = process.env.INMOVILLA_CARPETA!;
   const password = process.env.INMOVILLA_PASSWORD!;
   const dominio = process.env.INMOVILLA_DOMINIO!;
+  
+  // Recuperamos la URL del proxy de tu archivo de configuración (.env.local o Vercel)
+  const proxyUrl = process.env.FIXIE_URL || process.env.HTTP_PROXY;
 
   const primerTipo = consultas[0];
   const restoTipos = consultas.slice(1).join(";");
@@ -41,7 +47,7 @@ export async function queryInmovilla(options: QueryOptions) {
     restoTipos,
   ].join(";");
 
-  const body = new URLSearchParams({
+  const params = new URLSearchParams({
     param,
     ia: userIp,
     ib: userIp,
@@ -49,49 +55,36 @@ export async function queryInmovilla(options: QueryOptions) {
     json: "1",
   });
 
-  // Construcción de cabeceras estándar
-  const headers: Record<string, string> = {
-    "Content-Type": "application/x-www-form-urlencoded",
+  // Configuración base de la petición con Axios
+  const config: any = {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
   };
 
-  // Autenticación limpia con Fixie codificada en Base64
-  // Credenciales extraídas de tu variable: fixie:LZxLWiFU0XdvX0b
-  const fixieAuth = Buffer.from("fixie:LZxLWiFU0XdvX0b").toString("base64");
-  headers["Proxy-Authorization"] = `Basic ${fixieAuth}`;
-
-  // Forzamos a Next.js a enviar la petición directamente al proxy HTTP de Fixie.
-  // Fixie leerá los encabezados y se encargará de hacer la petición real a Inmovilla
-  const proxyTargetUrl = "http://ventoux.usefixie.com:80/apiweb/apiweb.php";
-  
-  // Le indicamos a Fixie cuál es el servidor real de destino al que debe redirigir el tráfico final
-  headers["Host"] = "apiweb.inmovilla.com";
-
-  const fetchOptions: RequestInit = {
-    method: "POST",
-    headers: headers,
-    body: body.toString(),
-    // Desactivamos la caché persistente para que siempre consulte datos reales en tiempo real
-    cache: "no-store", 
-  };
-
-  // Hacemos el fetch directamente al túnel de Fixie
-  const response = await fetch(proxyTargetUrl, fetchOptions);
-
-  if (!response.ok) {
-    throw new Error(`Error HTTP de Inmovilla: ${response.status}`);
+  // SI EXISTE EL PROXY, LE FORZAMOS EL AGENTE DE RED REAL A AXIOS
+  if (proxyUrl) {
+    const agent = new HttpsProxyAgent(proxyUrl);
+    config.httpsAgent = agent;
+    config.proxy = false; // Desactivamos el túnel por defecto de Axios para usar el agente HttpsProxyAgent
   }
 
-  const text = await response.text();
-  const cleanedText = text.trim();
+  // Realizamos la petición POST con Axios
+  const response = await axios.post(API_URL, params.toString(), config);
+  
+  // Axios parsea automáticamente el JSON si el servidor responde con las cabeceras correctas,
+  // pero Inmovilla a veces responde como texto/html. Manejamos ambos casos con seguridad:
+  const data = response.data;
+  const textContent = typeof data === "string" ? data.trim() : JSON.stringify(data);
 
-  if (cleanedText.includes("IP NO VALIDADA")) {
-    throw new Error(`Inmovilla rechazó la IP de origen. Respuesta: ${cleanedText}`);
+  if (textContent.includes("IP NO VALIDADA")) {
+    throw new Error(`Inmovilla rechazó la IP de origen. Respuesta: ${textContent}`);
   }
 
   try {
-    return JSON.parse(cleanedText);
+    return typeof data === "string" ? JSON.parse(textContent) : data;
   } catch (parseError) {
-    console.error("Error parseando JSON de Inmovilla. Texto original recibido:", cleanedText.substring(0, 200));
-    throw new Error(`Respuesta inesperada de la API: ${cleanedText.substring(0, 100)}`);
+    console.error("Error parseando JSON. Texto recibido:", textContent.substring(0, 200));
+    throw new Error(`Respuesta inesperada de la API: ${textContent.substring(0, 100)}`);
   }
 }
