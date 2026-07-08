@@ -21,7 +21,7 @@ export default function AppSection() {
               </a>
             </div>
             <img
-              src="logos/viven-app-logo.png"
+              src="/logos/viven-app-logo.png"
               alt="VIVEN+ App"
               className="max-w-sm mx-auto md:mx-0"
             />

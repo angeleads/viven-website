@@ -74,10 +74,14 @@ export async function queryInmovilla(options: QueryOptions) {
   }
 
   const text = await response.text();
+  
+  // SOLUCIÓN: Limpiamos espacios en blanco o retornos de carro invisibles que envía Inmovilla
+  const cleanedText = text.trim();
 
   try {
-    return JSON.parse(text);
-  } catch {
-    throw new Error(`Respuesta inesperada de la API: ${text.substring(0, 100)}`);
+    return JSON.parse(cleanedText);
+  } catch (parseError) {
+    console.error("Error parseando JSON de Inmovilla. Texto recibido:", cleanedText.substring(0, 200));
+    throw new Error(`Respuesta inesperada de la API: ${cleanedText.substring(0, 100)}`);
   }
 }
