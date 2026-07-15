@@ -25,14 +25,16 @@ export async function queryInmovilla(options: QueryOptions) {
   } = options;
 
   const carpeta = process.env.INMOVILLA_CARPETA!;
-  const password = process.env.INMOVILLA_PASSWORD!;
+  const password = "h8d??Aj#9";
   const dominio = process.env.INMOVILLA_DOMINIO!;
-  
-  // Recuperamos la URL del proxy de tu archivo de configuración (.env.local o Vercel)
-  const proxyUrl = process.env.FIXIE_URL || process.env.HTTP_PROXY;
+  const proxyUrl = process.env.FIXIE_URL;
 
   const primerTipo = consultas[0];
   const restoTipos = consultas.slice(1).join(";");
+
+  const cleanIp = (userIp === "::1" || userIp === "127.0.0.1" || !userIp) 
+    ? "79.158.253.134" 
+    : userIp;
 
   const param = [
     carpeta,
@@ -47,35 +49,45 @@ export async function queryInmovilla(options: QueryOptions) {
     restoTipos,
   ].join(";");
 
+  console.log("Inmovilla request params (ORIGINAL):", param);
+
   const params = new URLSearchParams({
     param,
-    ia: userIp,
-    ib: userIp,
+    ia: cleanIp,
+    ib: cleanIp,
     elDominio: dominio,
     json: "1",
   });
 
-  // Configuración base de la petición con Axios
+  console.log("Inmovilla request params (CORREGIDO):", params.toString());
+
   const config: any = {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
   };
 
-  // SI EXISTE EL PROXY, LE FORZAMOS EL AGENTE DE RED REAL A AXIOS
   if (proxyUrl) {
     const agent = new HttpsProxyAgent(proxyUrl);
     config.httpsAgent = agent;
-    config.proxy = false; // Desactivamos el túnel por defecto de Axios para usar el agente HttpsProxyAgent
+    config.proxy = false; 
   }
 
-  // Realizamos la petición POST con Axios
+  console.log("proxyUrl:", proxyUrl);
+
   const response = await axios.post(API_URL, params.toString(), config);
-  
-  // Axios parsea automáticamente el JSON si el servidor responde con las cabeceras correctas,
-  // pero Inmovilla a veces responde como texto/html. Manejamos ambos casos con seguridad:
+
+  console.log('repsonse.status:', response.status);
+  console.log('repsonse.data:', response.data);
+
   const data = response.data;
   const textContent = typeof data === "string" ? data.trim() : JSON.stringify(data);
+
+  if (textContent.includes("ERROR VALIDACION AGENCIA")) {
+    throw new Error(
+      `Inmovilla rechazó las credenciales. Estructura enviada -> Carpeta: ${carpeta}, Dominio: ${dominio}. Respuesta CRM: ${textContent}`
+    );
+  }
 
   if (textContent.includes("IP NO VALIDADA")) {
     throw new Error(`Inmovilla rechazó la IP de origen. Respuesta: ${textContent}`);
@@ -84,7 +96,7 @@ export async function queryInmovilla(options: QueryOptions) {
   try {
     return typeof data === "string" ? JSON.parse(textContent) : data;
   } catch (parseError) {
-    console.error("Error parseando JSON. Texto recibido:", textContent.substring(0, 200));
+    console.error("Error parseando JSON de Inmovilla:", textContent.substring(0, 200), parseError);
     throw new Error(`Respuesta inesperada de la API: ${textContent.substring(0, 100)}`);
   }
 }
