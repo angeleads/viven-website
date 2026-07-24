@@ -135,7 +135,7 @@ export function mapInmovillaToProperty(raw: any): Property {
     phone: extractedPhone,
     email: extractedEmail,
     photo: extractedPhoto,
-  };
+  }; 
 
   // Características y equipamiento
   const featuresSet = new Set<string>();

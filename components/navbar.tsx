@@ -16,7 +16,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center">
             <Image
-              src="/logos/remax-viven-logo.png"
+              src="/logos/logo-viven-remax-black-blue.png"
               alt="Viven Inmobiliaria"
               width={120}
               height={40}

@@ -1,17 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Hero from "@/components/venta/hero";
 import PropertyGrid from "@/components/venta/property-grid";
 import Pagination from "@/components/venta/pagination";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Property } from "@/types/property";
+import {
+  FilterState,
+  INITIAL_FILTERS,
+  getFilterOptions,
+  filterProperties,
+} from "@/lib/property-filters";
 
 export default function VentaPage() {
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Estado de los Filtros
+  const [filters, setFilters] = useState<FilterState>(INITIAL_FILTERS);
 
   useEffect(() => {
     let isMounted = true;
@@ -20,13 +29,13 @@ export default function VentaPage() {
       try {
         setLoading(true);
         const res = await fetch("/api/properties");
-        
+
         if (!res.ok) {
           throw new Error(`Server returned code: ${res.status}`);
         }
-        
+
         const data = await res.json();
-        
+
         if (isMounted) {
           setProperties(Array.isArray(data) ? data : []);
           setError(null);
@@ -38,7 +47,7 @@ export default function VentaPage() {
         }
       } finally {
         if (isMounted) {
-          setLoading(false); // 👈 This guarantees the loading spinner turns off no matter what!
+          setLoading(false);
         }
       }
     }
@@ -50,23 +59,45 @@ export default function VentaPage() {
     };
   }, []);
 
+  // 1. Extrae dinámicamente las ciudades, zonas y tipos de las propiedades cargadas
+  const { cities, zones, propertyTypes } = useMemo(() => {
+    return getFilterOptions(properties);
+  }, [properties]);
+
+  // 2. Filtra la lista de propiedades en tiempo real en función de la selección
+  const filteredProperties = useMemo(() => {
+    return filterProperties(properties, filters);
+  }, [properties, filters]);
+
+  const handleResetFilters = () => {
+    setFilters(INITIAL_FILTERS);
+  };
+
   return (
     <main className="min-h-screen bg-gray-50">
       <Navbar />
-      <Hero />
-      
+
+      <Hero
+        filters={filters}
+        setFilters={setFilters}
+        availableCities={cities}
+        availableZones={zones}
+        availableTypes={propertyTypes}
+        onReset={handleResetFilters}
+      />
+
       <div className="container mx-auto px-4">
         {loading ? (
           <div className="flex flex-col justify-center items-center py-24 gap-4">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
-            <p className="text-gray-500 animate-pulse text-sm">Conectando con el catálogo de Inmovilla...</p>
+            <p className="text-gray-500 animate-pulse text-sm">
+              Conectando con el catálogo de Inmovilla...
+            </p>
           </div>
         ) : error ? (
-          <div className="text-center py-16 text-red-600 font-medium">
-            {error}
-          </div>
+          <div className="text-center py-16 text-red-600 font-medium">{error}</div>
         ) : (
-          <PropertyGrid properties={properties} />
+          <PropertyGrid properties={filteredProperties} />
         )}
       </div>
 
