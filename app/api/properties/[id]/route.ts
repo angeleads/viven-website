@@ -1,78 +1,70 @@
 import { NextRequest, NextResponse } from "next/server";
 import { queryInmovilla } from "@/lib/inmovilla";
-import { Property } from "@/types/property";
+import { mapInmovillaToProperty } from "@/lib/format-property";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> } // Tipado asíncrono nativo de Next.js 15+
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  // 1. Desestructuramos el ID de forma asíncrona
   const { id } = await params;
-  
-  // 2. Extraemos la IP real del visitante para cumplir las exigencias de Inmovilla
   const userIp =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
-    "0.0.0.0";
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "0.0.0.0";
 
   try {
-    // 3. Consultamos la ficha individual al CRM
+    // Hacemos consulta doble: paginacion (para datos del agente) + ficha (para descripción/detalles)
     const data = await queryInmovilla({
-      consultas: ["ficha"],
-      where: `cod_ofer='${id}'`, // Filtro directo sobre la base de datos de Inmovilla
+      consultas: [
+        { tipo: "paginacion", inicio: 1, numRegistros: 1, where: `cod_ofer='${id}'` },
+        { tipo: "ficha", where: `cod_ofer='${id}'` },
+      ],
       userIp,
     });
 
-    // Extraemos la respuesta limpia de la ficha (Inmovilla suele anidarla bajo la consulta o en array)
-    const d = data?.ficha || (Array.isArray(data) ? data[0] : data);
+    // Extraer respuesta de paginacion
+    const rawPagList = data?.paginacion || [];
+    const rawPagItem = Array.isArray(rawPagList)
+      ? rawPagList.find((item: any) => item && typeof item === "object" && !("posicion" in item)) || rawPagList[0]
+      : typeof rawPagList === "object"
+      ? Object.values(rawPagList)[0]
+      : {};
 
-    // Si el objeto devuelto no contiene identificadores válidos, devolvemos un 404 explícito
-    if (!d || (!d.cod_ofer && !d.ref)) {
-      return NextResponse.json({ error: "Propiedad no encontrada en el CRM" }, { status: 404 });
+    // Extraer respuesta de ficha
+    const rawFichaList = data?.ficha || [];
+    const rawFichaItem = Array.isArray(rawFichaList)
+      ? rawFichaList.find((item: any) => item && typeof item === "object" && !("posicion" in item)) || rawFichaList[0]
+      : typeof rawFichaList === "object"
+      ? Object.values(rawFichaList)[0]
+      : {};
+
+    if (!rawPagItem && !rawFichaItem) {
+      return NextResponse.json(
+        { error: "Propiedad no encontrada en el CRM de Inmovilla" },
+        { status: 404 }
+      );
     }
 
-    // 4. Mapeo dinámico de extras (características booleanas)
-    const features: string[] = [];
-    if (d.piscina_prop == 1 || d.piscina_com == 1 || d.piscina == 1) features.push("piscina");
-    if (d.jardin == 1) features.push("jardín");
-    if (d.terraza == 1) features.push("terraza");
-    if (d.trastero == 1) features.push("trastero");
-    if (d.chimenea == 1) features.push("chimenea");
-    if (d.arma_empo == 1) features.push("armarios empotrados");
-
-    // Reconstitución de imágenes del carrusel (puedes usar placeholders mientras ajustas el mapeo)
-    const mockImages = [
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600"
-    ];
-
-    // 5. Construcción de la respuesta estructurada bajo el tipo estricto 'Property'
-    const propertyDetail: Property = {
-      id: String(d.cod_ofer || id),
-      reference: d.ref || String(d.cod_ofer || id),
-      title: d.tituloes || d.titulo || "Propiedad exclusiva",
-      description: d.descripciones || d.descripcion || "",
-      location: d.poblacion || d.ciudad || "Sant Pere de Ribes",
-      locationDetail: d.calle ? `${d.calle}, ${d.numero || ""}` : "",
-      price: Number(d.precioinmo) || Number(d.precio) || 0,
-      image: mockImages[0],
-      images: mockImages,
-      beds: Number(d.habitaciones) || 0,
-      baths: Number(d.banyos) || 0,
-      area: Number(d.m_cons) || 0,
-      operationType: Number(d.precioalq) > 0 ? "Alquiler" : "Venta",
-      date: d.fechaact || new Date().toISOString(),
-      features: features,
-      agency: "Viven Remax",
-      agencyPhone: "+34 641 173 416", 
-      agencyEmail: "hola@viven.es"
+    // Fusionamos ambos objetos priorizando los campos de agente de paginación
+    const combinedRaw = {
+      ...rawPagItem,
+      ...rawFichaItem,
+      nombreagente: rawPagItem?.nombreagente || rawFichaItem?.nombreagente || rawFichaItem?.nomagente,
+      apellidosagente: rawPagItem?.apellidosagente || rawFichaItem?.apellidosagente || rawFichaItem?.apeagente,
+      telefono1agente: rawPagItem?.telefono1agente || rawFichaItem?.telefono1agente || rawFichaItem?.telagente,
+      telefono2agente: rawPagItem?.telefono2agente || rawFichaItem?.telefono2agente,
+      movilagente: rawPagItem?.movilagente || rawFichaItem?.movilagente,
+      emailagente: rawPagItem?.emailagente || rawFichaItem?.emailagente,
+      fotoagente: rawPagItem?.fotoagente || rawFichaItem?.fotoagente,
     };
 
+    // Mapear con la lógica unificada
+    const propertyDetail = mapInmovillaToProperty(combinedRaw);
     return NextResponse.json(propertyDetail);
   } catch (error: any) {
     console.error(`[Route Detail Error] Error en propiedad ${id}:`, error.message);
     return NextResponse.json(
-      { error: "Error al conectar con la ficha del CRM", details: error.message }, 
+      { error: "Error al conectar con la ficha del CRM", details: error.message },
       { status: 502 }
     );
   }
+  
 }
