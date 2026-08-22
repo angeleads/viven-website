@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/genai": "^2.13.0",
+    "@google/generative-ai": "^0.24.1",
     "@hookform/resolvers": "^3.9.1",
     "@radix-ui/react-accordion": "1.2.2",
     "@radix-ui/react-alert-dialog": "1.1.4",
@@ -45,6 +47,7 @@
     "date-fns": "4.1.0",
     "embla-carousel-react": "8.5.1",
     "fast-xml-parser": "^5.8.0",
+    "firebase": "^12.16.0",
     "http-proxy-agent": "^9.1.0",
     "https-proxy-agent": "^9.1.0",
     "input-otp": "1.4.1",
