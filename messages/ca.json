@@ -1,0 +1,831 @@
+{
+  "nav": {
+    "home": "Inici",
+    "properties": "Propietats",
+    "propertyManager": "Administrador de finques",
+    "company": "Empresa",
+    "contact": "Contacte"
+  },
+  "language": {
+    "label": "Idioma",
+    "es": "Español",
+    "en": "English",
+    "ca": "Català",
+    "fr": "Français"
+  },
+  "footer": {
+    "about": "Viven Immobiliària és el teu soci de confiança per trobar la propietat perfecta a Espanya. Amb més de 15 anys d'experiència, oferim serveis immobiliaris integrals i personalitzats.",
+    "quickLinksTitle": "Enllaços ràpids",
+    "mapsTitle": "Mapes",
+    "newsletterTitle": "Butlletí",
+    "newsletterText": "Subscriu-te per rebre les últimes novetats del mercat immobiliari.",
+    "emailPlaceholder": "El teu correu",
+    "privacyAcceptPrefix": "En subscriure't, acceptes la nostra",
+    "privacyPolicy": "política de privacitat",
+    "cookiesPolicy": "Política de cookies",
+    "legalNotice": "Avís legal",
+    "rights": "Tots els drets reservats.",
+    "links": {
+      "home": "Inici",
+      "properties": "Propietats",
+      "propertyManager": "Administrador de finques",
+      "company": "Empresa",
+      "contact": "Contacte"
+    }
+  },
+  "comunidades": {
+    "hero": {
+      "titleStart": "Altres gestionen",
+      "titleHighlight": "en massa.",
+      "titleEnd": "Nosaltres les cuidem una a una.",
+      "descriptionStart": "No som una plataforma. Som",
+      "descriptionHighlight": "el teu administrador",
+      "descriptionEnd": "Una nova manera de cuidar les comunitats de propietaris: propera, transparent i tecnològica.",
+      "cta": {
+        "primary": "Diagnosi gratuïta",
+        "secondary": "Veure serveis"
+      },
+      "cards": {
+        "closeness": {
+          "title": "Proximitat",
+          "text": "Persones que resolen"
+        },
+        "transparency": {
+          "title": "Transparència",
+          "text": "Comptes oberts"
+        },
+        "customized": {
+          "title": "Personalitzada",
+          "text": "Cada comunitat és única"
+        },
+        "technology": {
+          "title": "Tecnologia",
+          "text": "Eines que sumen"
+        }
+      }
+    },
+    "percentages": {
+      "resolvedIncidents": "Incidències resoltes",
+      "satisfiedClients": "Clients satisfets",
+      "successfulContracts": "Contractes satisfactoris"
+    },
+    "services": {
+      "eyebrow": "Serveis",
+      "title": "Una nova manera d'administrar la teva comunitat",
+      "description": "Entenem les comunitats com petites empreses que mereixen un enfocament proactiu, proper, eficient i transparent.",
+      "cards": {
+        "communityManagement": {
+          "title": "Gestió de comunitats",
+          "items": [
+            "Control d'incidències",
+            "Assessorament legal",
+            "Control pressupostari",
+            "Control de morositat",
+            "Estalvi de costos",
+            "Gestió de subvencions"
+          ]
+        },
+        "realEstateManagement": {
+          "title": "Gestió immobiliària",
+          "items": [
+            "Compra i venda",
+            "Lloguer",
+            "Tot tipus d'immobles",
+            "Inversors",
+            "Socimis"
+          ]
+        },
+        "newConstructionServices": {
+          "title": "Serveis d'obra nova",
+          "items": [
+            "Arquitectura",
+            "Certificacions",
+            "Execució d'obra nova",
+            "Reformes",
+            "Constitució de comunitats"
+          ]
+        },
+        "legalAdvice": {
+          "title": "Assessorament legal",
+          "items": [
+            "Fiscal i jurídic",
+            "Defensa dels interessos de la comunitat"
+          ]
+        },
+        "budgetControl": {
+          "title": "Control pressupostari",
+          "items": [
+            "Comptabilitat transparent",
+            "Seguiment de pressupostos",
+            "Control de desviacions"
+          ]
+        },
+        "incidentControl": {
+          "title": "Control d'incidències",
+          "items": [
+            "Manteniment preventiu",
+            "Proveïdors certificats",
+            "Preservació de l'edifici"
+          ]
+        }
+      }
+    },
+    "contact": {
+      "badge": "24H · 365 DIES",
+      "titleStart": "Els problemes no tenen horari.",
+      "titleHighlight": "Nosaltres tampoc",
+      "description": "Atenció telefònica les 24 hores, els 365 dies de l'any. Qualsevol urgència serà atesa per personal qualificat, amb resposta i solució en menys de 4 hores.",
+      "whatsapp": "WhatsApp urgències",
+      "issues": [
+        "Fuites d'aigua",
+        "Talls elèctrics",
+        "Serralleria",
+        "Ascensors",
+        "Climatització",
+        "Seguretat"
+      ]
+    },
+    "app": {
+      "eyebrow": "App Viven +Plus",
+      "title": "La teva comunitat al palmell de la mà.",
+      "description": "La nostra app permet a propietaris, administradors i operaris coordinar cada moviment. L'excel·lència és el nostre estàndard.",
+      "features": [
+        "Gestionar incidències",
+        "Consultar les darreres actes",
+        "Comprovar rebuts",
+        "Verificar derrames",
+        "Saldo bancari",
+        "Aprovar pagaments (President)"
+      ]
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Contacta amb nosaltres",
+      "description": "Som aquí per ajudar-te amb totes les teves necessitats immobiliàries. El nostre equip d'experts està preparat per oferir-te el millor servei personalitzat.",
+      "callNow": "Trucar ara",
+      "sendMessage": "Enviar missatge"
+    },
+    "cta": {
+      "title": "Necessites ajuda immediata?",
+      "description": "El nostre equip d'atenció al client està disponible 24/7 per ajudar-te amb qualsevol consulta o emergència.",
+      "visitNote": "També pots visitar-nos a qualsevol de les nostres oficines durant l'horari comercial."
+    },
+    "info": {
+      "callUs": "Truca'ns",
+      "writeUs": "Escriu-nos",
+      "visitUs": "Visita'ns",
+      "schedule": "Horari",
+      "scheduleValue": "De dilluns a dijous: 9:00 - 19:00 i divendres: 8:00 - 15:00"
+    },
+    "map": {
+      "title": "La nostra ubicació",
+      "description": "Visita'ns a la nostra oficina central o a qualsevol de les nostres seus.",
+      "iframeTitle": "Ubicació de Viven Immobiliària",
+      "officeVilanova": "Oficina Vilanova",
+      "officeSitges": "Oficina Sitges"
+    },
+    "form": {
+      "title": "Envia'ns un missatge",
+      "description": "Omple el formulari i ens posarem en contacte amb tu al més aviat possible.",
+      "successTitle": "Missatge enviat amb èxit!",
+      "successMessage": "Gràcies per contactar amb nosaltres. Un membre del nostre equip es posarà en contacte amb tu ben aviat.",
+      "submit": "Enviar missatge",
+      "submitting": "Enviant...",
+      "requiredHintPrefix": "Els camps marcats amb",
+      "requiredHintSuffix": "són obligatoris.",
+      "terms": {
+        "prefix": "Accepto la",
+        "privacyPolicy": "política de privacitat",
+        "suffix": "i el tractament de les meves dades personals."
+      },
+      "fields": {
+        "name": {
+          "label": "Nom complet",
+          "placeholder": "El teu nom"
+        },
+        "email": {
+          "label": "Correu electrònic",
+          "placeholder": "El teu correu"
+        },
+        "phone": {
+          "label": "Telèfon",
+          "placeholder": "El teu telèfon"
+        },
+        "service": {
+          "label": "Servei d'interès",
+          "options": {
+            "general": "Informació general",
+            "buy": "Compra de propietat",
+            "sell": "Venda de propietat",
+            "rent": "Lloguer",
+            "communityManagement": "Gestió de comunitats",
+            "communityAdministration": "Administració de comunitats",
+            "investment": "Inversió immobiliària",
+            "other": "Altres"
+          }
+        },
+        "subject": {
+          "label": "Assumpte",
+          "placeholder": "Assumpte del teu missatge"
+        },
+        "message": {
+          "label": "Missatge",
+          "placeholder": "En què et podem ajudar?"
+        }
+      }
+    }
+  },
+  "showcase": {
+    "hero": {
+      "badge": "Agència immobiliària de referència a Vilanova i la Geltrú",
+      "titleStart": "Troba la propietat dels teus somnis amb",
+      "titleHighlight": "Viven Immobiliària",
+      "description": "T'acompanyem a cada pas amb un servei exclusiu i personalitzat al Garraf. Troba la teva nova llar o ven el teu immoble al millor preu del mercat.",
+      "cta": {
+        "explore": "Explorar immobles",
+        "sell": "Vendre la meva propietat"
+      },
+      "metrics": {
+        "properties": "Immobles",
+        "region": "El Garraf",
+        "specialists": "Especialistes",
+        "advised": "Assessorat"
+      },
+      "card": {
+        "exclusiveProperty": "Propietat exclusiva",
+        "defaultOperation": "Venda",
+        "referenceShort": "Ref.",
+        "featured": "Destacat",
+        "bedsShort": "Hab.",
+        "baths": "Banys",
+        "viewFull": "Veure fitxa completa"
+      },
+      "floating": {
+        "safeTitle": "Procés 100% segur",
+        "safeSubtitle": "Garantia RE/MAX Viven",
+        "fastTitle": "Atenció immediata",
+        "fastSubtitle": "Agents locals disponibles"
+      },
+      "fallback": {
+        "title": "Immoble exclusiu",
+        "location": "Vilanova i la Geltrú",
+        "consultPrice": "Consulta preu"
+      }
+    },
+    "propertySection": {
+      "title": "Propietats destacades",
+      "description": "Descobreix la nostra selecció de propietats exclusives a les millors ubicacions, actualitzades directament des del CRM.",
+      "viewAll": "Veure totes les propietats",
+      "empty": "No s'han trobat propietats disponibles en aquest moment.",
+      "card": {
+        "agentLabel": "Agent immobiliari",
+        "viewDetails": "Veure detalls",
+        "units": {
+          "beds": "hab.",
+          "baths": "bany."
+        },
+        "fallback": {
+          "consult": "Consulta",
+          "agentName": "César Sanjurjo",
+          "agentPhone": "+34 667 881 370",
+          "property": "Immoble",
+          "untitled": "Propietat sense títol",
+          "location": "Ubicació no especificada"
+        }
+      }
+    },
+    "remaxStats": {
+      "title": "Dades ràpides",
+      "quarter": "1r TRIMESTRE 2025",
+      "description": "RE/MAX és la xarxa immobiliària més gran del món. Descobreix el nostre abast global i europeu.",
+      "tabs": {
+        "europe": "Europa",
+        "global": "Global"
+      },
+      "stats": {
+        "europe": {
+          "associates": "Associats RE/MAX",
+          "propertiesForSale": "Propietats en venda",
+          "agents": "Agents",
+          "newPropertiesForSale": "Noves propietats en venda",
+          "offices": "Oficines",
+          "mobileUsers": "Usuaris de mòbil"
+        },
+        "global": {
+          "propertiesForSale": "Propietats en venda",
+          "countriesAndTerritories": "Països i territoris",
+          "agents": "Agents",
+          "languages": "Idiomes",
+          "offices": "Oficines",
+          "mobileUsers": "Usuaris de mòbil"
+        }
+      },
+      "notes": [
+        "Les estadístiques no reflecteixen totes les regions europees de RE/MAX.",
+        "Fonts: RE/MAX LLC i GrowthTech Inc.",
+        "Cal tenir en compte que aquestes xifres es basen en mitjanes obtingudes del T1 2025."
+      ]
+    },
+    "servicesSection": {
+      "title": "Els nostres serveis",
+      "description": "A Viven oferim una àmplia gamma de serveis immobiliaris per satisfer totes les teves necessitats.",
+      "categories": {
+        "community": {
+          "title": "Gestió de comunitats",
+          "services": [
+            "Control d'incidències",
+            "Assessorament legal",
+            "Control pressupostari",
+            "Control de morositat",
+            "Estalvi de costos",
+            "Gestió de subvencions"
+          ]
+        },
+        "property": {
+          "title": "Serveis immobiliaris",
+          "services": [
+            "Compra",
+            "Venda",
+            "Lloguer",
+            "Tot tipus d'immobles",
+            "Inversors",
+            "Socimis"
+          ]
+        },
+        "construction": {
+          "title": "Construcció i reformes",
+          "services": [
+            "Arquitectura",
+            "Certificacions",
+            "Execució d'obra nova",
+            "Reformes"
+          ]
+        }
+      }
+    },
+    "contactSection": {
+      "info": {
+        "title": "Informació de contacte",
+        "items": {
+          "address": "Adreça",
+          "addressValue": "Pelegrí Ballester, 23 Vilanova i la Geltrú 08800 (Barcelona)",
+          "phone": "Telèfon",
+          "email": "Correu electrònic",
+          "schedule": "Horari"
+        }
+      }
+    },
+    "appSection": {
+      "title": "VIVEN+ PLUS App",
+      "description": "Accedeix a la teva comunitat des de qualsevol lloc, en qualsevol moment",
+      "cta": {
+        "download": "Descarrega ara"
+      },
+      "imageAlt": "VIVEN+ App"
+    },
+    "partnersSection": {
+      "title": "Els nostres partners",
+      "description": {
+        "start": "A",
+        "brand": "Viven",
+        "middle": "tenim el plaer de treballar conjuntament amb empreses que comparteixen els mateixos valors de",
+        "values": "Compromís, Transparència i Professionalitat",
+        "end": "que nosaltres."
+      },
+      "aria": {
+        "previousPartners": "Partners anteriors",
+        "nextPartners": "Partners següents",
+        "goToSlide": "Anar a la diapositiva {slide}"
+      },
+      "logoAlt": "Logotip de {name}"
+    }
+  },
+  "empresa": {
+    "companyHero": {
+      "title": "Sobre nosaltres",
+      "description": "VIVEN és la innovació i la recerca de l'excel·lència en el sector immobiliari. Va néixer de les inquietuds del seu fundador, per promoure un sistema de treball en què tant els usuaris com els treballadors siguin beneficiaris d'una metodologia de treball, uns principis sòlids i una recerca contínua de l'excel·lència en tots els seus àmbits."
+    },
+    "callToAction": {
+      "title": "Perquè a Viven tenim molt clar que el primer ets TU",
+      "description": "Descobreix com et podem ajudar amb les teves necessitats immobiliàries o de gestió de comunitats. El nostre equip de professionals està preparat per oferir-te el millor servei.",
+      "cta": {
+        "contact": "Contacta amb nosaltres",
+        "services": "Coneix els nostres serveis"
+      }
+    },
+    "missionSection": {
+      "title": "La nostra missió",
+      "description": "Ens enorgulleix créixer i consolidar dia a dia la feina que fa el nostre equip humà, format pels millors professionals en els seus àmbits d'actuació. Així, des de VIVEN ens encarreguem de totes les gestions que puguin estar relacionades amb el teu actiu immobiliari, amb la voluntat de donar-li valor i vetllar per l'increment del teu patrimoni.",
+      "points": {
+        "point1": "Des de les Comunitats de Propietaris fins a l'apartament de lloguer, es tracten amb la diligència deguda, optimitzats i millorats sempre que sigui possible.",
+        "point2": "El món de serveis que t'ofereix VIVEN només comença quan despenges el telèfon per contactar-nos.",
+        "point3": "A partir d'aquí, ens expliques les teves necessitats i nosaltres t'ajudarem amb les millors solucions adaptades i personalitzades per a tu."
+      },
+      "tagline": "A VIVEN personalitzem la teva experiència immobiliària",
+      "imageAlt": "Equip Viven Immobiliària"
+    },
+    "businessLines": {
+      "title": "Les nostres línies de negoci",
+      "description": "Viven està formada per dues grans vessants que ofereixen serveis especialitzats amb els estàndards més alts de qualitat i professionalitat.",
+      "remax": {
+        "title": "RE/MAX VIVEN",
+        "description": "Té per objectiu la comercialització de tota mena de béns immobles. Cada client propietari és assignat a un Agent Associat de REMAX VIVEN, que està capacitat per desenvolupar amb total garantia l'acció que el client li hagi encomanat.",
+        "features": {
+          "personalAttention": {
+            "title": "Atenció personalitzada",
+            "description": "Establim criteris personalitzats per a cada propietari, convertint-nos en el teu millor aliat."
+          },
+          "globalExperience": {
+            "title": "Experiència global",
+            "description": "El 2025, unim la presència territorial de VIVEN amb l'experiència i la potència de la marca REMAX, Nº1 al MÓN en vendes."
+          }
+        },
+        "cta": "Veure estadístiques RE/MAX"
+      },
+      "plus": {
+        "title": "VIVEN +Plus",
+        "description": "Som facilitadors en l'assessorament i la gestió dels Actius Patrimonials dels nostres clients. Entenem les Comunitats de Propietaris com petites empreses que cal gestionar amb un enfocament proactiu, proper, eficient i transparent.",
+        "features": {
+          "transparentManagement": {
+            "title": "Gestió transparent",
+            "description": "No cobrem comissions als industrials, estalviant milers d'euros als propietaris des del primer exercici."
+          },
+          "constantInnovation": {
+            "title": "Innovació constant",
+            "description": "La nostra recerca de l'excel·lència fa que creixem any rere any, aportant nous serveis i un plus d'eficàcia, innovació i noves tecnologies."
+          }
+        },
+        "cta": "Més informació"
+      }
+    },
+    "vivenPlusSection": {
+      "badge": "VIVEN +Plus",
+      "title": "Administració de comunitats de propietaris",
+      "description": "Una nova manera d'administrar la teva comunitat amb un enfocament proactiu, proper, eficient i transparent.",
+      "subtitle": "Entenem les comunitats de propietaris com petites empreses",
+      "body": "Vosaltres sou els propietaris del patrimoni; nosaltres gestionem el teu patrimoni amb la professionalitat i legalitat que ens caracteritza, i vetllem pel manteniment o increment de la seva valorització.",
+      "features": {
+        "legalAdvice": {
+          "title": "Assessorament legal",
+          "text": "fiscal i jurídic, atents a les noves normatives."
+        },
+        "budgetControl": {
+          "title": "Control pressupostari",
+          "text": "amb comptabilitat transparent."
+        },
+        "incidentManagement": {
+          "title": "Gestió d'incidències",
+          "text": "i manteniment de l'edifici."
+        },
+        "customerSupport": {
+          "title": "Atenció al client",
+          "text": "24 hores al dia, 365 dies a l'any."
+        }
+      },
+      "cta": "Més informació",
+      "imageAlt": "Administració de comunitats",
+      "quote": "A VIVEN administrem LA VOSTRA COMUNITAT com si fos LA NOSTRA LLAR"
+    },
+    "statsSection": {
+      "title": "Excel·lència en números",
+      "description": "El nostre compromís amb la qualitat i la satisfacció del client es reflecteix en les nostres estadístiques.",
+      "stats": {
+        "resolvedIncidents": "Incidències resoltes",
+        "satisfiedClients": "Clients satisfets",
+        "successfulContracts": "Contractes satisfactoris"
+      }
+    },
+    "teamSection": {
+      "title": "El nostre equip",
+      "description": "L'equip de Viven està format per professionals experts, formats i dinàmics amb un únic objectiu comú: satisfer les demandes dels nostres clients.",
+      "actions": {
+        "viewMore": "Veure més informació",
+        "close": "Tancar"
+      },
+      "linkedinProfile": "Perfil de LinkedIn",
+      "members": {
+        "cesar": {
+          "position": "Fundador i CEO",
+          "description": "Algunes persones volen que alguna cosa passi, altres somien que passi, i altres fan que passi"
+        },
+        "merche": {
+          "position": "Subdirectora i responsable d'equip d'Administració de Finques",
+          "description": "Especialista en comercialització de propietats de luxe, Merche lidera l'equip d'agents associats de RE/MAX VIVEN."
+        },
+        "duglaiska": {
+          "position": "Agent comercial",
+          "description": "Expert en gestió patrimonial, Miguel ha revolucionat l'administració de comunitats amb un enfocament transparent i eficient."
+        },
+        "isabel": {
+          "position": "Directora financera",
+          "description": "Amb formació en finances i experiència en el sector immobiliari, Laura gestiona l'estabilitat econòmica de Viven."
+        },
+        "maria": {
+          "position": "Director de tecnologia",
+          "description": "Responsable de la implementació de solucions tecnològiques que milloren l'eficiència i la transparència en tots els serveis."
+        },
+        "fran": {
+          "position": "Directora de màrqueting",
+          "description": "Especialista en màrqueting digital i comunicació, Elena desenvolupa estratègies per posicionar la marca Viven al mercat."
+        }
+      }
+    },
+    "staffSection": {
+      "title": "El nostre staff professional",
+      "description": "Al nostre staff comptem amb professionals altament qualificats en diverses àrees per oferir un servei integral i de màxima qualitat.",
+      "cards": {
+        "certifiedManagers": {
+          "title": "Administradors col·legiats",
+          "description": "Experts en gestió de comunitats i actius immobiliaris"
+        },
+        "lawyers": {
+          "title": "Advocats",
+          "description": "Assessorament legal especialitzat en el sector immobiliari"
+        },
+        "architects": {
+          "title": "Arquitectes",
+          "description": "Disseny i supervisió de projectes arquitectònics"
+        },
+        "electriciansPlumbers": {
+          "title": "Electricistes i lampistes",
+          "description": "Manteniment i reparacions professionals"
+        },
+        "cleaningTeams": {
+          "title": "Equips de neteja",
+          "description": "Serveis de neteja i manteniment de propietats"
+        }
+      }
+    },
+    "valuesSection": {
+      "title": "Els nostres valors",
+      "description": "A Viven ens comprometem amb el medi ambient, la societat i l'excel·lència en tot el que fem.",
+      "cards": {
+        "environment": {
+          "title": "Compromís mediambiental",
+          "description": "Apostem per la cura del medi ambient, reduint el consum de paper i promovent l'ús de materials reciclats. A les nostres oficines utilitzem il·luminació natural i de baix consum, mantenint el nostre compromís amb l'eficiència energètica."
+        },
+        "social": {
+          "title": "Responsabilitat social",
+          "description": "Participem al llarg de l'any en diverses causes solidàries i benèfiques amb entitats locals i nacionals, retornant a la societat part del que ens aporta. Creiem fermament en contribuir positivament a les comunitats on operem."
+        },
+        "innovation": {
+          "title": "Innovació constant",
+          "description": "Implementem les últimes tecnologies per oferir un servei més eficient i transparent. La nostra recerca de l'excel·lència ens impulsa a millorar constantment els nostres processos i serveis en benefici dels nostres clients."
+        }
+      }
+    }
+  },
+  "venta": {
+    "hero": {
+      "title": "Troba la teva propietat ideal",
+      "description": "Descobreix la nostra selecció exclusiva de propietats a les millors ubicacions",
+      "tabs": {
+        "all": "Tots",
+        "sale": "Venda",
+        "rent": "Lloguer"
+      },
+      "filters": {
+        "search": {
+          "placeholder": "Cerca per ref. o títol..."
+        },
+        "propertyType": {
+          "all": "Tots els tipus"
+        },
+        "city": {
+          "all": "Totes les ciutats"
+        },
+        "zone": {
+          "all": "Totes les zones"
+        },
+        "minPrice": {
+          "any": "Preu mín. (Qualsevol)",
+          "rent": {
+            "from400": "Des de 400 €",
+            "from600": "Des de 600 €",
+            "from800": "Des de 800 €",
+            "from1000": "Des de 1.000 €",
+            "from1500": "Des de 1.500 €"
+          },
+          "sale": {
+            "from50000": "Des de 50.000 €",
+            "from100000": "Des de 100.000 €",
+            "from200000": "Des de 200.000 €",
+            "from300000": "Des de 300.000 €",
+            "from500000": "Des de 500.000 €"
+          }
+        },
+        "maxPrice": {
+          "any": "Preu màx. (Qualsevol)",
+          "rent": {
+            "to800": "Fins a 800 €",
+            "to1200": "Fins a 1.200 €",
+            "to1500": "Fins a 1.500 €",
+            "to2000": "Fins a 2.000 €",
+            "to3000": "Fins a 3.000 €"
+          },
+          "sale": {
+            "to150000": "Fins a 150.000 €",
+            "to250000": "Fins a 250.000 €",
+            "to400000": "Fins a 400.000 €",
+            "to600000": "Fins a 600.000 €",
+            "to1000000": "Fins a 1.000.000 €"
+          }
+        }
+      },
+      "actions": {
+        "clearFilters": "Netejar filtres"
+      }
+    },
+    "propertyGrid": {
+      "title": "Propietats disponibles",
+      "summary": "Mostrant {startItem}-{endItem} de {totalCount} propietats",
+      "sort": {
+        "label": "Ordenar per:",
+        "options": {
+          "newest": "Més recents",
+          "priceAsc": "Preu: de menor a major",
+          "priceDesc": "Preu: de major a menor",
+          "area": "Superfície"
+        }
+      },
+      "empty": "No s'han trobat propietats disponibles en aquest moment.",
+      "pagination": {
+        "previous": "Pàgina anterior",
+        "next": "Pàgina següent"
+      }
+    },
+    "propertyCard": {
+      "agentLabel": "Agent immobiliari",
+      "units": {
+        "beds": "hab.",
+        "baths": "banys",
+        "area": "m²"
+      },
+      "actions": {
+        "viewDetails": "Veure detalls",
+        "toggleAgentInfo": "Mostra o amaga la informació de l'agent"
+      },
+      "fallbacks": {
+        "consultPrice": "Consulta",
+        "defaultAgency": "RE/MAX Viven"
+      }
+    },
+    "propertyDetail": {
+      "errors": {
+        "loadFailed": "No s'ha pogut trobar la informació de la propietat",
+        "unexpected": "Error inesperat",
+        "notFoundTitle": "Oops! Propietat no trobada",
+        "notFoundMessage": "La propietat sol·licitada no existeix o el feed no està disponible."
+      },
+      "actions": {
+        "backToList": "Tornar al llistat",
+        "backToProperties": "Tornar al llistat de propietats",
+        "sendMessage": "Enviar missatge"
+      },
+      "fallbacks": {
+        "description": "Sense descripció disponible.",
+        "propertyType": "Immoble",
+        "notSpecified": "No especificat",
+        "defaultAgency": "RE/MAX Viven"
+      },
+      "header": {
+        "referenceShort": "Ref",
+        "operationPrice": "Preu de l'operació"
+      },
+      "gallery": {
+        "thumbnailAlt": "Miniatura {index}"
+      },
+      "quickSpecs": {
+        "bedrooms": "Dormitoris",
+        "bathrooms": "Banys",
+        "area": "Superfície"
+      },
+      "sections": {
+        "propertyDescription": "Descripció de la propietat",
+        "featuresAndQualities": "Característiques i qualitats",
+        "equipmentAndServices": "Equipament i serveis",
+        "agentContact": "Contacte de l'agent",
+        "requestInformation": "Sol·licitar informació"
+      },
+      "specs": {
+        "reference": "Referència",
+        "operationType": "Tipus d'operació",
+        "propertyType": "Tipus de propietat",
+        "zoneCity": "Zona / Ciutat",
+        "usefulArea": "Superfície útil",
+        "builtArea": "Superfície construïda",
+        "condition": "Conservació",
+        "bedrooms": "Habitacions",
+        "bathrooms": "Banys",
+        "distanceToSea": "Distància al mar"
+      },
+      "form": {
+        "fullNamePlaceholder": "El teu nom complet",
+        "emailPlaceholder": "Correu electrònic",
+        "phonePlaceholder": "Telèfon (opcional)",
+        "phoneNotProvided": "No facilitat",
+        "sending": "Enviant...",
+        "defaultMessage": "Hola, estic interessat en l'immoble amb Referència {reference}. M'agradaria rebre més detalls."
+      },
+      "status": {
+        "success": "Missatge enviat amb èxit! Ens posarem en contacte amb tu al més aviat possible.",
+        "error": "No s'ha pogut enviar el correu. Si us plau, torna-ho a provar."
+      }
+    }
+  },
+  "administradorDeFincas": {
+    "hero": {
+      "imageAlt": "Imatge de portada de comunitats",
+      "titleStart": "Altres gestionen",
+      "titleHighlight": "en massa",
+      "titleEnd": "Nosaltres les cuidem una a una",
+      "description": "Gestió professional i integral del teu patrimoni immobiliari a Vilanova i La Geltrú",
+      "cta": {
+        "contact": "Sol·licitar informació",
+        "app": "Descarregar app"
+      }
+    },
+    "servicesSection": {
+      "title": "Els nostres serveis premium",
+      "description": "Com a administradors de finques a Vilanova i La Geltrú, oferim una gestió eficient i professional per a la teva comunitat de propietaris.",
+      "cards": {
+        "professionalExperience": {
+          "title": "Experiència professional",
+          "description": "Equip altament capacitat amb experiència en aspectes legals, financers, tècnics i de manteniment per a una administració sòlida."
+        },
+        "efficientManagement": {
+          "title": "Gestió eficient",
+          "description": "Ens encarreguem de la comptabilitat, la resolució de conflictes i la coordinació de serveis per al funcionament òptim de la teva comunitat."
+        },
+        "comprehensiveMaintenance": {
+          "title": "Manteniment integral",
+          "description": "Inspeccions periòdiques, reparacions i serveis de qualitat per mantenir les propietats en condicions òptimes."
+        },
+        "legalAdvice": {
+          "title": "Assessorament legal",
+          "description": "Gestió d'obligacions legals i fiscals, assegurant el compliment normatiu i l'optimització fiscal."
+        },
+        "transparentFinancialManagement": {
+          "title": "Gestió financera transparent",
+          "description": "Informes periòdics i gestió transparent dels recursos econòmics de la comunitat."
+        },
+        "communityImprovement": {
+          "title": "Millora comunitària",
+          "description": "Implementació de projectes de millora i optimització de serveis per augmentar la qualitat de vida."
+        }
+      }
+    },
+    "communityManagementSection": {
+      "badge": "VIVEN +Plus",
+      "title": "Una nova manera d'administrar la teva comunitat",
+      "description1": "A VIVEN trenquem amb el model antic i caduc d'Administrador de Comunitat. Entenem les Comunitats de Propietaris com petites empreses que s'han de gestionar amb un enfocament proactiu, proper, eficient i transparent.",
+      "description2": "Vosaltres sou els propietaris del patrimoni; nosaltres el gestionem amb la professionalitat i legalitat que ens caracteritza, i vetllem pel manteniment o increment de la seva valorització.",
+      "description3": "Per això comptem amb un ampli equip de professionals qualificats en totes les matèries que pot requerir una Comunitat de Propietaris, per oferir un servei diferent, ràpid i eficaç.",
+      "cta": {
+        "moreInfo": "Més informació"
+      },
+      "servicesTitle": "Entre els nostres serveis hi trobareu:",
+      "cards": {
+        "legalAdvice": {
+          "title": "Assessorament legal",
+          "description": "Fiscal i jurídic, estem atents a les noves normatives que puguin afectar les comunitats."
+        },
+        "budgetControl": {
+          "title": "Control pressupostari",
+          "description": "Comptabilitat transparent, seguim els pressupostos per controlar possibles desviacions."
+        },
+        "incidentControl": {
+          "title": "Control d'incidències",
+          "description": "Gestió d'incidències, manteniment i preservació de l'edifici. Comptem amb proveïdors certificats."
+        },
+        "customerSupport": {
+          "title": "Atenció al client",
+          "description": "24 hores al dia, 365 dies a l'any"
+        }
+      },
+      "tagline": "A VIVEN administrem LA VOSTRA COMUNITAT com si fos LA NOSTRA LLAR",
+      "imageAlt": "Edifici de comunitat"
+    },
+    "investmentSection": {
+      "title": "Inversions immobiliàries",
+      "subtitle": "Assessorament expert en inversions",
+      "description": "A VIVEN+ Plus facilitem la teva inversió immobiliària amb solucions personalitzades i professionals.",
+      "items": {
+        "urbanLand": {
+          "title": "Sòl urbà",
+          "description": "Gestió i assessorament especialitzat"
+        },
+        "realEstateAssets": {
+          "title": "Actius immobiliaris",
+          "description": "Maximització de rendibilitat"
+        },
+        "newDevelopments": {
+          "title": "Noves promocions",
+          "description": "Desenvolupament de projectes innovadors"
+        }
+      },
+      "imageAlt": "Inversions immobiliàries"
+    }
+  }
+}

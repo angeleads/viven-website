@@ -1,4 +1,8 @@
-export default function ContactCTA() {
+import { getTranslations } from "next-intl/server";
+
+export default async function ContactCTA() {
+  const t = await getTranslations("contact.cta");
+
     return (
       <section className="py-16 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 relative overflow-hidden">
         {/* Decorative elements */}
@@ -7,10 +11,9 @@ export default function ContactCTA() {
   
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">¿Necesitas ayuda inmediata?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">{t("title")}</h2>
             <p className="text-xl text-white/90 mb-10">
-              Nuestro equipo de atención al cliente está disponible 24/7 para ayudarte con cualquier consulta o
-              emergencia.
+              {t("description")}
             </p>
   
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-xl mx-auto">
@@ -48,7 +51,7 @@ export default function ContactCTA() {
             </div>
   
             <p className="mt-10 text-white/80">
-              También puedes visitarnos en cualquiera de nuestras oficinas durante el horario comercial.
+              {t("visitNote")}
             </p>
           </div>
         </div>

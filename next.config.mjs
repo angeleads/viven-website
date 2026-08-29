@@ -1,3 +1,8 @@
+import createNextIntlPlugin from "next-intl/plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+
+const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
@@ -9,6 +14,13 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-}
+  webpack: (config, {dev, isServer}) => {
+    if (!dev && !isServer) {
+      config.plugins.push(new MiniCssExtractPlugin());
+    }
 
-export default nextConfig
+    return config;
+  },
+};
+
+export default withNextIntl(nextConfig);

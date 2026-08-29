@@ -1,8 +1,13 @@
 "use client"
 
 import { useState } from "react"
+import emailjs from "@emailjs/browser"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
 
 export default function ContactForm() {
+  const t = useTranslations("contact.form")
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,33 +34,54 @@ export default function ContactForm() {
     e.preventDefault()
     setFormStatus("submitting")
 
-    // Simulate form submission
-    setTimeout(() => {
-      setFormStatus("success")
-      // Reset form after success
-      setTimeout(() => {
-        setFormStatus("idle")
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: "",
-          service: "general",
-          acceptTerms: false,
-        })
-      }, 3000)
-    }, 1500)
-  }
+  // Los nombres de las propiedades deben coincidir exactamente con los {{variables}} de tu plantilla de EmailJS
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      phone: formData.phone,
+      service: formData.service,
+      subject: formData.subject,
+      message: formData.message,
+    }
 
+    emailjs
+      .send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      )
+      .then(
+        () => {
+          setFormStatus("success")
+          setTimeout(() => {
+            setFormStatus("idle")
+            setFormData({
+              name: "",
+              email: "",
+              phone: "",
+              subject: "",
+              message: "",
+              service: "general",
+              acceptTerms: false,
+            })
+          }, 3000)
+        },
+        (error) => {
+          console.error("Error sending email:", error)
+          setFormStatus("error")
+        }
+      )
+  }
+  
   return (
     <section id="contactForm" className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Envíanos un mensaje</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t("title")}</h2>
             <p className="text-lg text-gray-600">
-              Completa el formulario y nos pondremos en contacto contigo lo antes posible.
+              {t("description")}
             </p>
           </div>
 
@@ -74,10 +100,9 @@ export default function ContactForm() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">¡Mensaje enviado con éxito!</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{t("successTitle")}</h3>
                   <p className="text-gray-600">
-                    Gracias por contactar con nosotros. Un miembro de nuestro equipo se pondrá en contacto contigo en
-                    breve.
+                    {t("successMessage")}
                   </p>
                 </div>
               ) : (
@@ -85,7 +110,7 @@ export default function ContactForm() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                        Nombre completo *
+                        {t("fields.name.label")} *
                       </label>
                       <input
                         type="text"
@@ -94,13 +119,13 @@ export default function ContactForm() {
                         value={formData.name}
                         onChange={handleChange}
                         className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Tu nombre"
+                        placeholder={t("fields.name.placeholder")}
                         required
                       />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        Email *
+                        {t("fields.email.label")} *
                       </label>
                       <input
                         type="email"
@@ -109,7 +134,7 @@ export default function ContactForm() {
                         value={formData.email}
                         onChange={handleChange}
                         className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Tu email"
+                        placeholder={t("fields.email.placeholder")}
                         required
                       />
                     </div>
@@ -118,7 +143,7 @@ export default function ContactForm() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                        Teléfono
+                        {t("fields.phone.label")}
                       </label>
                       <input
                         type="tel"
@@ -127,12 +152,12 @@ export default function ContactForm() {
                         value={formData.phone}
                         onChange={handleChange}
                         className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Tu teléfono"
+                        placeholder={t("fields.phone.placeholder")}
                       />
                     </div>
                     <div>
                       <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                        Servicio de interés *
+                        {t("fields.service.label")} *
                       </label>
                       <select
                         id="service"
@@ -142,20 +167,20 @@ export default function ContactForm() {
                         className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         required
                       >
-                        <option className="rounded-xl" value="general">Información general</option>
-                        <option className="rounded-xl" value="compra">Compra de propiedad</option>
-                        <option className="rounded-xl" value="venta">Venta de propiedad</option>
-                        <option className="rounded-xl" value="alquiler">Alquiler</option>
-                        <option className="rounded-xl" value="alquiler">Gestión de Communidades</option>
-                        <option className="rounded-xl" value="comunidades">Administración de comunidades</option>
-                        <option className="rounded-xl" value="inversion">Inversión inmobiliaria</option>
+                        <option className="rounded-xl" value="general">{t("fields.service.options.general")}</option>
+                        <option className="rounded-xl" value="compra">{t("fields.service.options.buy")}</option>
+                        <option className="rounded-xl" value="venta">{t("fields.service.options.sell")}</option>
+                        <option className="rounded-xl" value="alquiler">{t("fields.service.options.rent")}</option>
+                        <option className="rounded-xl" value="gestion_comunidades">{t("fields.service.options.communityManagement")}</option>
+                        <option className="rounded-xl" value="comunidades">{t("fields.service.options.communityAdministration")}</option>
+                        <option className="rounded-xl" value="inversion">{t("fields.service.options.investment")}</option>
                       </select>
                     </div>
                   </div>
 
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                      Asunto *
+                      {t("fields.subject.label")} *
                     </label>
                     <input
                       type="text"
@@ -164,14 +189,14 @@ export default function ContactForm() {
                       value={formData.subject}
                       onChange={handleChange}
                       className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="Asunto de tu mensaje"
+                      placeholder={t("fields.subject.placeholder")}
                       required
                     />
                   </div>
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Mensaje *
+                      {t("fields.message.label")} *
                     </label>
                     <textarea
                       id="message"
@@ -180,7 +205,7 @@ export default function ContactForm() {
                       onChange={handleChange}
                       rows={5}
                       className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="¿En qué podemos ayudarte?"
+                      placeholder={t("fields.message.placeholder")}
                       required
                     ></textarea>
                   </div>
@@ -199,11 +224,11 @@ export default function ContactForm() {
                     </div>
                     <div className="ml-3 text-sm">
                       <label htmlFor="acceptTerms" className="text-gray-600">
-                        Acepto la{" "}
-                        <a href="/privacidad" className="text-blue-600 hover:underline">
-                          política de privacidad
-                        </a>{" "}
-                        y el tratamiento de mis datos personales. *
+                        {t("terms.prefix")}{" "}
+                        <Link href="/privacidad" className="text-blue-600 hover:underline">
+                          {t("terms.privacyPolicy")}
+                        </Link>{" "}
+                        {t("terms.suffix")} *
                       </label>
                     </div>
                   </div>
@@ -212,9 +237,8 @@ export default function ContactForm() {
                     <button
                       type="submit"
                       disabled={formStatus === "submitting"}
-                      className={`bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-xl transition-colors duration-300 ${
-                        formStatus === "submitting" ? "opacity-70 cursor-not-allowed" : ""
-                      }`}
+                      className={`bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-xl transition-colors duration-300 ${formStatus === "submitting" ? "opacity-70 cursor-not-allowed" : ""
+                        }`}
                     >
                       {formStatus === "submitting" ? (
                         <span className="flex items-center">
@@ -238,10 +262,10 @@ export default function ContactForm() {
                               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                             ></path>
                           </svg>
-                          Enviando...
+                          {t("submitting")}
                         </span>
                       ) : (
-                        "Enviar mensaje"
+                        t("submit")
                       )}
                     </button>
                   </div>
@@ -252,7 +276,7 @@ export default function ContactForm() {
 
           <div className="mt-8 text-center text-gray-600 text-sm">
             <p>
-              Los campos marcados con <span className="text-red-500">*</span> son obligatorios.
+              {t("requiredHintPrefix")} <span className="text-red-500">*</span> {t("requiredHintSuffix")}
             </p>
           </div>
         </div>

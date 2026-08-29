@@ -1,6 +1,8 @@
-import { ShieldCheck } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
-export default function StatsSection() {
+export default async function StatsSection() {
+  const t = await getTranslations("empresa.statsSection");
+
   return (
     <section className="py-16 md:py-24 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 relative overflow-hidden">
       {/* Decorative elements */}
@@ -10,26 +12,25 @@ export default function StatsSection() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Excelencia en Números
+            {t("title")}
           </h2>
           <p className="text-xl text-white/90">
-            Nuestro compromiso con la calidad y la satisfacción del cliente se
-            refleja en nuestras estadísticas.
+            {t("description")}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <StatCard
             percentage="99.9%"
-            title="Incidencias Resueltas"
+            title={t("stats.resolvedIncidents")}
           />
           <StatCard
             percentage="99.9%"
-            title="Clientes Satisfechos"
+            title={t("stats.satisfiedClients")}
           />
           <StatCard
             percentage="99.9%"
-            title="Contratos Satisfactorios"
+            title={t("stats.successfulContracts")}
           />
         </div>
       </div>

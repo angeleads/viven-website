@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
+import { useLocale } from "next-intl";
 import Hero from "@/components/venta/hero";
 import PropertyGrid from "@/components/venta/property-grid";
 import Pagination from "@/components/venta/pagination";
@@ -14,7 +15,8 @@ import {
   filterProperties,
 } from "@/lib/property-filters";
 
-export default function VentaPage() {
+export default function PropiedadesPage() {
+  const locale = useLocale();
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -28,7 +30,7 @@ export default function VentaPage() {
     async function getProperties() {
       try {
         setLoading(true);
-        const res = await fetch("/api/properties");
+        const res = await fetch(`/api/properties?idioma=${encodeURIComponent(locale)}`);
 
         if (!res.ok) {
           throw new Error(`Server returned code: ${res.status}`);
@@ -57,7 +59,7 @@ export default function VentaPage() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [locale]);
 
   // 1. Extrae dinámicamente las ciudades, zonas y tipos de las propiedades cargadas
   const { cities, zones, propertyTypes } = useMemo(() => {
@@ -91,7 +93,7 @@ export default function VentaPage() {
           <div className="flex flex-col justify-center items-center py-24 gap-4">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
             <p className="text-gray-500 animate-pulse text-sm">
-              Conectando con el catálogo de Inmovilla...
+              Conectando con el catálogo de prioridades...
             </p>
           </div>
         ) : error ? (
@@ -100,8 +102,6 @@ export default function VentaPage() {
           <PropertyGrid properties={filteredProperties} />
         )}
       </div>
-
-      <Pagination currentPage={1} totalPages={1} />
       <Footer />
     </main>
   );

@@ -7,6 +7,7 @@ export interface FilterState {
   zone: string;          // Selected Zone
   minPrice: string;      // Minimum price threshold
   maxPrice: string;      // Maximum price threshold
+  operation: string;     // e.g. "venta", "alquiler"
 }
 
 export const INITIAL_FILTERS: FilterState = {
@@ -16,6 +17,7 @@ export const INITIAL_FILTERS: FilterState = {
   zone: "",
   minPrice: "",
   maxPrice: "",
+  operation: "",
 };
 
 // Helper function to convert price safely to a number
@@ -53,7 +55,15 @@ export function filterProperties(properties: Property[], filters: FilterState): 
   if (!Array.isArray(properties)) return [];
 
   return properties.filter((property) => {
-    // 1. Reference / ID / Title search
+    // 1. Operation filter (Venta / Alquiler)
+    if (filters.operation) {
+      const propOp = property.operationType?.toLowerCase();
+      if (propOp && propOp !== filters.operation.toLowerCase()) {
+        return false;
+      }
+    }
+
+    // 2. Reference / ID / Title search
     if (filters.searchRef.trim()) {
       const query = filters.searchRef.trim().toLowerCase();
       const matchRef = property.reference?.toLowerCase().includes(query);
@@ -62,35 +72,35 @@ export function filterProperties(properties: Property[], filters: FilterState): 
       if (!matchRef && !matchId && !matchTitle) return false;
     }
 
-    // 2. Property Type filter
+    // 3. Property Type filter
     if (filters.propertyType && property.propertyType) {
       if (property.propertyType.toLowerCase() !== filters.propertyType.toLowerCase()) {
         return false;
       }
     }
 
-    // 3. City filter
+    // 4. City filter
     if (filters.city && property.city) {
       if (property.city.toLowerCase() !== filters.city.toLowerCase()) {
         return false;
       }
     }
 
-    // 4. Zone filter
+    // 5. Zone filter
     if (filters.zone && property.zone) {
       if (property.zone.toLowerCase() !== filters.zone.toLowerCase()) {
         return false;
       }
     }
 
-    // 5. Minimum Price filter
+    // 6. Minimum Price filter
     if (filters.minPrice) {
       const min = Number(filters.minPrice);
       const price = getNumericPrice(property.price);
       if (price < min) return false;
     }
 
-    // 6. Maximum Price filter
+    // 7. Maximum Price filter
     if (filters.maxPrice) {
       const max = Number(filters.maxPrice);
       const price = getNumericPrice(property.price);

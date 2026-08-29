@@ -1,57 +1,58 @@
 import Image from "next/image"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import { CheckCircle } from "lucide-react"
+import { getTranslations } from "next-intl/server"
 
-export default function VivenPlusSection() {
+export default async function VivenPlusSection() {
+  const t = await getTranslations("empresa.vivenPlusSection")
+
   return (
     <section className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <div className="inline-block bg-red-100 text-red-600 px-4 py-1 rounded-full text-sm font-medium mb-6">
-            VIVEN +Plus
+            {t("badge")}
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            Administración de Comunidades de Propietarios
+            {t("title")}
           </h2>
           <p className="text-lg text-gray-600">
-            Una nueva forma de administrar su comunidad con un enfoque proactivo, cercano, eficiente y transparente.
+            {t("description")}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Entendemos las Comunidades de Propietarios como pequeñas empresas
+              {t("subtitle")}
             </h3>
             <p className="text-gray-600 mb-8">
-              Los propietarios del patrimonio son ustedes, nosotros gestionamos su patrimonio desde la profesionalidad y
-              legalidad que nos caracteriza, y velamos por el mantenimiento o incremento de la valorización del mismo.
+              {t("body")}
             </p>
 
             <div className="space-y-4 mb-8">
               <div className="flex items-start">
                 <CheckCircle className="h-6 w-6 text-red-600 mr-3 flex-shrink-0 mt-0.5" />
                 <p className="text-gray-700">
-                  <span className="font-semibold">Asesoramiento legal</span> fiscal y jurídico, atentos a las nuevas
-                  normativas.
+                  <span className="font-semibold">{t("features.legalAdvice.title")}</span>{" "}{t("features.legalAdvice.text")}
                 </p>
               </div>
               <div className="flex items-start">
                 <CheckCircle className="h-6 w-6 text-red-600 mr-3 flex-shrink-0 mt-0.5" />
                 <p className="text-gray-700">
-                  <span className="font-semibold">Control presupuestario</span> con contabilidad transparente.
+                  <span className="font-semibold">{t("features.budgetControl.title")}</span>{" "}{t("features.budgetControl.text")}
                 </p>
               </div>
               <div className="flex items-start">
                 <CheckCircle className="h-6 w-6 text-red-600 mr-3 flex-shrink-0 mt-0.5" />
                 <p className="text-gray-700">
-                  <span className="font-semibold">Gestión de incidencias</span> y mantenimiento del edificio.
+                  <span className="font-semibold">{t("features.incidentManagement.title")}</span>{" "}{t("features.incidentManagement.text")}
                 </p>
               </div>
               <div className="flex items-start">
                 <CheckCircle className="h-6 w-6 text-red-600 mr-3 flex-shrink-0 mt-0.5" />
                 <p className="text-gray-700">
-                  <span className="font-semibold">Atención al cliente</span> 24 horas al día, 365 días al año.
+                  <span className="font-semibold">{t("features.customerSupport.title")}</span>{" "}{t("features.customerSupport.text")}
                 </p>
               </div>
             </div>
@@ -61,7 +62,7 @@ export default function VivenPlusSection() {
                 href="/servicios/administracion-comunidades"
                 className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-3xl font-medium transition-colors duration-300 inline-flex items-center"
               >
-                Más información
+                {t("cta")}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5 ml-2"
@@ -83,7 +84,7 @@ export default function VivenPlusSection() {
               <div className="relative z-10 rounded-xl overflow-hidden shadow-xl">
                 <Image
                   src="/pictures/community.jpg"
-                  alt="Administración de Comunidades"
+                  alt={t("imageAlt")}
                   width={800}
                   height={600}
                   className="w-full h-auto"
@@ -97,7 +98,7 @@ export default function VivenPlusSection() {
 
         <div className="mt-16 rounded-xl p-8 text-center">
           <p className="text-xl md:text-2xl font-bold italic text-blue-700">
-            "En VIVEN administramos SU COMUNIDAD como si fuera NUESTRO HOGAR"
+            {t("quote")}
           </p>
         </div>
       </div>

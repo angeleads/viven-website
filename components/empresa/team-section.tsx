@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import { Mail, Phone, Linkedin } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 interface TeamMember {
   id: number
@@ -16,56 +17,58 @@ interface TeamMember {
 }
 
 export default function TeamSection() {
+  const t = useTranslations("empresa.teamSection")
+
   const teamMembers: TeamMember[] = [
     {
       id: 1,
       name: "Cesar Sanjurjo",
-      position: "Fundador y CEO",
+      position: t("members.cesar.position"),
       photo: "/team/cesar-sanjurjo.png",
       description:
-        "Con más de 20 años de experiencia en el sector inmobiliario, Carlos fundó Viven con la visión de crear un modelo de negocio estable e innovador.",
-      email: "carlos@viven.es",
+        t("members.cesar.description"),
+      email: "cesar.sanjurjo@viven.es",
       phone: "+34 612 345 678",
-      linkedin: "https://linkedin.com/in/carlosrodriguez",
+      linkedin: "https://www.linkedin.com/in/c%C3%A9sar-sanjurjo-10a7ab55/",
     },
     {
       id: 2,
-      name: "Ángeles Marcos",
-      position: "Directora de RE/MAX VIVEN",
-      photo: "/team/angeles-marcos.png",
+      name: "Merche Romero",
+      position: t("members.merche.position"),
+      photo: "/team/merche-romero.jpg",
       description:
-        "Especialista en comercialización de propiedades de lujo, Ana lidera el equipo de agentes asociados de RE/MAX VIVEN.",
-      email: "ana@viven.es",
+        t("members.merche.description"),
+      email: "merche.romero@viven.es",
       phone: "+34 623 456 789",
     },
     {
       id: 3,
-      name: "Hector Alarcon",
-      position: "Director de VIVEN +Plus",
-      photo: "/team/hector-alarcon.png",
+      name: "Duglaiska",
+      position: t("members.duglaiska.position"),
+      photo: "/team/duglaiska.jpg",
       description:
-        "Experto en gestión patrimonial, Miguel ha revolucionado la administración de comunidades con un enfoque transparente y eficiente.",
-      email: "miguel@viven.es",
-      phone: "+34 634 567 890",
+        t("members.duglaiska.description"),
+      email: "dug.fernandez@remax.es",
+      phone: "+34 664 841 885",
       linkedin: "https://linkedin.com/in/miguelfernandez",
     },
     {
       id: 4,
       name: "Isabel Carrasco",
-      position: "Directora Financiera",
+      position: t("members.isabel.position"),
       photo: "/team/isabel-carrasco.png",
       description:
-        "Con formación en finanzas y experiencia en el sector inmobiliario, Laura gestiona la estabilidad económica de Viven.",
+        t("members.isabel.description"),
       email: "laura@viven.es",
       phone: "+34 645 678 901",
     },
     {
       id: 5,
       name: "Maria Garrido",
-      position: "Director de Tecnología",
+      position: t("members.maria.position"),
       photo: "/team/maria-garrido.png",
       description:
-        "Responsable de la implementación de soluciones tecnológicas que mejoran la eficiencia y transparencia en todos los servicios.",
+        t("members.maria.description"),
       email: "david@viven.es",
       phone: "+34 656 789 012",
       linkedin: "https://linkedin.com/in/davidlopez",
@@ -73,10 +76,10 @@ export default function TeamSection() {
     {
       id: 6,
       name: "Fran Hernan",
-      position: "Directora de Marketing",
+      position: t("members.fran.position"),
       photo: "/placeholder.svg?height=400&width=400",
       description:
-        "Especialista en marketing digital y comunicación, Elena desarrolla estrategias para posicionar la marca Viven en el mercado.",
+        t("members.fran.description"),
       email: "elena@viven.es",
       phone: "+34 667 890 123",
     },
@@ -88,10 +91,9 @@ export default function TeamSection() {
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Nuestro Equipo</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{t("title")}</h2>
           <p className="text-lg text-gray-600">
-            El equipo de Viven está formado por profesionales expertos, formados y dinámicos con un único objetivo
-            común: satisfacer las demandas de nuestros clientes.
+            {t("description")}
           </p>
         </div>
 
@@ -124,7 +126,7 @@ export default function TeamSection() {
                     setActiveTeamMember(member)
                   }}
                 >
-                  Ver más información
+                  {t("actions.viewMore")}
                 </button>
               </div>
             </div>
@@ -149,6 +151,7 @@ export default function TeamSection() {
                   className="object-cover"
                 />
                 <button
+                  aria-label={t("actions.close")}
                   className="absolute top-4 right-4 bg-white/80 hover:bg-white text-gray-800 w-8 h-8 rounded-full flex items-center justify-center"
                   onClick={() => setActiveTeamMember(null)}
                 >
@@ -185,7 +188,7 @@ export default function TeamSection() {
                         rel="noopener noreferrer"
                         className="text-gray-700 hover:text-blue-600"
                       >
-                        Perfil de LinkedIn
+                        {t("linkedinProfile")}
                       </a>
                     </div>
                   )}
@@ -196,7 +199,7 @@ export default function TeamSection() {
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
                     onClick={() => setActiveTeamMember(null)}
                   >
-                    Cerrar
+                    {t("actions.close")}
                   </button>
                 </div>
               </div>

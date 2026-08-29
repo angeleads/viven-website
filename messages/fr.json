@@ -1,0 +1,831 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "properties": "Biens",
+    "propertyManager": "Gestion immobilière",
+    "company": "Entreprise",
+    "contact": "Contact"
+  },
+  "language": {
+    "label": "Langue",
+    "es": "Español",
+    "en": "English",
+    "ca": "Català",
+    "fr": "Français"
+  },
+  "footer": {
+    "about": "Viven Immobilier est votre partenaire de confiance pour trouver le bien idéal en Espagne. Avec plus de 15 ans d'expérience, nous proposons des services immobiliers complets et personnalisés.",
+    "quickLinksTitle": "Liens rapides",
+    "mapsTitle": "Cartes",
+    "newsletterTitle": "Newsletter",
+    "newsletterText": "Abonnez-vous pour recevoir les dernières actualités du marché immobilier.",
+    "emailPlaceholder": "Votre e-mail",
+    "privacyAcceptPrefix": "En vous abonnant, vous acceptez notre",
+    "privacyPolicy": "politique de confidentialité",
+    "cookiesPolicy": "Politique de cookies",
+    "legalNotice": "Mentions légales",
+    "rights": "Tous droits réservés.",
+    "links": {
+      "home": "Accueil",
+      "properties": "Biens",
+      "propertyManager": "Gestion immobilière",
+      "company": "Entreprise",
+      "contact": "Contact"
+    }
+  },
+  "comunidades": {
+    "hero": {
+      "titleStart": "D'autres gèrent",
+      "titleHighlight": "en masse.",
+      "titleEnd": "Nous les accompagnons une par une.",
+      "descriptionStart": "Nous ne sommes pas une plateforme. Nous sommes",
+      "descriptionHighlight": "votre administrateur",
+      "descriptionEnd": "Une nouvelle façon de prendre soin des copropriétés : proche, transparente et technologique.",
+      "cta": {
+        "primary": "Diagnostic gratuit",
+        "secondary": "Voir les services"
+      },
+      "cards": {
+        "closeness": {
+          "title": "Proximité",
+          "text": "Des personnes qui résolvent"
+        },
+        "transparency": {
+          "title": "Transparence",
+          "text": "Comptes ouverts"
+        },
+        "customized": {
+          "title": "Personnalisée",
+          "text": "Chaque copropriété est unique"
+        },
+        "technology": {
+          "title": "Technologie",
+          "text": "Des outils qui apportent de la valeur"
+        }
+      }
+    },
+    "percentages": {
+      "resolvedIncidents": "Incidents résolus",
+      "satisfiedClients": "Clients satisfaits",
+      "successfulContracts": "Contrats satisfaisants"
+    },
+    "services": {
+      "eyebrow": "Services",
+      "title": "Une nouvelle façon de gérer votre copropriété",
+      "description": "Nous considérons les copropriétés comme de petites entreprises qui méritent une approche proactive, proche, efficace et transparente.",
+      "cards": {
+        "communityManagement": {
+          "title": "Gestion de copropriété",
+          "items": [
+            "Suivi des incidents",
+            "Conseil juridique",
+            "Contrôle budgétaire",
+            "Suivi des impayés",
+            "Réduction des coûts",
+            "Gestion des subventions"
+          ]
+        },
+        "realEstateManagement": {
+          "title": "Gestion immobilière",
+          "items": [
+            "Achat et vente",
+            "Location",
+            "Tous types de biens",
+            "Investisseurs",
+            "SIIC"
+          ]
+        },
+        "newConstructionServices": {
+          "title": "Services de construction neuve",
+          "items": [
+            "Architecture",
+            "Certifications",
+            "Exécution d'ouvrage neuf",
+            "Rénovations",
+            "Constitution de copropriétés"
+          ]
+        },
+        "legalAdvice": {
+          "title": "Conseil juridique",
+          "items": [
+            "Fiscal et juridique",
+            "Défense des intérêts de la copropriété"
+          ]
+        },
+        "budgetControl": {
+          "title": "Contrôle budgétaire",
+          "items": [
+            "Comptabilité transparente",
+            "Suivi des budgets",
+            "Contrôle des écarts"
+          ]
+        },
+        "incidentControl": {
+          "title": "Suivi des incidents",
+          "items": [
+            "Maintenance préventive",
+            "Prestataires certifiés",
+            "Préservation du bâtiment"
+          ]
+        }
+      }
+    },
+    "contact": {
+      "badge": "24H · 365 JOURS",
+      "titleStart": "Les problèmes n'ont pas d'horaires.",
+      "titleHighlight": "Nous non plus",
+      "description": "Assistance téléphonique 24h/24, 365 jours par an. Toute urgence sera prise en charge par du personnel qualifié, avec réponse et résolution en moins de 4 heures.",
+      "whatsapp": "WhatsApp urgences",
+      "issues": [
+        "Fuites d'eau",
+        "Coupures électriques",
+        "Serrurerie",
+        "Ascenseurs",
+        "Climatisation",
+        "Sécurité"
+      ]
+    },
+    "app": {
+      "eyebrow": "Application Viven +Plus",
+      "title": "Votre copropriété dans la paume de la main.",
+      "description": "Notre application permet aux propriétaires, gestionnaires et opérateurs de coordonner chaque action. L'excellence est notre standard.",
+      "features": [
+        "Gérer les incidents",
+        "Consulter les derniers procès-verbaux",
+        "Vérifier les reçus",
+        "Vérifier les appels de fonds",
+        "Solde bancaire",
+        "Approuver les paiements (Président)"
+      ]
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Contactez-nous",
+      "description": "Nous sommes là pour vous aider dans tous vos besoins immobiliers. Notre équipe d'experts est prête à vous offrir le meilleur service personnalisé.",
+      "callNow": "Appeler maintenant",
+      "sendMessage": "Envoyer un message"
+    },
+    "cta": {
+      "title": "Besoin d'aide immédiate ?",
+      "description": "Notre équipe de support client est disponible 24h/24 et 7j/7 pour vous aider en cas de question ou d'urgence.",
+      "visitNote": "Vous pouvez également nous rendre visite dans l'une de nos agences pendant les heures d'ouverture."
+    },
+    "info": {
+      "callUs": "Appelez-nous",
+      "writeUs": "Écrivez-nous",
+      "visitUs": "Venez nous voir",
+      "schedule": "Horaires",
+      "scheduleValue": "Du lundi au jeudi : 9h00 - 19h00 et vendredi : 8h00 - 15h00"
+    },
+    "map": {
+      "title": "Notre emplacement",
+      "description": "Rendez-nous visite dans notre bureau principal ou dans l'une de nos agences.",
+      "iframeTitle": "Emplacement de Viven Immobilier",
+      "officeVilanova": "Bureau de Vilanova",
+      "officeSitges": "Bureau de Sitges"
+    },
+    "form": {
+      "title": "Envoyez-nous un message",
+      "description": "Remplissez le formulaire et nous vous contacterons dès que possible.",
+      "successTitle": "Message envoyé avec succès !",
+      "successMessage": "Merci de nous avoir contactés. Un membre de notre équipe vous répondra très bientôt.",
+      "submit": "Envoyer le message",
+      "submitting": "Envoi en cours...",
+      "requiredHintPrefix": "Les champs marqués",
+      "requiredHintSuffix": "sont obligatoires.",
+      "terms": {
+        "prefix": "J'accepte la",
+        "privacyPolicy": "politique de confidentialité",
+        "suffix": "et le traitement de mes données personnelles."
+      },
+      "fields": {
+        "name": {
+          "label": "Nom complet",
+          "placeholder": "Votre nom"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "Votre email"
+        },
+        "phone": {
+          "label": "Téléphone",
+          "placeholder": "Votre téléphone"
+        },
+        "service": {
+          "label": "Service d'intérêt",
+          "options": {
+            "general": "Information générale",
+            "buy": "Achat de bien",
+            "sell": "Vente de bien",
+            "rent": "Location",
+            "communityManagement": "Gestion de copropriété",
+            "communityAdministration": "Administration de copropriété",
+            "investment": "Investissement immobilier",
+            "other": "Autre"
+          }
+        },
+        "subject": {
+          "label": "Objet",
+          "placeholder": "Objet de votre message"
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Comment pouvons-nous vous aider ?"
+        }
+      }
+    }
+  },
+  "showcase": {
+    "hero": {
+      "badge": "Agence immobilière de référence à Vilanova i la Geltrú",
+      "titleStart": "Trouvez la propriété de vos rêves avec",
+      "titleHighlight": "Viven Immobilier",
+      "description": "Nous vous accompagnons à chaque étape avec un service exclusif et personnalisé dans le Garraf. Trouvez votre nouveau chez-vous ou vendez votre bien au meilleur prix du marché.",
+      "cta": {
+        "explore": "Explorer les biens",
+        "sell": "Vendre mon bien"
+      },
+      "metrics": {
+        "properties": "Biens",
+        "region": "El Garraf",
+        "specialists": "Spécialistes",
+        "advised": "Conseillé"
+      },
+      "card": {
+        "exclusiveProperty": "Propriété exclusive",
+        "defaultOperation": "Vente",
+        "referenceShort": "Réf.",
+        "featured": "En vedette",
+        "bedsShort": "Ch.",
+        "baths": "Sdb",
+        "viewFull": "Voir la fiche complète"
+      },
+      "floating": {
+        "safeTitle": "Processus 100% sécurisé",
+        "safeSubtitle": "Garantie RE/MAX Viven",
+        "fastTitle": "Assistance immédiate",
+        "fastSubtitle": "Agents locaux disponibles"
+      },
+      "fallback": {
+        "title": "Bien exclusif",
+        "location": "Vilanova i la Geltrú",
+        "consultPrice": "Consulter le prix"
+      }
+    },
+    "propertySection": {
+      "title": "Biens en vedette",
+      "description": "Découvrez notre sélection de biens exclusifs dans les meilleurs emplacements, mise à jour directement depuis le CRM.",
+      "viewAll": "Voir tous les biens",
+      "empty": "Aucun bien disponible pour le moment.",
+      "card": {
+        "agentLabel": "Agent immobilier",
+        "viewDetails": "Voir les détails",
+        "units": {
+          "beds": "ch.",
+          "baths": "sdb"
+        },
+        "fallback": {
+          "consult": "Consulter",
+          "agentName": "César Sanjurjo",
+          "agentPhone": "+34 667 881 370",
+          "property": "Bien",
+          "untitled": "Bien sans titre",
+          "location": "Emplacement non spécifié"
+        }
+      }
+    },
+    "remaxStats": {
+      "title": "Données rapides",
+      "quarter": "1er TRIMESTRE 2025",
+      "description": "RE/MAX est le plus grand réseau immobilier au monde. Découvrez notre portée mondiale et européenne.",
+      "tabs": {
+        "europe": "Europe",
+        "global": "Global"
+      },
+      "stats": {
+        "europe": {
+          "associates": "Associés RE/MAX",
+          "propertiesForSale": "Biens à vendre",
+          "agents": "Agents",
+          "newPropertiesForSale": "Nouveaux biens à vendre",
+          "offices": "Bureaux",
+          "mobileUsers": "Utilisateurs mobiles"
+        },
+        "global": {
+          "propertiesForSale": "Biens à vendre",
+          "countriesAndTerritories": "Pays et territoires",
+          "agents": "Agents",
+          "languages": "Langues",
+          "offices": "Bureaux",
+          "mobileUsers": "Utilisateurs mobiles"
+        }
+      },
+      "notes": [
+        "Les statistiques ne reflètent pas toutes les régions européennes de RE/MAX.",
+        "Sources : RE/MAX LLC et GrowthTech Inc.",
+        "Veuillez noter que ces chiffres sont basés sur des moyennes du T1 2025."
+      ]
+    },
+    "servicesSection": {
+      "title": "Nos services",
+      "description": "Chez Viven, nous proposons une large gamme de services immobiliers pour répondre à tous vos besoins.",
+      "categories": {
+        "community": {
+          "title": "Gestion de copropriétés",
+          "services": [
+            "Gestion des incidents",
+            "Conseil juridique",
+            "Contrôle budgétaire",
+            "Contrôle des impayés",
+            "Réduction des coûts",
+            "Gestion des subventions"
+          ]
+        },
+        "property": {
+          "title": "Services immobiliers",
+          "services": [
+            "Achat",
+            "Vente",
+            "Location",
+            "Tous types de biens",
+            "Investisseurs",
+            "SIIC"
+          ]
+        },
+        "construction": {
+          "title": "Construction et rénovation",
+          "services": [
+            "Architecture",
+            "Certifications",
+            "Réalisation de construction neuve",
+            "Rénovations"
+          ]
+        }
+      }
+    },
+    "contactSection": {
+      "info": {
+        "title": "Informations de contact",
+        "items": {
+          "address": "Adresse",
+          "addressValue": "Pelegrí Ballester, 23 Vilanova i la Geltrú 08800 (Barcelona)",
+          "phone": "Téléphone",
+          "email": "E-mail",
+          "schedule": "Horaires"
+        }
+      }
+    },
+    "appSection": {
+      "title": "Application VIVEN+ PLUS",
+      "description": "Accédez à votre copropriété depuis n'importe où, à tout moment",
+      "cta": {
+        "download": "Télécharger maintenant"
+      },
+      "imageAlt": "Application VIVEN+"
+    },
+    "partnersSection": {
+      "title": "Nos partenaires",
+      "description": {
+        "start": "Chez",
+        "brand": "Viven",
+        "middle": "nous avons le plaisir de travailler avec des entreprises qui partagent les mêmes valeurs de",
+        "values": "Engagement, Transparence et Professionnalisme",
+        "end": "que nous."
+      },
+      "aria": {
+        "previousPartners": "Partenaires précédents",
+        "nextPartners": "Partenaires suivants",
+        "goToSlide": "Aller à la diapositive {slide}"
+      },
+      "logoAlt": "Logo de {name}"
+    }
+  },
+  "empresa": {
+    "companyHero": {
+      "title": "À propos de nous",
+      "description": "VIVEN incarne l'innovation et la recherche de l'excellence dans le secteur immobilier. Elle est née de la volonté de son fondateur de promouvoir un système de travail où les utilisateurs comme les collaborateurs bénéficient d'une méthodologie solide, de principes forts et d'une recherche continue de l'excellence dans tous les domaines."
+    },
+    "callToAction": {
+      "title": "Chez Viven, nous savons clairement que VOUS passez avant tout",
+      "description": "Découvrez comment nous pouvons vous aider avec vos besoins immobiliers ou de gestion de copropriétés. Notre équipe de professionnels est prête à vous offrir le meilleur service.",
+      "cta": {
+        "contact": "Contactez-nous",
+        "services": "Découvrez nos services"
+      }
+    },
+    "missionSection": {
+      "title": "Notre mission",
+      "description": "Nous sommes fiers de grandir et de consolider jour après jour le travail réalisé par notre équipe humaine, composée des meilleurs professionnels dans leurs domaines. Chez VIVEN, nous prenons en charge toutes les démarches liées à votre actif immobilier, avec la volonté de lui donner de la valeur et de veiller à l'augmentation de votre patrimoine.",
+      "points": {
+        "point1": "Des copropriétés aux appartements en location, tous sont traités avec la diligence requise, optimisés et améliorés autant que possible.",
+        "point2": "L'univers des services que VIVEN vous offre commence dès que vous décrochez le téléphone pour nous contacter.",
+        "point3": "À partir de là, vous nous expliquez vos besoins et nous vous aidons avec les meilleures solutions adaptées et personnalisées pour vous."
+      },
+      "tagline": "Chez VIVEN, nous personnalisons votre expérience immobilière",
+      "imageAlt": "Équipe Viven Immobilier"
+    },
+    "businessLines": {
+      "title": "Nos lignes d'activité",
+      "description": "Viven est composée de deux grandes branches qui offrent des services spécialisés avec les plus hauts standards de qualité et de professionnalisme.",
+      "remax": {
+        "title": "RE/MAX VIVEN",
+        "description": "Son objectif est la commercialisation de tout type de biens immobiliers. Chaque client propriétaire est attribué à un Agent Associé RE/MAX VIVEN, formé pour développer avec toutes les garanties l'action qui lui est confiée.",
+        "features": {
+          "personalAttention": {
+            "title": "Attention personnalisée",
+            "description": "Nous définissons des critères personnalisés pour chaque propriétaire, en devenant votre meilleur allié."
+          },
+          "globalExperience": {
+            "title": "Expérience mondiale",
+            "description": "En 2025, nous avons uni la présence territoriale de VIVEN à l'expérience et à la puissance de la marque REMAX, Nº1 au MONDE en ventes."
+          }
+        },
+        "cta": "Voir les statistiques RE/MAX"
+      },
+      "plus": {
+        "title": "VIVEN +Plus",
+        "description": "Nous facilitons le conseil et la gestion des actifs patrimoniaux de nos clients. Nous considérons les copropriétés comme de petites entreprises qui doivent être gérées avec une approche proactive, proche, efficace et transparente.",
+        "features": {
+          "transparentManagement": {
+            "title": "Gestion transparente",
+            "description": "Nous ne facturons pas de commissions aux prestataires, ce qui permet d'économiser des milliers d'euros aux propriétaires dès le premier exercice."
+          },
+          "constantInnovation": {
+            "title": "Innovation continue",
+            "description": "Notre recherche de l'excellence nous fait grandir année après année, en apportant de nouveaux services et un plus d'efficacité, d'innovation et de nouvelles technologies."
+          }
+        },
+        "cta": "Plus d'informations"
+      }
+    },
+    "vivenPlusSection": {
+      "badge": "VIVEN +Plus",
+      "title": "Administration de copropriétés",
+      "description": "Une nouvelle façon de gérer votre copropriété avec une approche proactive, proche, efficace et transparente.",
+      "subtitle": "Nous considérons les copropriétés comme de petites entreprises",
+      "body": "Vous êtes les propriétaires du patrimoine ; nous gérons votre patrimoine avec le professionnalisme et la légalité qui nous caractérisent, et nous veillons à son maintien ou à l'augmentation de sa valeur.",
+      "features": {
+        "legalAdvice": {
+          "title": "Conseil juridique",
+          "text": "fiscal et juridique, attentifs aux nouvelles réglementations."
+        },
+        "budgetControl": {
+          "title": "Contrôle budgétaire",
+          "text": "avec une comptabilité transparente."
+        },
+        "incidentManagement": {
+          "title": "Gestion des incidents",
+          "text": "et maintenance du bâtiment."
+        },
+        "customerSupport": {
+          "title": "Service client",
+          "text": "24 heures sur 24, 365 jours par an."
+        }
+      },
+      "cta": "Plus d'informations",
+      "imageAlt": "Administration de copropriétés",
+      "quote": "Chez VIVEN, nous gérons VOTRE COPROPRIÉTÉ comme si c'était NOTRE MAISON"
+    },
+    "statsSection": {
+      "title": "Excellence en chiffres",
+      "description": "Notre engagement envers la qualité et la satisfaction client se reflète dans nos statistiques.",
+      "stats": {
+        "resolvedIncidents": "Incidents résolus",
+        "satisfiedClients": "Clients satisfaits",
+        "successfulContracts": "Contrats satisfaisants"
+      }
+    },
+    "teamSection": {
+      "title": "Notre équipe",
+      "description": "L'équipe de Viven est composée de professionnels experts, formés et dynamiques avec un objectif commun : répondre aux besoins de nos clients.",
+      "actions": {
+        "viewMore": "Voir plus d'informations",
+        "close": "Fermer"
+      },
+      "linkedinProfile": "Profil LinkedIn",
+      "members": {
+        "cesar": {
+          "position": "Fondateur et CEO",
+          "description": "Certaines personnes veulent que quelque chose arrive, d'autres en rêvent, d'autres le font arriver"
+        },
+        "merche": {
+          "position": "Sous-directrice et responsable de l'équipe d'administration de copropriété",
+          "description": "Spécialiste de la commercialisation de biens de luxe, Merche dirige l'équipe d'agents associés de RE/MAX VIVEN."
+        },
+        "duglaiska": {
+          "position": "Agent commercial",
+          "description": "Expert en gestion patrimoniale, Miguel a révolutionné l'administration de copropriétés avec une approche transparente et efficace."
+        },
+        "isabel": {
+          "position": "Directrice financière",
+          "description": "Avec une formation en finance et une expérience dans l'immobilier, Laura gère la stabilité économique de Viven."
+        },
+        "maria": {
+          "position": "Directeur de la technologie",
+          "description": "Responsable de la mise en œuvre de solutions technologiques qui améliorent l'efficacité et la transparence de tous les services."
+        },
+        "fran": {
+          "position": "Directrice marketing",
+          "description": "Spécialiste du marketing digital et de la communication, Elena développe des stratégies pour positionner la marque Viven sur le marché."
+        }
+      }
+    },
+    "staffSection": {
+      "title": "Notre staff professionnel",
+      "description": "Notre staff comprend des professionnels hautement qualifiés dans différents domaines afin d'offrir un service global et de qualité maximale.",
+      "cards": {
+        "certifiedManagers": {
+          "title": "Administrateurs agréés",
+          "description": "Experts en gestion de copropriétés et d'actifs immobiliers"
+        },
+        "lawyers": {
+          "title": "Avocats",
+          "description": "Conseil juridique spécialisé dans le secteur immobilier"
+        },
+        "architects": {
+          "title": "Architectes",
+          "description": "Conception et supervision de projets architecturaux"
+        },
+        "electriciansPlumbers": {
+          "title": "Électriciens et plombiers",
+          "description": "Maintenance et réparations professionnelles"
+        },
+        "cleaningTeams": {
+          "title": "Équipes de nettoyage",
+          "description": "Services de nettoyage et de maintenance des propriétés"
+        }
+      }
+    },
+    "valuesSection": {
+      "title": "Nos valeurs",
+      "description": "Chez Viven, nous nous engageons envers l'environnement, la société et l'excellence dans tout ce que nous faisons.",
+      "cards": {
+        "environment": {
+          "title": "Engagement environnemental",
+          "description": "Nous misons sur la protection de l'environnement en réduisant la consommation de papier et en promouvant l'utilisation de matériaux recyclés. Dans nos bureaux, nous utilisons un éclairage naturel et à faible consommation, en maintenant notre engagement envers l'efficacité énergétique."
+        },
+        "social": {
+          "title": "Responsabilité sociale",
+          "description": "Tout au long de l'année, nous participons à diverses causes solidaires et caritatives avec des entités locales et nationales, en rendant à la société une partie de ce qu'elle nous apporte. Nous croyons fermement à une contribution positive aux communautés où nous opérons."
+        },
+        "innovation": {
+          "title": "Innovation constante",
+          "description": "Nous mettons en œuvre les dernières technologies pour offrir un service plus efficace et transparent. Notre recherche de l'excellence nous pousse à améliorer continuellement nos processus et services au bénéfice de nos clients."
+        }
+      }
+    }
+  },
+  "venta": {
+    "hero": {
+      "title": "Trouvez votre bien idéal",
+      "description": "Découvrez notre sélection exclusive de biens dans les meilleurs emplacements",
+      "tabs": {
+        "all": "Tous",
+        "sale": "Vente",
+        "rent": "Location"
+      },
+      "filters": {
+        "search": {
+          "placeholder": "Rechercher par réf. ou titre..."
+        },
+        "propertyType": {
+          "all": "Tous les types"
+        },
+        "city": {
+          "all": "Toutes les villes"
+        },
+        "zone": {
+          "all": "Toutes les zones"
+        },
+        "minPrice": {
+          "any": "Prix min. (N'importe lequel)",
+          "rent": {
+            "from400": "À partir de 400 €",
+            "from600": "À partir de 600 €",
+            "from800": "À partir de 800 €",
+            "from1000": "À partir de 1.000 €",
+            "from1500": "À partir de 1.500 €"
+          },
+          "sale": {
+            "from50000": "À partir de 50.000 €",
+            "from100000": "À partir de 100.000 €",
+            "from200000": "À partir de 200.000 €",
+            "from300000": "À partir de 300.000 €",
+            "from500000": "À partir de 500.000 €"
+          }
+        },
+        "maxPrice": {
+          "any": "Prix max. (N'importe lequel)",
+          "rent": {
+            "to800": "Jusqu'à 800 €",
+            "to1200": "Jusqu'à 1.200 €",
+            "to1500": "Jusqu'à 1.500 €",
+            "to2000": "Jusqu'à 2.000 €",
+            "to3000": "Jusqu'à 3.000 €"
+          },
+          "sale": {
+            "to150000": "Jusqu'à 150.000 €",
+            "to250000": "Jusqu'à 250.000 €",
+            "to400000": "Jusqu'à 400.000 €",
+            "to600000": "Jusqu'à 600.000 €",
+            "to1000000": "Jusqu'à 1.000.000 €"
+          }
+        }
+      },
+      "actions": {
+        "clearFilters": "Effacer les filtres"
+      }
+    },
+    "propertyGrid": {
+      "title": "Biens disponibles",
+      "summary": "Affichage de {startItem}-{endItem} sur {totalCount} biens",
+      "sort": {
+        "label": "Trier par :",
+        "options": {
+          "newest": "Plus récents",
+          "priceAsc": "Prix : du plus bas au plus élevé",
+          "priceDesc": "Prix : du plus élevé au plus bas",
+          "area": "Surface"
+        }
+      },
+      "empty": "Aucun bien disponible n'a été trouvé pour le moment.",
+      "pagination": {
+        "previous": "Page précédente",
+        "next": "Page suivante"
+      }
+    },
+    "propertyCard": {
+      "agentLabel": "Agent immobilier",
+      "units": {
+        "beds": "ch.",
+        "baths": "sdb",
+        "area": "m²"
+      },
+      "actions": {
+        "viewDetails": "Voir les détails",
+        "toggleAgentInfo": "Afficher ou masquer les informations de l'agent"
+      },
+      "fallbacks": {
+        "consultPrice": "Consulter",
+        "defaultAgency": "RE/MAX Viven"
+      }
+    },
+    "propertyDetail": {
+      "errors": {
+        "loadFailed": "Impossible de trouver les informations du bien",
+        "unexpected": "Erreur inattendue",
+        "notFoundTitle": "Oups ! Bien introuvable",
+        "notFoundMessage": "Le bien demandé n'existe pas ou le flux n'est pas disponible."
+      },
+      "actions": {
+        "backToList": "Retour à la liste",
+        "backToProperties": "Retour à la liste des biens",
+        "sendMessage": "Envoyer le message"
+      },
+      "fallbacks": {
+        "description": "Aucune description disponible.",
+        "propertyType": "Bien immobilier",
+        "notSpecified": "Non spécifié",
+        "defaultAgency": "RE/MAX Viven"
+      },
+      "header": {
+        "referenceShort": "Réf",
+        "operationPrice": "Prix de l'opération"
+      },
+      "gallery": {
+        "thumbnailAlt": "Miniature {index}"
+      },
+      "quickSpecs": {
+        "bedrooms": "Chambres",
+        "bathrooms": "Salles de bain",
+        "area": "Surface"
+      },
+      "sections": {
+        "propertyDescription": "Description du bien",
+        "featuresAndQualities": "Caractéristiques et qualités",
+        "equipmentAndServices": "Équipements et services",
+        "agentContact": "Contact de l'agent",
+        "requestInformation": "Demander des informations"
+      },
+      "specs": {
+        "reference": "Référence",
+        "operationType": "Type d'opération",
+        "propertyType": "Type de bien",
+        "zoneCity": "Zone / Ville",
+        "usefulArea": "Surface utile",
+        "builtArea": "Surface construite",
+        "condition": "État",
+        "bedrooms": "Chambres",
+        "bathrooms": "Salles de bain",
+        "distanceToSea": "Distance à la mer"
+      },
+      "form": {
+        "fullNamePlaceholder": "Votre nom complet",
+        "emailPlaceholder": "Adresse e-mail",
+        "phonePlaceholder": "Téléphone (optionnel)",
+        "phoneNotProvided": "Non renseigné",
+        "sending": "Envoi en cours...",
+        "defaultMessage": "Bonjour, je suis intéressé par le bien avec la référence {reference}. J'aimerais recevoir plus de détails."
+      },
+      "status": {
+        "success": "Message envoyé avec succès ! Nous vous contacterons dès que possible.",
+        "error": "Impossible d'envoyer l'e-mail. Veuillez réessayer."
+      }
+    }
+  },
+  "administradorDeFincas": {
+    "hero": {
+      "imageAlt": "Image d'en-tête des copropriétés",
+      "titleStart": "D'autres gèrent",
+      "titleHighlight": "en masse",
+      "titleEnd": "Nous les accompagnons une par une",
+      "description": "Gestion professionnelle et complète de votre patrimoine immobilier à Vilanova i La Geltrú",
+      "cta": {
+        "contact": "Demander des informations",
+        "app": "Télécharger l'application"
+      }
+    },
+    "servicesSection": {
+      "title": "Nos services premium",
+      "description": "En tant qu'administrateurs de copropriété à Vilanova i La Geltrú, nous offrons une gestion efficace et professionnelle pour votre copropriété.",
+      "cards": {
+        "professionalExperience": {
+          "title": "Expérience professionnelle",
+          "description": "Une équipe hautement qualifiée avec de l'expérience dans les domaines juridiques, financiers, techniques et de maintenance pour une gestion solide."
+        },
+        "efficientManagement": {
+          "title": "Gestion efficace",
+          "description": "Nous prenons en charge la comptabilité, la résolution des conflits et la coordination des services pour un fonctionnement optimal de votre copropriété."
+        },
+        "comprehensiveMaintenance": {
+          "title": "Maintenance complète",
+          "description": "Inspections régulières, réparations et services de qualité pour maintenir les propriétés dans des conditions optimales."
+        },
+        "legalAdvice": {
+          "title": "Conseil juridique",
+          "description": "Gestion des obligations légales et fiscales, en assurant la conformité réglementaire et l'optimisation fiscale."
+        },
+        "transparentFinancialManagement": {
+          "title": "Gestion financière transparente",
+          "description": "Rapports périodiques et gestion transparente des ressources financières de la copropriété."
+        },
+        "communityImprovement": {
+          "title": "Amélioration communautaire",
+          "description": "Mise en œuvre de projets d'amélioration et d'optimisation des services pour augmenter la qualité de vie."
+        }
+      }
+    },
+    "communityManagementSection": {
+      "badge": "VIVEN +Plus",
+      "title": "Une nouvelle façon de gérer votre copropriété",
+      "description1": "Chez VIVEN, nous rompons avec l'ancien modèle dépassé d'administrateur de copropriété. Nous considérons les copropriétés comme de petites entreprises qui doivent être gérées avec une approche proactive, proche, efficace et transparente.",
+      "description2": "Vous êtes les propriétaires du patrimoine ; nous le gérons avec le professionnalisme et la légalité qui nous caractérisent, et nous veillons au maintien ou à l'augmentation de sa valeur.",
+      "description3": "C'est pourquoi nous disposons d'une large équipe de professionnels qualifiés dans tous les domaines qu'une copropriété peut exiger, afin d'offrir un service différent, rapide et efficace.",
+      "cta": {
+        "moreInfo": "Plus d'informations"
+      },
+      "servicesTitle": "Parmi nos services :",
+      "cards": {
+        "legalAdvice": {
+          "title": "Conseil juridique",
+          "description": "Fiscal et juridique, nous restons attentifs aux nouvelles réglementations pouvant affecter les copropriétés."
+        },
+        "budgetControl": {
+          "title": "Contrôle budgétaire",
+          "description": "Comptabilité transparente, nous suivons les budgets pour contrôler les éventuels écarts."
+        },
+        "incidentControl": {
+          "title": "Gestion des incidents",
+          "description": "Gestion des incidents, maintenance et préservation du bâtiment. Nous travaillons avec des prestataires certifiés."
+        },
+        "customerSupport": {
+          "title": "Service client",
+          "description": "24 heures sur 24, 365 jours par an"
+        }
+      },
+      "tagline": "Chez VIVEN, nous gérons VOTRE COPROPRIÉTÉ comme si c'était NOTRE MAISON",
+      "imageAlt": "Bâtiment de copropriété"
+    },
+    "investmentSection": {
+      "title": "Investissements immobiliers",
+      "subtitle": "Conseil expert en investissement",
+      "description": "Chez VIVEN+ Plus, nous facilitons votre investissement immobilier avec des solutions personnalisées et professionnelles.",
+      "items": {
+        "urbanLand": {
+          "title": "Terrain urbain",
+          "description": "Gestion et conseil spécialisés"
+        },
+        "realEstateAssets": {
+          "title": "Actifs immobiliers",
+          "description": "Maximisation de la rentabilité"
+        },
+        "newDevelopments": {
+          "title": "Nouvelles promotions",
+          "description": "Développement de projets innovants"
+        }
+      },
+      "imageAlt": "Investissements immobiliers"
+    }
+  }
+}

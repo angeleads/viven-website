@@ -1,16 +1,17 @@
-import Image from "next/image"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import { Building2, Home, Users, Shield, Lightbulb, Award } from "lucide-react"
+import { getTranslations } from "next-intl/server"
 
-export default function BusinessLines() {
+export default async function BusinessLines() {
+  const t = await getTranslations("empresa.businessLines")
+
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Nuestras Líneas de Negocio</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{t("title")}</h2>
           <p className="text-lg text-gray-600">
-            Viven está formada por dos grandes vertientes que ofrecen servicios especializados con los más altos
-            estándares de calidad y profesionalidad.
+            {t("description")}
           </p>
         </div>
 
@@ -21,13 +22,11 @@ export default function BusinessLines() {
               <div className="bg-blue-600 p-3 rounded-xl mr-4">
                 <Home className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-blue-600">RE/MAX VIVEN</h3>
+              <h3 className="text-2xl font-bold text-blue-600">{t("remax.title")}</h3>
             </div>
 
             <p className="text-gray-700 mb-6 leading-relaxed">
-              Tiene por objeto la comercialización de toda clase de Bienes Inmuebles. Cada cliente propietario es
-              asignado a un Agente Asociado de REMAX VIVEN, el cual está capacitado para desarrollar con total garantía
-              la acción que el cliente le tenga encomendada.
+              {t("remax.description")}
             </p>
 
             <div className="space-y-4">
@@ -36,9 +35,9 @@ export default function BusinessLines() {
                   <Users className="h-4 w-4 text-blue-600" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Atención personalizada</h4>
+                  <h4 className="font-semibold text-gray-900">{t("remax.features.personalAttention.title")}</h4>
                   <p className="text-gray-600 text-sm">
-                    Establecemos criterios personalizados para cada propietario, convirtiéndonos en su mejor aliado.
+                    {t("remax.features.personalAttention.description")}
                   </p>
                 </div>
               </div>
@@ -48,10 +47,9 @@ export default function BusinessLines() {
                   <Award className="h-4 w-4 text-blue-600" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Experiencia global</h4>
+                  <h4 className="font-semibold text-gray-900">{t("remax.features.globalExperience.title")}</h4>
                   <p className="text-gray-600 text-sm">
-                    En 2025, unimos la presencia territorial de VIVEN con la experiencia y potencia de la marca REMAX,
-                    Nº1 en el MUNDO en ventas.
+                    {t("remax.features.globalExperience.description")}
                   </p>
                 </div>
               </div>
@@ -62,7 +60,7 @@ export default function BusinessLines() {
                 href="/remax"
                 className="inline-flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors"
               >
-                Ver estadísticas RE/MAX
+                {t("remax.cta")}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5 ml-2"
@@ -85,13 +83,11 @@ export default function BusinessLines() {
               <div className="bg-red-600 p-3 rounded-xl mr-4">
                 <Building2 className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-red-600">VIVEN +Plus</h3>
+              <h3 className="text-2xl font-bold text-red-600">{t("plus.title")}</h3>
             </div>
 
             <p className="text-gray-700 mb-6 leading-relaxed">
-              Somos facilitadores en el asesoramiento y gestión de los Activos Patrimoniales de nuestros clientes.
-              Entendemos las Comunidades de Propietarios como pequeñas empresas que hay que gestionar con un enfoque
-              proactivo, próximo, eficiente y transparente.
+              {t("plus.description")}
             </p>
 
             <div className="space-y-4">
@@ -100,10 +96,9 @@ export default function BusinessLines() {
                   <Shield className="h-4 w-4 text-red-600" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Gestión transparente</h4>
+                  <h4 className="font-semibold text-gray-900">{t("plus.features.transparentManagement.title")}</h4>
                   <p className="text-gray-600 text-sm">
-                    No cobramos comisiones a los industriales, ahorrando miles de euros a los propietarios desde el
-                    primer ejercicio.
+                    {t("plus.features.transparentManagement.description")}
                   </p>
                 </div>
               </div>
@@ -113,10 +108,9 @@ export default function BusinessLines() {
                   <Lightbulb className="h-4 w-4 text-red-600" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Innovación constante</h4>
+                  <h4 className="font-semibold text-gray-900">{t("plus.features.constantInnovation.title")}</h4>
                   <p className="text-gray-600 text-sm">
-                    Nuestra búsqueda de la excelencia hace que crezcamos año tras año, aportando nuevos servicios y un
-                    plus de eficacia, innovación y nuevas tecnologías.
+                    {t("plus.features.constantInnovation.description")}
                   </p>
                 </div>
               </div>
@@ -127,7 +121,7 @@ export default function BusinessLines() {
                 href="/servicios/administracion-comunidades"
                 className="inline-flex items-center text-red-600 font-medium hover:text-red-800 transition-colors"
               >
-                Más información
+                {t("plus.cta")}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5 ml-2"

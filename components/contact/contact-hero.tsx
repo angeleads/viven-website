@@ -1,4 +1,8 @@
-export default function ContactHero() {
+import { getTranslations } from "next-intl/server";
+
+export default async function ContactHero() {
+  const t = await getTranslations("contact.hero");
+
     return (
       <section className="relative pt-20 pb-16 md:pt-24 md:pb-20 lg:pt-28 lg:pb-24 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
@@ -17,11 +21,10 @@ export default function ContactHero() {
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl pointer-events-none"></div>
   
         <div className="container mx-auto px-4 relative z-20">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">Contacta con nosotros</h1>
+          <div className="max-w-3xl mx-auto text-center mt-6 md:mt-0">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">{t("title")}</h1>
             <p className="text-xl text-white/90 mb-8">
-              Estamos aquí para ayudarte con todas tus necesidades inmobiliarias. Nuestro equipo de expertos está listo
-              para ofrecerte el mejor servicio personalizado.
+              {t("description")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -36,7 +39,7 @@ export default function ContactHero() {
                 >
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
-                Llamar ahora
+                {t("callNow")}
               </a>
               <a
                 href="#contactForm"
@@ -51,7 +54,7 @@ export default function ContactHero() {
                   <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                 </svg>
-                Enviar mensaje
+                {t("sendMessage")}
               </a>
             </div>
           </div>

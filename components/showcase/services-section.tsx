@@ -1,4 +1,5 @@
 import type React from "react"
+import { useTranslations } from "next-intl"
 import { Building2, Scale, Home, BarChart3, Construction } from "lucide-react"
 
 interface ServiceCategory {
@@ -10,34 +11,48 @@ interface ServiceCategory {
 }
 
 export default function ServicesSection() {
+  const t = useTranslations("showcase.servicesSection")
+
   const serviceCategories: ServiceCategory[] = [
     {
       id: "community",
-      title: "Gestión de Comunidades",
+      title: t("categories.community.title"),
       icon: <Building2 className="h-6 w-6" />,
       color: "blue",
       services: [
-        "Control de incidencias",
-        "Asesoramiento legal",
-        "Control presupuestario",
-        "Control de morosidad",
-        "Ahorro de costes",
-        "Gestión de subvenciones",
+        t("categories.community.services.0"),
+        t("categories.community.services.1"),
+        t("categories.community.services.2"),
+        t("categories.community.services.3"),
+        t("categories.community.services.4"),
+        t("categories.community.services.5"),
       ],
     },
     {
       id: "property",
-      title: "Servicios Inmobiliarios",
+      title: t("categories.property.title"),
       icon: <Home className="h-6 w-6" />,
       color: "red",
-      services: ["Compra", "Venta", "Alquiler", "Todo tipo de inmuebles", "Inversores", "Socimis"],
+      services: [
+        t("categories.property.services.0"),
+        t("categories.property.services.1"),
+        t("categories.property.services.2"),
+        t("categories.property.services.3"),
+        t("categories.property.services.4"),
+        t("categories.property.services.5"),
+      ],
     },
     {
       id: "construction",
-      title: "Construcción y Reformas",
+      title: t("categories.construction.title"),
       icon: <Construction className="h-6 w-6" />,
       color: "amber",
-      services: ["Arquitectura", "Certificaciones", "Ejecución obra nueva", "Reformas"],
+      services: [
+        t("categories.construction.services.0"),
+        t("categories.construction.services.1"),
+        t("categories.construction.services.2"),
+        t("categories.construction.services.3"),
+      ],
     },
   ]
 
@@ -45,9 +60,9 @@ export default function ServicesSection() {
     <section className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Nuestros Servicios</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{t("title")}</h2>
           <p className="text-lg text-gray-600">
-            En Viven ofrecemos una amplia gama de servicios inmobiliarios para satisfacer todas tus necesidades.
+            {t("description")}
           </p>
         </div>
 

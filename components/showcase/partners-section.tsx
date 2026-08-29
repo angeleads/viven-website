@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import { useTranslations } from "next-intl"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
@@ -12,6 +13,8 @@ interface Partner {
 }
 
 export default function PartnersSection() {
+  const t = useTranslations("showcase.partnersSection")
+
   const partners: Partner[] = [
     { id: 1, name: "REMEM", logo: "/logos/partners/remem-logo.png", website: "https://www.remax.es" },
     { id: 2, name: "Rius", logo: "/logos/partners/rius-logo.png", website: "https://www.example.com" },
@@ -81,9 +84,9 @@ export default function PartnersSection() {
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nuestros Partners</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t("title")}</h2>
           <p className="text-lg text-gray-600">
-           En <span className="font-bold">Viven</span> tenemos el placer de trabajar conjuntamente con Empresas que comparten los mismos valores de <span className="font-bold">Compromiso, Transparencia y Profesionalismo</span> que nosotros.
+           {t("description.start")} <span className="font-bold">{t("description.brand")}</span> {t("description.middle")} <span className="font-bold">{t("description.values")}</span> {t("description.end")}
           </p>
         </div>
 
@@ -116,14 +119,14 @@ export default function PartnersSection() {
           <button
             onClick={prevSlide}
             className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 bg-white rounded-full p-2 z-10"
-            aria-label="Previous partners"
+            aria-label={t("aria.previousPartners")}
           >
             <ChevronLeft className="h-5 w-5 text-gray-600" />
           </button>
           <button
             onClick={nextSlide}
             className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 bg-white rounded-full p-2 z-10"
-            aria-label="Next partners"
+            aria-label={t("aria.nextPartners")}
           >
             <ChevronRight className="h-5 w-5 text-gray-600" />
           </button>
@@ -135,7 +138,7 @@ export default function PartnersSection() {
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 className={`w-2 h-2 rounded-full ${currentSlide === index ? "bg-blue-600" : "bg-gray-300"}`}
-                aria-label={`Go to slide ${index + 1}`}
+                aria-label={t("aria.goToSlide", { slide: index + 1 })}
               />
             ))}
           </div>
@@ -150,23 +153,25 @@ interface PartnerLogoProps {
 }
 
 function PartnerLogo({ partner }: PartnerLogoProps) {
+  const t = useTranslations("showcase.partnersSection")
+
   return (
     <div className="group">
-      <a
-        href={partner.website}
-        target="_blank"
+      <div
+        //href={partner.website}
+        //target="_blank"
         rel="noopener noreferrer"
         className=" bg-white rounded-lg p-6 h-32 flex items-center justify-center  hover:shadow-md transition-all duration-300"
       >
         <div className="relative w-full h-full">
           <Image
             src={partner.logo || "/placeholder.svg"}
-            alt={`${partner.name} logo`}
+            alt={t("logoAlt", { name: partner.name })}
             fill
             className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
           />
         </div>
-      </a>
+      </div>
     </div>
   )
 }

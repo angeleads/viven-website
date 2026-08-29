@@ -3,22 +3,23 @@
 import type React from "react"
 
 import { useState } from "react"
-import Image from "next/image"
+import { useTranslations } from "next-intl"
 import { Building2, Globe, Users, Home, Target, Languages, Phone } from "lucide-react"
 
 export default function RemaxStatsSection() {
+  const t = useTranslations("showcase.remaxStats")
   const [activeTab, setActiveTab] = useState<"europe" | "global">("europe")
 
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-blue-900 to-blue-800 text-white">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Datos rápidos</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">{t("title")}</h2>
           <div className="inline-block bg-red-600 text-white px-4 py-1 rounded-full text-sm font-medium mb-6">
-            1º TRIMESTRE 2025
+            {t("quarter")}
           </div>
           <p className="text-lg text-white/90">
-            RE/MAX es la red inmobiliaria más grande del mundo. Descubre nuestro alcance global y europeo.
+            {t("description")}
           </p>
         </div>
 
@@ -31,7 +32,7 @@ export default function RemaxStatsSection() {
               }`}
               onClick={() => setActiveTab("europe")}
             >
-              Europa
+              {t("tabs.europe")}
             </button>
             <button
               className={`px-6 py-2 rounded-r-xl font-medium transition-colors ${
@@ -39,7 +40,7 @@ export default function RemaxStatsSection() {
               }`}
               onClick={() => setActiveTab("global")}
             >
-              Global
+              {t("tabs.global")}
             </button>
           </div>
         </div>
@@ -51,37 +52,37 @@ export default function RemaxStatsSection() {
                 <StatItem
                   icon={<Users className="h-8 w-8 text-red-500" />}
                   value="+33.000"
-                  label="Asociados RE/MAX"
+                  label={t("stats.europe.associates")}
                   color="text-red-500"
                 />
                 <StatItem
                   icon={<Home className="h-8 w-8 text-red-500" />}
                   value="161.299"
-                  label="Propiedades en venta"
+                  label={t("stats.europe.propertiesForSale")}
                   color="text-white"
                 />
                 <StatItem
                   icon={<Users className="h-8 w-8 text-red-500" />}
                   value="+32.000"
-                  label="Agentes"
+                  label={t("stats.europe.agents")}
                   color="text-red-500"
                 />
                 <StatItem
                   icon={<Home className="h-8 w-8 text-red-500" />}
                   value="25.716"
-                  label="Nuevas propiedades en venta"
+                  label={t("stats.europe.newPropertiesForSale")}
                   color="text-white"
                 />
                 <StatItem
                   icon={<Building2 className="h-8 w-8 text-red-500" />}
                   value="+2.400"
-                  label="Oficinas"
+                  label={t("stats.europe.offices")}
                   color="text-red-500"
                 />
                 <StatItem
                   icon={<Target className="h-8 w-8 text-red-500" />}
                   value="+70%"
-                  label="Usuarios de móvil"
+                  label={t("stats.europe.mobileUsers")}
                   color="text-red-500"
                 />
               </div>
@@ -97,37 +98,37 @@ export default function RemaxStatsSection() {
                 <StatItem
                   icon={<Home className="h-8 w-8 text-red-500" />}
                   value="663.410"
-                  label="Propiedades en venta"
+                  label={t("stats.global.propertiesForSale")}
                   color="text-white"
                 />
                 <StatItem
                   icon={<Globe className="h-8 w-8 text-red-500" />}
                   value="+110"
-                  label="Países y territorios"
+                  label={t("stats.global.countriesAndTerritories")}
                   color="text-white"
                 />
                 <StatItem
                   icon={<Users className="h-8 w-8 text-red-500" />}
                   value="+140.000"
-                  label="Agentes"
+                  label={t("stats.global.agents")}
                   color="text-red-500"
                 />
                 <StatItem
                   icon={<Languages className="h-8 w-8 text-red-500" />}
                   value="50"
-                  label="Idiomas"
+                  label={t("stats.global.languages")}
                   color="text-white"
                 />
                 <StatItem
                   icon={<Building2 className="h-8 w-8 text-red-500" />}
                   value="+9.000"
-                  label="Oficinas"
+                  label={t("stats.global.offices")}
                   color="text-red-500"
                 />
                 <StatItem
                   icon={<Phone className="h-8 w-8 text-red-500" />}
                   value="+70%"
-                  label="Usuarios de móvil"
+                  label={t("stats.global.mobileUsers")}
                   color="text-red-500"
                 />
               </div>
@@ -136,9 +137,9 @@ export default function RemaxStatsSection() {
         </div>
 
         <div className="mt-16 text-center text-sm text-white/70">
-          <p>Las estadísticas no reflejan todas las regiones europeas de RE/MAX.</p>
-          <p>Fuentes de RE/MAX LLC y GrowthTech Inc.</p>
-          <p>Tener en cuenta que estas cifras se basan en cifras medias obtenidas del T1 2025.</p>
+          <p>{t("notes.0")}</p>
+          <p>{t("notes.1")}</p>
+          <p>{t("notes.2")}</p>
         </div>
       </div>
     </section>

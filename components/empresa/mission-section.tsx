@@ -1,51 +1,49 @@
 import Image from "next/image"
 import { CheckCircle } from "lucide-react"
+import { getTranslations } from "next-intl/server"
 
-export default function MissionSection() {
+export default async function MissionSection() {
+  const t = await getTranslations("empresa.missionSection")
+
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Nuestra Misión</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{t("title")}</h2>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Nos enorgullece ir creciendo y consolidando día a día el trabajo que realiza nuestro equipo humano,
-              formado por los mejores profesionales en sus ámbitos de actuación. Así, desde VIVEN nos encargamos de
-              todas las gestiones que puedan estar relacionadas con su activo inmobiliario, con el afán de darle valor y
-              velar por el incremento de su patrimonio.
+              {t("description")}
             </p>
 
             <div className="space-y-4 mb-8">
               <div className="flex items-start">
                 <CheckCircle className="h-6 w-6 text-blue-600 mr-3 flex-shrink-0 mt-0.5" />
                 <p className="text-gray-700">
-                  Desde las Comunidades de Propietarios hasta el apartamento en alquiler, son tratados con la debida
-                  diligencia, optimizados y mejorados en lo posible.
+                  {t("points.point1")}
                 </p>
               </div>
               <div className="flex items-start">
                 <CheckCircle className="h-6 w-6 text-blue-600 mr-3 flex-shrink-0 mt-0.5" />
                 <p className="text-gray-700">
-                  El mundo de servicios que le ofrece VIVEN solo empieza cuando descuelga el teléfono para contactarnos.
+                  {t("points.point2")}
                 </p>
               </div>
               <div className="flex items-start">
                 <CheckCircle className="h-6 w-6 text-blue-600 mr-3 flex-shrink-0 mt-0.5" />
                 <p className="text-gray-700">
-                  A partir de ahí, nos explica sus necesidades y nosotros le ayudaremos con las mejores soluciones
-                  adaptadas y personalizadas para usted.
+                  {t("points.point3")}
                 </p>
               </div>
             </div>
 
-            <p className="text-xl font-semibold text-blue-600">En VIVEN personalizamos su Experiencia Inmobiliaria</p>
+            <p className="text-xl font-semibold text-blue-600">{t("tagline")}</p>
           </div>
 
           <div className="relative">
             <div className="relative z-10 rounded-xl overflow-hidden shadow-xl">
               <Image
                 src="/pictures/deal-house.jpg"
-                alt="Equipo Viven Inmobiliaria"
+                alt={t("imageAlt")}
                 width={800}
                 height={600}
                 className="w-full h-auto"

@@ -1,16 +1,18 @@
 import type React from "react"
 import { Briefcase, ListChecks, Wrench, Scale, PieChart, Home } from "lucide-react"
+import { getTranslations } from "next-intl/server"
 
-export default function ServicesSection() {
+export default async function ServicesSection() {
+  const t = await getTranslations("administradorDeFincas.servicesSection")
+
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-6">
-          Nuestros Servicios Premium
+          {t("title")}
         </h2>
         <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
-          Como administrador de fincas en Vilanova i La Geltrú, ofrecemos una
-          gestión eficiente y profesional para su comunidad de propietarios.
+          {t("description")}
         </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -22,11 +24,9 @@ export default function ServicesSection() {
             >
               <Briefcase className="h-10 w-10 text-blue-600" />
             </div>
-            <h3 className="text-2xl font-bold mb-4">Experiencia Profesional</h3>
+            <h3 className="text-2xl font-bold mb-4">{t("cards.professionalExperience.title")}</h3>
             <p className="text-gray-600">
-              Equipo altamente capacitado con experiencia en aspectos legales,
-              financieros, técnicos y de mantenimiento para una administración
-              sólida.
+              {t("cards.professionalExperience.description")}
             </p>
           </div>
 
@@ -38,11 +38,9 @@ export default function ServicesSection() {
             >
               <ListChecks className="h-10 w-10 text-blue-600"/>
             </div>
-            <h3 className="text-2xl font-bold mb-4">Gestión Eficiente</h3>
+            <h3 className="text-2xl font-bold mb-4">{t("cards.efficientManagement.title")}</h3>
             <p className="text-gray-600">
-              Nos encargamos de la contabilidad, resolución de conflictos y
-              coordinación de servicios para el óptimo funcionamiento de su
-              comunidad.
+              {t("cards.efficientManagement.description")}
             </p>
           </div>
 
@@ -54,10 +52,9 @@ export default function ServicesSection() {
             >
               <Wrench className="h-10 w-10 text-blue-600"/>
             </div>
-            <h3 className="text-2xl font-bold mb-4">Mantenimiento Integral</h3>
+            <h3 className="text-2xl font-bold mb-4">{t("cards.comprehensiveMaintenance.title")}</h3>
             <p className="text-gray-600">
-              Inspecciones periódicas, reparaciones y servicios de calidad para
-              mantener las propiedades en óptimas condiciones.
+              {t("cards.comprehensiveMaintenance.description")}
             </p>
           </div>
 
@@ -69,10 +66,9 @@ export default function ServicesSection() {
             >
               <Scale className="h-10 w-10 text-blue-600"/>
             </div>
-            <h3 className="text-2xl font-bold mb-4">Asesoramiento Legal</h3>
+            <h3 className="text-2xl font-bold mb-4">{t("cards.legalAdvice.title")}</h3>
             <p className="text-gray-600">
-              Gestión de obligaciones legales y fiscales, asegurando el
-              cumplimiento normativo y la optimización fiscal.
+              {t("cards.legalAdvice.description")}
             </p>
           </div>
 
@@ -85,11 +81,10 @@ export default function ServicesSection() {
               <PieChart className="h-10 w-10 text-blue-600"/>
             </div>
             <h3 className="text-2xl font-bold mb-4">
-              Gestión Financiera Transparente
+              {t("cards.transparentFinancialManagement.title")}
             </h3>
             <p className="text-gray-600">
-              Informes periódicos y gestión transparente de los recursos
-              económicos de la comunidad.
+              {t("cards.transparentFinancialManagement.description")}
             </p>
           </div>
 
@@ -101,10 +96,9 @@ export default function ServicesSection() {
             >
               <Home className="h-10 w-10 text-blue-600"/>
             </div>
-            <h3 className="text-2xl font-bold mb-4">Mejora Comunitaria</h3>
+            <h3 className="text-2xl font-bold mb-4">{t("cards.communityImprovement.title")}</h3>
             <p className="text-gray-600">
-              Implementación de proyectos de mejora y optimización de servicios
-              para aumentar la calidad de vida.
+              {t("cards.communityImprovement.description")}
             </p>
           </div>
         </div>

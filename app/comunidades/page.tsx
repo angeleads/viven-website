@@ -18,7 +18,6 @@ export default function Home() {
             <Contact />
             <App />
             <ContactForm />
-            <CoverageSection />
             <Footer />
         </main>
     );

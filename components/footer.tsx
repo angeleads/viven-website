@@ -1,6 +1,9 @@
+"use client";
+
 import type React from "react";
-import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import {
   Facebook,
   Twitter,
@@ -14,6 +17,8 @@ import {
 } from "lucide-react";
 
 export default function Footer() {
+  const t = useTranslations("footer");
+
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-4">
@@ -29,9 +34,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-gray-400 mb-6">
-              Viven Inmobiliaria es tu socio de confianza para encontrar la
-              propiedad perfecta en España. Con más de 15 años de experiencia,
-              ofrecemos servicios inmobiliarios integrales y personalizados.
+              {t("about")}
             </p>
             <div className="flex space-x-4">
               <SocialLink
@@ -43,36 +46,32 @@ export default function Footer() {
                 icon={<Twitter size={20} />}
               />
               <SocialLink
-                href="https://www.instagram.com/viven_inmobiliaria"
+                href="https://www.instagram.com/remax_viven/"
                 icon={<Instagram size={20} />}
               />
               <SocialLink
-                href="http://linkedin.com/company/viven-franquicia"
+                href="https://www.linkedin.com/company/remax-viven/"
                 icon={<Linkedin size={20} />}
-              />
-              <SocialLink
-                href="https://www.youtube.com/channel/UCUCJUH0FIf2NOoHG69SK_TA?view_as=subscriber"
-                icon={<Youtube size={20} />}
               />
             </div>
           </div>
 
           <div>
-            <h4 className="text-lg font-bold mb-6">Enlaces rápidos</h4>
+            <h4 className="text-lg font-bold mb-6">{t("quickLinksTitle")}</h4>
             <ul className="space-y-4">
-              <FooterLink href="/">Inicio</FooterLink>
-              <FooterLink href="/venta">Venta</FooterLink>
+              <FooterLink href="/">{t("links.home")}</FooterLink>
+              <FooterLink href="/propiedades">{t("links.properties")}</FooterLink>
               <FooterLink href="/administrador-de-fincas">
-                Administrador de fincas
+                {t("links.propertyManager")}
               </FooterLink>
-              <FooterLink href="/empresa">Empresa</FooterLink>
-              <FooterLink href="/inversion">Inversión</FooterLink>
-              <FooterLink href="/contacto">Contacto</FooterLink>
+              <FooterLink href="/empresa">{t("links.company")}</FooterLink>
+              {/* <FooterLink href="/inversion">Inversión</FooterLink> */}
+              <FooterLink href="/contacto">{t("links.contact")}</FooterLink>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-lg font-bold mb-6">Mapas</h4>
+            <h4 className="text-lg font-bold mb-6">{t("mapsTitle")}</h4>
             <ul className="space-y-4">
               <FooterMap
                 mapTitle="VIVEN - VILANOVA"
@@ -115,16 +114,15 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-lg font-bold mb-3">Newsletter</h4>
+            <h4 className="text-lg font-bold mb-3">{t("newsletterTitle")}</h4>
             <p className="text-gray-400 mb-4">
-              Suscríbete para recibir las últimas novedades del mercado
-              inmobiliario.
+              {t("newsletterText")}
             </p>
             <form className="mb-6">
               <div className="flex">
                 <input
                   type="email"
-                  placeholder="Tu email"
+                  placeholder={t("emailPlaceholder")}
                   className="flex-grow p-3 bg-gray-800 text-white border border-gray-700 rounded-l-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <button
@@ -136,12 +134,12 @@ export default function Footer() {
               </div>
             </form>
             <p className="text-gray-400 text-sm">
-              Al suscribirte, aceptas nuestra{" "}
+              {t("privacyAcceptPrefix")}{" "}
               <Link
                 href="/privacidad"
                 className="text-blue-400 hover:underline"
               >
-                política de privacidad
+                {t("privacyPolicy")}
               </Link>
               .
             </p>
@@ -151,27 +149,26 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 text-sm mb-4 md:mb-0">
-              &copy; {new Date().getFullYear()} Viven Inmobiliaria. Todos los
-              derechos reservados.
+              &copy; {new Date().getFullYear()} Viven Inmobiliaria. {t("rights")}
             </p>
             <div className="flex space-x-6">
               <Link
                 href="/privacidad"
                 className="text-gray-500 hover:text-white text-sm transition-colors"
               >
-                Política de privacidad
+                {t("privacyPolicy")}
               </Link>
               <Link
                 href="/cookies"
                 className="text-gray-500 hover:text-white text-sm transition-colors"
               >
-                Política de cookies
+                {t("cookiesPolicy")}
               </Link>
               <Link
                 href="/legal"
                 className="text-gray-500 hover:text-white text-sm transition-colors"
               >
-                Aviso legal
+                {t("legalNotice")}
               </Link>
             </div>
           </div>

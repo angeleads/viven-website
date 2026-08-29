@@ -1,6 +1,8 @@
-import Image from "next/image"
+import { getTranslations } from "next-intl/server"
 
-export default function CompanyHero() {
+export default async function CompanyHero() {
+  const t = await getTranslations("empresa.companyHero")
+
   return (
     <section className="relative pt-20 pb-16 md:pt-24 md:pb-20 lg:pt-28 lg:pb-24 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
@@ -22,13 +24,10 @@ export default function CompanyHero() {
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
            
-            <div className="w-full md:w-2/3 text-center md:text-left">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">Sobre Nosotros</h1>
+            <div className="w-full md:w-2/3 text-center md:text-left mt-6 md:mt-0">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">{t("title")}</h1>
               <p className="text-xl text-white/90 leading-relaxed">
-                VIVEN es la innovación y la búsqueda de la excelencia en el sector inmobiliario. Nació de las
-                inquietudes de su fundador, de promover un sistema de trabajo en que tanto los usuarios como los
-                trabajadores sean beneficiarios de una metodología de trabajo, unos principios sólidos y una búsqueda
-                continua de la excelencia en todos sus ámbitos.
+                {t("description")}
               </p>
             </div>
           </div>

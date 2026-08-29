@@ -16,7 +16,6 @@ export default function Home() {
       <ServicesSection />
       <CommunityManagementSection />
       <InvestmentSection />
-      <CoverageSection />
       <Footer />
     </main>
   );

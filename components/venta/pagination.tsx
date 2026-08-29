@@ -49,7 +49,7 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
       <div className="container mx-auto px-4">
         <div className="flex justify-center">
           <nav className="flex items-center space-x-1">
-            <PaginationButton href={`/venta?page=${currentPage - 1}`} disabled={currentPage === 1}>
+            <PaginationButton href={`/propiedades?page=${currentPage - 1}`} disabled={currentPage === 1}>
               <ChevronLeft size={18} />
             </PaginationButton>
 
@@ -59,13 +59,13 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
                   ...
                 </span>
               ) : (
-                <PaginationButton key={`page-${page}`} href={`/venta?page=${page}`} active={page === currentPage}>
+                <PaginationButton key={`page-${page}`} href={`/propiedades?page=${page}`} active={page === currentPage}>
                   {page}
                 </PaginationButton>
               ),
             )}
 
-            <PaginationButton href={`/venta?page=${currentPage + 1}`} disabled={currentPage === totalPages}>
+            <PaginationButton href={`/propiedades?page=${currentPage + 1}`} disabled={currentPage === totalPages}>
               <ChevronRight size={18} />
             </PaginationButton>
           </nav>

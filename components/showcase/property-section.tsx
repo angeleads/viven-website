@@ -1,31 +1,50 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ArrowRight, Bed, Bath, Maximize, Euro, Phone, Info } from "lucide-react";
 import type { Property } from "@/types/property";
 
-export default function PropertySection() {
+interface PropertySectionProps {
+  properties?: Property[];
+  loading?: boolean;
+}
+
+export default function PropertySection({
+  properties: initialProperties,
+  loading: initialLoading,
+}: PropertySectionProps = {}) {
+  const locale = useLocale();
+  const t = useTranslations("showcase.propertySection");
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const hasInjectedData = Array.isArray(initialProperties);
+
   useEffect(() => {
+    if (hasInjectedData) {
+      setProperties(initialProperties || []);
+      setLoading(initialLoading ?? false);
+      return;
+    }
+
     async function loadProperties() {
       try {
-        const res = await fetch("/api/properties");
+        const res = await fetch(`/api/properties?idioma=${encodeURIComponent(locale)}`);
         if (res.ok) {
           const data = await res.json();
           setProperties(data);
         }
       } catch (error) {
-        console.error("Error al obtener las propiedades de la API:", error);
+        console.error("Error fetching properties from API:", error);
       } finally {
         setLoading(false);
       }
     }
     loadProperties();
-  }, []);
+  }, [locale, hasInjectedData, initialProperties, initialLoading]);
 
   return (
     <section className="py-20 bg-white">
@@ -33,18 +52,17 @@ export default function PropertySection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Propiedades destacadas
+              {t("title")}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl">
-              Descubre nuestra selección de propiedades exclusivas en las
-              mejores ubicaciones directamente actualizadas desde el CRM.
+              {t("description")}
             </p>
           </div>
           <Link
-            href="/venta"
+            href="/propiedades"
             className="mt-6 md:mt-0 inline-flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors"
           >
-            Ver todas las propiedades
+            {t("viewAll")}
             <ArrowRight size={18} className="ml-2" />
           </Link>
         </div>
@@ -55,7 +73,7 @@ export default function PropertySection() {
           </div>
         ) : properties.length === 0 ? (
           <div className="text-center py-12 text-gray-500">
-            No se han encontrado propiedades disponibles en este momento.
+            {t("empty")}
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -70,17 +88,19 @@ export default function PropertySection() {
 }
 
 function FeaturedPropertyCard({ property }: { property: Property }) {
+  const t = useTranslations("showcase.propertySection");
+  const locale = useLocale();
   const [isHovered, setIsHovered] = useState(false);
 
   const mainImage = property.images?.[0] || property.image || "/placeholder.svg?height=400&width=600";
   const formattedPrice =
     typeof property.price === "number"
-      ? property.price.toLocaleString("es-ES")
-      : property.price || "Consulte";
+      ? property.price.toLocaleString(locale)
+      : property.price || t("card.fallback.consult");
 
-  const agentName = property.agent?.name || "Cesar Sanjurjo";
+  const agentName = property.agent?.name || t("card.fallback.agentName");
   const agentPhoto = property.agent?.photo || "/placeholder.svg?height=200&width=200";
-  const agentPhone = property.agent?.phone || "+34 667 881 370";
+  const agentPhone = property.agent?.phone || t("card.fallback.agentPhone");
 
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 relative flex flex-col justify-between h-full">
@@ -94,7 +114,7 @@ function FeaturedPropertyCard({ property }: { property: Property }) {
           <div className="aspect-w-16 aspect-h-10 relative overflow-hidden h-64 w-full">
             <Image
               src={mainImage}
-              alt={property.title || "Inmueble"}
+              alt={property.title || t("card.fallback.property")}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover transition-transform duration-500 hover:scale-105"
@@ -119,7 +139,7 @@ function FeaturedPropertyCard({ property }: { property: Property }) {
             }`}
           >
             <div className="text-center">
-              <div className="relative w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border-2 border-white bg-gray-100">
+              <div className="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white bg-gray-100">
                 <Image
                   src={agentPhoto}
                   alt={agentName}
@@ -128,8 +148,8 @@ function FeaturedPropertyCard({ property }: { property: Property }) {
                   unoptimized={agentPhoto.startsWith("http")}
                 />
               </div>
-              <h4 className="text-white font-bold text-base mb-1">{agentName}</h4>
-              <p className="text-white/80 text-xs mb-3">Agente inmobiliario</p>
+              <h4 className="text-white font-bold text-base">{agentName}</h4>
+              <p className="text-white/80 text-xs mb-3">{t("card.agentLabel")}</p>
 
               <a
                 href={`tel:${agentPhone.replace(/\s+/g, "")}`}
@@ -154,7 +174,7 @@ function FeaturedPropertyCard({ property }: { property: Property }) {
         <div className="p-6">
           <div className="flex justify-between items-start mb-2 gap-2">
             <h3 className="text-lg font-bold text-gray-900 hover:text-blue-600 transition-colors line-clamp-2">
-              {property.title || "Propiedad sin título"}
+              {property.title || t("card.fallback.untitled")}
             </h3>
             <p className="text-lg font-bold text-blue-600 whitespace-nowrap flex items-center">
               <Euro size={16} className="inline mr-0.5" />
@@ -163,17 +183,17 @@ function FeaturedPropertyCard({ property }: { property: Property }) {
           </div>
 
           <p className="text-gray-500 text-sm mb-4 line-clamp-1">
-            {property.location || "Ubicación no especificada"}
+            {property.location || t("card.fallback.location")}
           </p>
 
           <div className="flex justify-between text-gray-700 pt-4 border-t border-gray-100 text-sm">
             <div className="flex items-center">
               <Bed size={18} className="mr-1 text-gray-500" />
-              <span>{property.beds ?? 0} hab.</span>
+              <span>{property.beds ?? 0} {t("card.units.beds")}</span>
             </div>
             <div className="flex items-center">
               <Bath size={18} className="mr-1 text-gray-500" />
-              <span>{property.baths ?? 0} bañ.</span>
+              <span>{property.baths ?? 0} {t("card.units.baths")}</span>
             </div>
             <div className="flex items-center">
               <Maximize size={18} className="mr-1 text-gray-500" />
@@ -188,7 +208,7 @@ function FeaturedPropertyCard({ property }: { property: Property }) {
           href={`/propiedades/${property.id}`}
           className="block w-full text-center bg-gray-100 hover:bg-black hover:text-white text-gray-800 font-medium py-2.5 rounded-xl transition-colors duration-300"
         >
-          Ver detalles
+          {t("card.viewDetails")}
         </Link>
       </div>
     </div>

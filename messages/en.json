@@ -1,0 +1,831 @@
+{
+  "nav": {
+    "home": "Home",
+    "properties": "Properties",
+    "propertyManager": "Property management",
+    "company": "Company",
+    "contact": "Contact"
+  },
+  "language": {
+    "label": "Language",
+    "es": "Español",
+    "en": "English",
+    "ca": "Català",
+    "fr": "Français"
+  },
+  "footer": {
+    "about": "Viven Real Estate is your trusted partner for finding the perfect property in Spain. With over 15 years of experience, we provide comprehensive and personalized real estate services.",
+    "quickLinksTitle": "Quick links",
+    "mapsTitle": "Maps",
+    "newsletterTitle": "Newsletter",
+    "newsletterText": "Subscribe to receive the latest real estate market updates.",
+    "emailPlaceholder": "Your email",
+    "privacyAcceptPrefix": "By subscribing, you accept our",
+    "privacyPolicy": "privacy policy",
+    "cookiesPolicy": "Cookie policy",
+    "legalNotice": "Legal notice",
+    "rights": "All rights reserved.",
+    "links": {
+      "home": "Home",
+      "properties": "Properties",
+      "propertyManager": "Property management",
+      "company": "Company",
+      "contact": "Contact"
+    }
+  },
+  "comunidades": {
+    "hero": {
+      "titleStart": "Others manage",
+      "titleHighlight": "in bulk.",
+      "titleEnd": "We care for them one by one.",
+      "descriptionStart": "We are not a platform. We are",
+      "descriptionHighlight": "your property manager",
+      "descriptionEnd": "A new way to care for homeowners' communities: close, transparent and technological.",
+      "cta": {
+        "primary": "Free diagnosis",
+        "secondary": "View services"
+      },
+      "cards": {
+        "closeness": {
+          "title": "Closeness",
+          "text": "People who solve"
+        },
+        "transparency": {
+          "title": "Transparency",
+          "text": "Open accounts"
+        },
+        "customized": {
+          "title": "Tailored",
+          "text": "Every community is unique"
+        },
+        "technology": {
+          "title": "Technology",
+          "text": "Tools that add value"
+        }
+      }
+    },
+    "percentages": {
+      "resolvedIncidents": "Resolved incidents",
+      "satisfiedClients": "Satisfied clients",
+      "successfulContracts": "Successful contracts"
+    },
+    "services": {
+      "eyebrow": "Services",
+      "title": "A new way to manage your community",
+      "description": "We understand communities as small businesses that deserve a proactive, close, efficient and transparent approach.",
+      "cards": {
+        "communityManagement": {
+          "title": "Community management",
+          "items": [
+            "Incident control",
+            "Legal advice",
+            "Budget control",
+            "Arrears control",
+            "Cost savings",
+            "Grant management"
+          ]
+        },
+        "realEstateManagement": {
+          "title": "Real estate management",
+          "items": [
+            "Buying and selling",
+            "Rentals",
+            "All property types",
+            "Investors",
+            "REITs"
+          ]
+        },
+        "newConstructionServices": {
+          "title": "New construction services",
+          "items": [
+            "Architecture",
+            "Certifications",
+            "New construction execution",
+            "Renovations",
+            "Community setup"
+          ]
+        },
+        "legalAdvice": {
+          "title": "Legal advice",
+          "items": [
+            "Tax and legal",
+            "Community interest defense"
+          ]
+        },
+        "budgetControl": {
+          "title": "Budget control",
+          "items": [
+            "Transparent accounting",
+            "Budget tracking",
+            "Deviation control"
+          ]
+        },
+        "incidentControl": {
+          "title": "Incident control",
+          "items": [
+            "Preventive maintenance",
+            "Certified providers",
+            "Building preservation"
+          ]
+        }
+      }
+    },
+    "contact": {
+      "badge": "24H · 365 DAYS",
+      "titleStart": "Problems don't keep office hours.",
+      "titleHighlight": "Neither do we",
+      "description": "Phone support 24 hours a day, 365 days a year. Any emergency will be handled by qualified staff, with response and resolution in less than 4 hours.",
+      "whatsapp": "Emergency WhatsApp",
+      "issues": [
+        "Water leaks",
+        "Power outages",
+        "Locksmith service",
+        "Elevators",
+        "Climate systems",
+        "Security"
+      ]
+    },
+    "app": {
+      "eyebrow": "Viven +Plus app",
+      "title": "Your community in the palm of your hand.",
+      "description": "Our app allows owners, managers and operators to coordinate every movement. Excellence is our standard.",
+      "features": [
+        "Manage incidents",
+        "Check latest minutes",
+        "Review receipts",
+        "Verify assessments",
+        "Bank balance",
+        "Approve payments (President)"
+      ]
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Contact us",
+      "description": "We're here to help with all your real estate needs. Our expert team is ready to offer you the best personalized service.",
+      "callNow": "Call now",
+      "sendMessage": "Send message"
+    },
+    "cta": {
+      "title": "Need immediate help?",
+      "description": "Our customer support team is available 24/7 to help you with any question or emergency.",
+      "visitNote": "You can also visit us at any of our offices during business hours."
+    },
+    "info": {
+      "callUs": "Call us",
+      "writeUs": "Write to us",
+      "visitUs": "Visit us",
+      "schedule": "Schedule",
+      "scheduleValue": "Monday to Thursday: 9:00 - 19:00 and Friday: 8:00 - 15:00"
+    },
+    "map": {
+      "title": "Our location",
+      "description": "Visit us at our main office or any of our branches.",
+      "iframeTitle": "Viven Real Estate location",
+      "officeVilanova": "Vilanova office",
+      "officeSitges": "Sitges office"
+    },
+    "form": {
+      "title": "Send us a message",
+      "description": "Fill out the form and we will contact you as soon as possible.",
+      "successTitle": "Message sent successfully!",
+      "successMessage": "Thanks for contacting us. A member of our team will contact you shortly.",
+      "submit": "Send message",
+      "submitting": "Sending...",
+      "requiredHintPrefix": "Fields marked with",
+      "requiredHintSuffix": "are required.",
+      "terms": {
+        "prefix": "I accept the",
+        "privacyPolicy": "privacy policy",
+        "suffix": "and the processing of my personal data."
+      },
+      "fields": {
+        "name": {
+          "label": "Full name",
+          "placeholder": "Your name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "Your email"
+        },
+        "phone": {
+          "label": "Phone",
+          "placeholder": "Your phone"
+        },
+        "service": {
+          "label": "Service of interest",
+          "options": {
+            "general": "General information",
+            "buy": "Buy property",
+            "sell": "Sell property",
+            "rent": "Rent",
+            "communityManagement": "Community management",
+            "communityAdministration": "Community administration",
+            "investment": "Real estate investment",
+            "other": "Other"
+          }
+        },
+        "subject": {
+          "label": "Subject",
+          "placeholder": "Subject of your message"
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "How can we help you?"
+        }
+      }
+    }
+  },
+  "showcase": {
+    "hero": {
+      "badge": "Leading Real Estate Agency in Vilanova i la Geltrú",
+      "titleStart": "Find the property of your dreams with",
+      "titleHighlight": "Viven Real Estate",
+      "description": "We guide you every step of the way with an exclusive and personalized service in El Garraf. Find your new home or sell your property at the best market price.",
+      "cta": {
+        "explore": "Explore Properties",
+        "sell": "Sell my Property"
+      },
+      "metrics": {
+        "properties": "Properties",
+        "region": "El Garraf",
+        "specialists": "Specialists",
+        "advised": "Advised"
+      },
+      "card": {
+        "exclusiveProperty": "Exclusive Property",
+        "defaultOperation": "Sale",
+        "referenceShort": "Ref.",
+        "featured": "Featured",
+        "bedsShort": "Beds",
+        "baths": "Baths",
+        "viewFull": "View Full Details"
+      },
+      "floating": {
+        "safeTitle": "100% Secure Process",
+        "safeSubtitle": "RE/MAX Viven Guarantee",
+        "fastTitle": "Immediate Support",
+        "fastSubtitle": "Local agents available"
+      },
+      "fallback": {
+        "title": "Exclusive Property",
+        "location": "Vilanova i la Geltrú",
+        "consultPrice": "Contact for price"
+      }
+    },
+    "propertySection": {
+      "title": "Featured properties",
+      "description": "Discover our selection of exclusive properties in top locations, updated directly from the CRM.",
+      "viewAll": "View all properties",
+      "empty": "No properties are available at this time.",
+      "card": {
+        "agentLabel": "Real estate agent",
+        "viewDetails": "View details",
+        "units": {
+          "beds": "beds",
+          "baths": "baths"
+        },
+        "fallback": {
+          "consult": "Contact",
+          "agentName": "César Sanjurjo",
+          "agentPhone": "+34 667 881 370",
+          "property": "Property",
+          "untitled": "Untitled property",
+          "location": "Location not specified"
+        }
+      }
+    },
+    "remaxStats": {
+      "title": "Quick facts",
+      "quarter": "Q1 2025",
+      "description": "RE/MAX is the largest real estate network in the world. Discover our global and European reach.",
+      "tabs": {
+        "europe": "Europe",
+        "global": "Global"
+      },
+      "stats": {
+        "europe": {
+          "associates": "RE/MAX associates",
+          "propertiesForSale": "Properties for sale",
+          "agents": "Agents",
+          "newPropertiesForSale": "New properties for sale",
+          "offices": "Offices",
+          "mobileUsers": "Mobile users"
+        },
+        "global": {
+          "propertiesForSale": "Properties for sale",
+          "countriesAndTerritories": "Countries and territories",
+          "agents": "Agents",
+          "languages": "Languages",
+          "offices": "Offices",
+          "mobileUsers": "Mobile users"
+        }
+      },
+      "notes": [
+        "The statistics do not reflect all RE/MAX European regions.",
+        "Sources: RE/MAX LLC and GrowthTech Inc.",
+        "Please note these figures are based on average numbers obtained from Q1 2025."
+      ]
+    },
+    "servicesSection": {
+      "title": "Our Services",
+      "description": "At Viven we offer a wide range of real estate services to meet all your needs.",
+      "categories": {
+        "community": {
+          "title": "Community Management",
+          "services": [
+            "Incident management",
+            "Legal advice",
+            "Budget control",
+            "Debt control",
+            "Cost savings",
+            "Grant management"
+          ]
+        },
+        "property": {
+          "title": "Real Estate Services",
+          "services": [
+            "Buying",
+            "Selling",
+            "Renting",
+            "All property types",
+            "Investors",
+            "REITs"
+          ]
+        },
+        "construction": {
+          "title": "Construction and Renovation",
+          "services": [
+            "Architecture",
+            "Certifications",
+            "New build execution",
+            "Renovations"
+          ]
+        }
+      }
+    },
+    "contactSection": {
+      "info": {
+        "title": "Contact information",
+        "items": {
+          "address": "Address",
+          "addressValue": "Pelegrí Ballester, 23 Vilanova i la Geltrú 08800 (Barcelona)",
+          "phone": "Phone",
+          "email": "Email",
+          "schedule": "Schedule"
+        }
+      }
+    },
+    "appSection": {
+      "title": "VIVEN+ PLUS App",
+      "description": "Access your community from anywhere, anytime",
+      "cta": {
+        "download": "Download now"
+      },
+      "imageAlt": "VIVEN+ App"
+    },
+    "partnersSection": {
+      "title": "Our Partners",
+      "description": {
+        "start": "At",
+        "brand": "Viven",
+        "middle": "we have the pleasure of working alongside companies that share the same values of",
+        "values": "Commitment, Transparency and Professionalism",
+        "end": "as we do."
+      },
+      "aria": {
+        "previousPartners": "Previous partners",
+        "nextPartners": "Next partners",
+        "goToSlide": "Go to slide {slide}"
+      },
+      "logoAlt": "{name} logo"
+    }
+  },
+  "empresa": {
+    "companyHero": {
+      "title": "About us",
+      "description": "VIVEN stands for innovation and the pursuit of excellence in the real estate sector. It was born from its founder's drive to promote a working system where both users and team members benefit from a solid methodology, strong principles, and a continuous pursuit of excellence in every area."
+    },
+    "callToAction": {
+      "title": "At Viven, we are very clear that YOU come first",
+      "description": "Discover how we can help you with your real estate or community management needs. Our team of professionals is ready to offer you the best service.",
+      "cta": {
+        "contact": "Contact us",
+        "services": "Discover our services"
+      }
+    },
+    "missionSection": {
+      "title": "Our mission",
+      "description": "We are proud to keep growing and strengthening, day by day, the work done by our team, made up of the best professionals in their fields. At VIVEN, we manage all tasks related to your real estate asset, with the goal of adding value and safeguarding the growth of your wealth.",
+      "points": {
+        "point1": "From homeowners' communities to rental apartments, every asset is handled with due diligence, optimized, and improved whenever possible.",
+        "point2": "The world of services VIVEN offers begins the moment you pick up the phone to contact us.",
+        "point3": "From there, you tell us your needs and we help you with the best tailored and personalized solutions for you."
+      },
+      "tagline": "At VIVEN, we personalize your real estate experience",
+      "imageAlt": "Viven Real Estate team"
+    },
+    "businessLines": {
+      "title": "Our business lines",
+      "description": "Viven is made up of two major divisions that provide specialized services with the highest standards of quality and professionalism.",
+      "remax": {
+        "title": "RE/MAX VIVEN",
+        "description": "Its purpose is the commercialization of all kinds of real estate properties. Each property owner is assigned to a RE/MAX VIVEN Associate Agent, fully qualified to carry out the action entrusted by the client with complete guarantees.",
+        "features": {
+          "personalAttention": {
+            "title": "Personalized attention",
+            "description": "We establish personalized criteria for each owner, becoming your best ally."
+          },
+          "globalExperience": {
+            "title": "Global experience",
+            "description": "In 2025, we combined VIVEN's territorial presence with the experience and strength of the RE/MAX brand, No.1 in the WORLD in sales."
+          }
+        },
+        "cta": "View RE/MAX statistics"
+      },
+      "plus": {
+        "title": "VIVEN +Plus",
+        "description": "We facilitate advisory and management of our clients' asset portfolios. We understand homeowners' communities as small businesses that must be managed with a proactive, close, efficient, and transparent approach.",
+        "features": {
+          "transparentManagement": {
+            "title": "Transparent management",
+            "description": "We do not charge commissions to contractors, saving owners thousands of euros from the first year."
+          },
+          "constantInnovation": {
+            "title": "Constant innovation",
+            "description": "Our pursuit of excellence makes us grow year after year, adding new services and an extra layer of efficiency, innovation, and new technologies."
+          }
+        },
+        "cta": "More information"
+      }
+    },
+    "vivenPlusSection": {
+      "badge": "VIVEN +Plus",
+      "title": "Homeowners' community management",
+      "description": "A new way to manage your community with a proactive, close, efficient, and transparent approach.",
+      "subtitle": "We understand homeowners' communities as small businesses",
+      "body": "You are the owners of the assets; we manage your property with the professionalism and legal compliance that define us, and we safeguard the maintenance or growth of its value.",
+      "features": {
+        "legalAdvice": {
+          "title": "Legal advice",
+          "text": "tax and legal support, attentive to new regulations."
+        },
+        "budgetControl": {
+          "title": "Budget control",
+          "text": "with transparent accounting."
+        },
+        "incidentManagement": {
+          "title": "Incident management",
+          "text": "and building maintenance."
+        },
+        "customerSupport": {
+          "title": "Customer support",
+          "text": "24 hours a day, 365 days a year."
+        }
+      },
+      "cta": "More information",
+      "imageAlt": "Community management",
+      "quote": "At VIVEN, we manage YOUR COMMUNITY as if it were OUR HOME"
+    },
+    "statsSection": {
+      "title": "Excellence in numbers",
+      "description": "Our commitment to quality and customer satisfaction is reflected in our statistics.",
+      "stats": {
+        "resolvedIncidents": "Resolved incidents",
+        "satisfiedClients": "Satisfied clients",
+        "successfulContracts": "Successful contracts"
+      }
+    },
+    "teamSection": {
+      "title": "Our team",
+      "description": "Viven's team is made up of expert, trained, and dynamic professionals with one shared goal: to meet our clients' needs.",
+      "actions": {
+        "viewMore": "View more information",
+        "close": "Close"
+      },
+      "linkedinProfile": "LinkedIn profile",
+      "members": {
+        "cesar": {
+          "position": "Founder and CEO",
+          "description": "Some people want things to happen, others dream of it, and others make it happen"
+        },
+        "merche": {
+          "position": "Deputy Director and Head of Community Management Team",
+          "description": "Specialist in luxury property commercialization, Merche leads the RE/MAX VIVEN associate agents team."
+        },
+        "duglaiska": {
+          "position": "Sales agent",
+          "description": "An expert in asset management, Miguel has transformed community management with a transparent and efficient approach."
+        },
+        "isabel": {
+          "position": "Chief Financial Officer",
+          "description": "With training in finance and real estate sector experience, Laura manages Viven's financial stability."
+        },
+        "maria": {
+          "position": "Technology Director",
+          "description": "Responsible for implementing technological solutions that improve efficiency and transparency across all services."
+        },
+        "fran": {
+          "position": "Marketing Director",
+          "description": "Specialist in digital marketing and communication, Elena develops strategies to position the Viven brand in the market."
+        }
+      }
+    },
+    "staffSection": {
+      "title": "Our professional staff",
+      "description": "Our staff includes highly qualified professionals in different areas to deliver comprehensive, top-quality service.",
+      "cards": {
+        "certifiedManagers": {
+          "title": "Certified property managers",
+          "description": "Experts in community and real estate asset management"
+        },
+        "lawyers": {
+          "title": "Lawyers",
+          "description": "Specialized legal advisory in the real estate sector"
+        },
+        "architects": {
+          "title": "Architects",
+          "description": "Design and supervision of architectural projects"
+        },
+        "electriciansPlumbers": {
+          "title": "Electricians and plumbers",
+          "description": "Professional maintenance and repairs"
+        },
+        "cleaningTeams": {
+          "title": "Cleaning teams",
+          "description": "Property cleaning and maintenance services"
+        }
+      }
+    },
+    "valuesSection": {
+      "title": "Our values",
+      "description": "At Viven, we are committed to the environment, society, and excellence in everything we do.",
+      "cards": {
+        "environment": {
+          "title": "Environmental commitment",
+          "description": "We are committed to caring for the environment by reducing paper consumption and promoting the use of recycled materials. In our offices, we use natural and low-consumption lighting, maintaining our commitment to energy efficiency."
+        },
+        "social": {
+          "title": "Social responsibility",
+          "description": "Throughout the year, we take part in different solidarity and charitable causes with local and national organizations, giving back to society part of what it gives us. We strongly believe in making a positive contribution to the communities where we operate."
+        },
+        "innovation": {
+          "title": "Constant innovation",
+          "description": "We implement the latest technologies to provide a more efficient and transparent service. Our pursuit of excellence drives us to continuously improve our processes and services for the benefit of our clients."
+        }
+      }
+    }
+  },
+  "venta": {
+    "hero": {
+      "title": "Find your ideal property",
+      "description": "Discover our exclusive selection of properties in the best locations",
+      "tabs": {
+        "all": "All",
+        "sale": "Sale",
+        "rent": "Rent"
+      },
+      "filters": {
+        "search": {
+          "placeholder": "Search by ref. or title..."
+        },
+        "propertyType": {
+          "all": "All property types"
+        },
+        "city": {
+          "all": "All cities"
+        },
+        "zone": {
+          "all": "All areas"
+        },
+        "minPrice": {
+          "any": "Min. price (Any)",
+          "rent": {
+            "from400": "From €400",
+            "from600": "From €600",
+            "from800": "From €800",
+            "from1000": "From €1,000",
+            "from1500": "From €1,500"
+          },
+          "sale": {
+            "from50000": "From €50,000",
+            "from100000": "From €100,000",
+            "from200000": "From €200,000",
+            "from300000": "From €300,000",
+            "from500000": "From €500,000"
+          }
+        },
+        "maxPrice": {
+          "any": "Max. price (Any)",
+          "rent": {
+            "to800": "Up to €800",
+            "to1200": "Up to €1,200",
+            "to1500": "Up to €1,500",
+            "to2000": "Up to €2,000",
+            "to3000": "Up to €3,000"
+          },
+          "sale": {
+            "to150000": "Up to €150,000",
+            "to250000": "Up to €250,000",
+            "to400000": "Up to €400,000",
+            "to600000": "Up to €600,000",
+            "to1000000": "Up to €1,000,000"
+          }
+        }
+      },
+      "actions": {
+        "clearFilters": "Clear filters"
+      }
+    },
+    "propertyGrid": {
+      "title": "Available properties",
+      "summary": "Showing {startItem}-{endItem} of {totalCount} properties",
+      "sort": {
+        "label": "Sort by:",
+        "options": {
+          "newest": "Newest",
+          "priceAsc": "Price: low to high",
+          "priceDesc": "Price: high to low",
+          "area": "Area"
+        }
+      },
+      "empty": "No available properties were found at this time.",
+      "pagination": {
+        "previous": "Previous page",
+        "next": "Next page"
+      }
+    },
+    "propertyCard": {
+      "agentLabel": "Real estate agent",
+      "units": {
+        "beds": "beds",
+        "baths": "baths",
+        "area": "m²"
+      },
+      "actions": {
+        "viewDetails": "View details",
+        "toggleAgentInfo": "Show or hide agent information"
+      },
+      "fallbacks": {
+        "consultPrice": "Contact",
+        "defaultAgency": "RE/MAX Viven"
+      }
+    },
+    "propertyDetail": {
+      "errors": {
+        "loadFailed": "Could not find the property information",
+        "unexpected": "Unexpected error",
+        "notFoundTitle": "Oops! Property not found",
+        "notFoundMessage": "The requested property does not exist or the feed is unavailable."
+      },
+      "actions": {
+        "backToList": "Back to listing",
+        "backToProperties": "Back to property listing",
+        "sendMessage": "Send message"
+      },
+      "fallbacks": {
+        "description": "No description available.",
+        "propertyType": "Property",
+        "notSpecified": "Not specified",
+        "defaultAgency": "RE/MAX Viven"
+      },
+      "header": {
+        "referenceShort": "Ref",
+        "operationPrice": "Operation price"
+      },
+      "gallery": {
+        "thumbnailAlt": "Thumbnail {index}"
+      },
+      "quickSpecs": {
+        "bedrooms": "Bedrooms",
+        "bathrooms": "Bathrooms",
+        "area": "Area"
+      },
+      "sections": {
+        "propertyDescription": "Property description",
+        "featuresAndQualities": "Features and qualities",
+        "equipmentAndServices": "Equipment and services",
+        "agentContact": "Agent contact",
+        "requestInformation": "Request information"
+      },
+      "specs": {
+        "reference": "Reference",
+        "operationType": "Operation type",
+        "propertyType": "Property type",
+        "zoneCity": "Area / City",
+        "usefulArea": "Usable area",
+        "builtArea": "Built area",
+        "condition": "Condition",
+        "bedrooms": "Bedrooms",
+        "bathrooms": "Bathrooms",
+        "distanceToSea": "Distance to sea"
+      },
+      "form": {
+        "fullNamePlaceholder": "Your full name",
+        "emailPlaceholder": "Email address",
+        "phonePlaceholder": "Phone (optional)",
+        "phoneNotProvided": "Not provided",
+        "sending": "Sending...",
+        "defaultMessage": "Hello, I am interested in the property with reference {reference}. I would like to receive more details."
+      },
+      "status": {
+        "success": "Message sent successfully! We will contact you as soon as possible.",
+        "error": "The email could not be sent. Please try again."
+      }
+    }
+  },
+  "administradorDeFincas": {
+    "hero": {
+      "imageAlt": "Community hero image",
+      "titleStart": "Others manage",
+      "titleHighlight": "in bulk",
+      "titleEnd": "We care for them one by one",
+      "description": "Professional and comprehensive management of your real estate assets in Vilanova i La Geltrú",
+      "cta": {
+        "contact": "Request information",
+        "app": "Download app"
+      }
+    },
+    "servicesSection": {
+      "title": "Our Premium Services",
+      "description": "As property managers in Vilanova i La Geltrú, we provide efficient and professional management for your homeowners' community.",
+      "cards": {
+        "professionalExperience": {
+          "title": "Professional Experience",
+          "description": "A highly trained team with experience in legal, financial, technical and maintenance matters for strong management."
+        },
+        "efficientManagement": {
+          "title": "Efficient Management",
+          "description": "We handle accounting, conflict resolution and service coordination for the optimal operation of your community."
+        },
+        "comprehensiveMaintenance": {
+          "title": "Comprehensive Maintenance",
+          "description": "Regular inspections, repairs and quality services to keep properties in optimal condition."
+        },
+        "legalAdvice": {
+          "title": "Legal Advice",
+          "description": "Management of legal and tax obligations, ensuring regulatory compliance and tax optimization."
+        },
+        "transparentFinancialManagement": {
+          "title": "Transparent Financial Management",
+          "description": "Periodic reports and transparent management of the community's financial resources."
+        },
+        "communityImprovement": {
+          "title": "Community Improvement",
+          "description": "Implementation of improvement projects and service optimization to increase quality of life."
+        }
+      }
+    },
+    "communityManagementSection": {
+      "badge": "VIVEN +Plus",
+      "title": "A new way to manage your community",
+      "description1": "At VIVEN, we break away from the old and outdated model of community administration. We understand homeowners' communities as small businesses that must be managed with a proactive, close, efficient, and transparent approach.",
+      "description2": "You are the owners of the assets; we manage your property with the professionalism and legal compliance that define us, and we safeguard the maintenance or growth of its value.",
+      "description3": "That's why we have a broad team of qualified professionals in all areas a homeowners' community may require, delivering a different, fast, and effective service.",
+      "cta": {
+        "moreInfo": "More information"
+      },
+      "servicesTitle": "Among our services, you will find:",
+      "cards": {
+        "legalAdvice": {
+          "title": "Legal advice",
+          "description": "Tax and legal support, with close attention to new regulations that may affect communities."
+        },
+        "budgetControl": {
+          "title": "Budget control",
+          "description": "Transparent accounting and budget tracking to control potential deviations."
+        },
+        "incidentControl": {
+          "title": "Incident control",
+          "description": "Incident management, building maintenance, and preservation. We work with certified providers."
+        },
+        "customerSupport": {
+          "title": "Customer support",
+          "description": "24 hours a day, 365 days a year"
+        }
+      },
+      "tagline": "At VIVEN, we manage YOUR COMMUNITY as if it were OUR HOME",
+      "imageAlt": "Community building"
+    },
+    "investmentSection": {
+      "title": "Real estate investments",
+      "subtitle": "Expert investment advisory",
+      "description": "At VIVEN+ Plus, we make your real estate investment easier with personalized and professional solutions.",
+      "items": {
+        "urbanLand": {
+          "title": "Urban land",
+          "description": "Specialized management and advisory"
+        },
+        "realEstateAssets": {
+          "title": "Real estate assets",
+          "description": "Profitability maximization"
+        },
+        "newDevelopments": {
+          "title": "New developments",
+          "description": "Development of innovative projects"
+        }
+      },
+      "imageAlt": "Real estate investments"
+    }
+  }
+}

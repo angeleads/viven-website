@@ -5,6 +5,12 @@ export interface Agent {
   photo: string;
 }
 
+export interface PropertyCharacteristic {
+  key: string;
+  label: string;
+  value: boolean;
+}
+
 export interface Property {
   id: string;            // Mapeado desde 'cod_ofer'
   reference: string;     // Mapeado desde 'ref'
@@ -27,9 +33,14 @@ export interface Property {
   distMar?: string | null; // Distancia al mar (ej: "20 m", "1.5 Km")
   operationType: string; // Venta / Alquiler / Traspaso
   date: string;          // Fecha actualización
-  features: string[];    // Array de características
+  //features: string[];    // Array de características
+  characteristics?: PropertyCharacteristic[]; // Flags booleanos del inmueble
   agency: string;
   agencyPhone: string;
   agencyEmail: string;
   agent?: Agent;         // Agente asignado dinámicamente desde Inmovilla
+  alarmarobo?: boolean;
+  descrip?: string;
+  descripciones?: string;
+  observaciones?: string;
 }

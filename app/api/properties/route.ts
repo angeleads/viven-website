@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { queryInmovilla } from "@/lib/inmovilla";
+import { parseInmovillaIdioma, queryInmovilla } from "@/lib/inmovilla";
 import { mapInmovillaToProperty } from "@/lib/format-property";
 
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
   const page = parseInt(params.get("page") || "1");
   const limit = Math.min(parseInt(params.get("limit") || "100"), 100);
+  const idioma = parseInmovillaIdioma(params.get("idioma"));
 
   const userIp =
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "0.0.0.0";
@@ -21,6 +22,7 @@ export async function GET(request: NextRequest) {
           orden: "",
         },
       ],
+      idioma,
       userIp,
     });
 
@@ -36,7 +38,11 @@ export async function GET(request: NextRequest) {
     );
 
     const propiedades = realProperties.map(mapInmovillaToProperty);
-    return NextResponse.json(propiedades);
+    return NextResponse.json(propiedades, {
+      headers: {
+        "Cache-Control": "public, max-age=60, s-maxage=120, stale-while-revalidate=300",
+      },
+    });
   } catch (error: any) {
     console.error("Error en API de propiedades:", error.message);
     return NextResponse.json({ error: error.message }, { status: 502 });

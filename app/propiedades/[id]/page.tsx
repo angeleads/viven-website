@@ -1,8 +1,10 @@
 "use client";
 
 import { use, useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import emailjs from "@emailjs/browser";
 import {
   Bed,
   Bath,
@@ -13,11 +15,11 @@ import {
   Phone,
   Mail,
   FileText,
-  CheckCircle,
   ShieldCheck,
   User,
   Building,
   Check,
+  Loader2,
 } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
@@ -29,29 +31,96 @@ export default function PropertyDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
+  const locale = useLocale();
+  const t = useTranslations("venta.propertyDetail");
   const [property, setProperty] = useState<Property | null>(null);
   const [activeImage, setActiveImage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Estados para EmailJS
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [isSending, setIsSending] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   useEffect(() => {
     async function fetchProperty() {
       try {
-        const res = await fetch(`/api/properties/${id}`);
+        const res = await fetch(`/api/properties/${id}?idioma=${encodeURIComponent(locale)}`);
         if (!res.ok) {
-          throw new Error("No se pudo encontrar la información de la propiedad");
+          throw new Error(t("errors.loadFailed"));
         }
         const data: Property = await res.json();
         setProperty(data);
         setActiveImage(data.image || data.images?.[0] || "/placeholder.svg?height=600&width=800");
+
+        setFormData((prev) => ({
+          ...prev,
+          message: t("form.defaultMessage", { reference: data.reference }),
+        }));
       } catch (err: any) {
-        setError(err.message || "Error inesperado");
+        setError(err.message || t("errors.unexpected"));
       } finally {
         setLoading(false);
       }
     }
     fetchProperty();
-  }, [id]);
+  }, [id, locale, t]);
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmitForm = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!property) return;
+
+    setIsSending(true);
+    setSubmitError(null);
+    setSubmitSuccess(false);
+
+    // Parámetros que se enviarán a la plantilla de EmailJS
+    const templateParams = {
+      user_name: formData.name,
+      user_email: formData.email,
+      user_phone: formData.phone || t("form.phoneNotProvided"),
+      message: formData.message,
+      property_ref: property.reference,
+      property_title: property.title,
+      agent_email: property.agent?.email || "",
+    };
+
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+
+      setSubmitSuccess(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: t("form.defaultMessage", { reference: property.reference }),
+      });
+    } catch (err: any) {
+      console.error("Error enviando email con EmailJS:", err);
+      setSubmitError(t("status.error"));
+    } finally {
+      setIsSending(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -65,67 +134,71 @@ export default function PropertyDetailPage({
     return (
       <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50 px-4">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          ¡Oops! Propiedad no encontrada
+          {t("errors.notFoundTitle")}
         </h2>
         <p className="text-gray-600 mb-6 text-center">
-          {error || "La propiedad solicitada no existe o el feed no está disponible."}
+          {error || t("errors.notFoundMessage")}
         </p>
         <Link
-          href="/venta"
+          href="/propiedades"
           className="inline-flex items-center text-white bg-blue-600 px-5 py-2.5 rounded-xl font-medium hover:bg-blue-700 transition-colors"
         >
-          <ChevronLeft size={18} className="mr-1" /> Volver al listado
+          <ChevronLeft size={18} className="mr-1" /> {t("actions.backToList")}
         </Link>
       </div>
     );
   }
 
-  const formattedDescription = property.description
-    ? property.description.replaceAll("~~", "\n\n")
-    : "Sin descripción disponible.";
+  const formattedDescription = property.descrip
+    ? property.descrip.replaceAll("~~", "\n\n")
+    : t("fallbacks.description");
 
-  // Agente
   const agent = property.agent;
-  const agentName = agent?.name || property.agency || "RE/MAX Viven";
+  const agentName = agent?.name || property.agency || t("fallbacks.defaultAgency");
   const agentPhone = agent?.phone || "";
   const agentEmail = agent?.email || "";
   const agentPhoto = agent?.photo || "";
 
-  // Datos para la tabla detallada de características
   const specDetails = [
-    { label: "Referencia", value: property.reference },
-    { label: "Tipo Operación", value: property.operationType },
-    { label: "Tipo de Propiedad", value: property.propertyType || "Inmueble" },
-    { label: "Zona / Ciudad", value: property.location },
-    { label: "Superficie Útil", value: property.usefulArea ? `${property.usefulArea} m²` : "-" },
-    { label: "Superficie Construida", value: property.builtArea ? `${property.builtArea} m²` : `${property.area} m²` },
-    { label: "Conservación", value: property.conservation || "No especificado" },
-    { label: "Habitaciones", value: property.beds },
-    { label: "Baños", value: property.baths },
-    { label: "Distancia al mar", value: property.distMar || "-" },
+    { label: t("specs.reference"), value: property.reference },
+    { label: t("specs.operationType"), value: property.operationType },
+    { label: t("specs.propertyType"), value: property.propertyType || t("fallbacks.propertyType") },
+    { label: t("specs.zoneCity"), value: property.location },
+    { label: t("specs.usefulArea"), value: property.usefulArea ? `${property.usefulArea} m²` : "-" },
+    { label: t("specs.builtArea"), value: property.builtArea ? `${property.builtArea} m²` : `${property.area} m²` },
+    { label: t("specs.condition"), value: property.conservation || t("fallbacks.notSpecified") },
+    { label: t("specs.bedrooms"), value: property.beds },
+    { label: t("specs.bathrooms"), value: property.baths },
+    { label: t("specs.distanceToSea"), value: property.distMar || "-" },
   ];
+
+  const enabledCharacteristics = (property.characteristics || [])
+    .filter((item) => item.value)
+    .map((item) => item.label);
+
+  const checklistItems = Array.from(new Set([...enabledCharacteristics]));
 
   return (
     <main className="min-h-screen bg-gray-50 py-12">
       <Navbar />
 
-      <div className="container mx-auto px-4 max-w-7xl">
+      <div className="container mx-auto p-4 max-w-7xl">
         <Link
-          href="/venta"
+          href="/propiedades"
           className="inline-flex items-center text-gray-600 hover:text-black font-medium mt-8 mb-8 transition-colors group"
         >
           <ChevronLeft
             size={20}
             className="mr-1 group-hover:-translate-x-1 transition-transform"
           />
-          Volver al listado de propiedades
+          {t("actions.backToProperties")}
         </Link>
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
             <span className="inline-block bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
-              {property.operationType} · Ref: {property.reference}
+              {property.operationType} · {t("header.referenceShort")}: {property.reference}
             </span>
             <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-2">
               {property.title}
@@ -138,11 +211,11 @@ export default function PropertyDetailPage({
           </div>
 
           <div className="text-left md:text-right bg-white p-4 rounded-xl shadow-sm border border-gray-100 min-w-[220px]">
-            <p className="text-sm text-gray-500 font-medium">Precio de operación</p>
+            <p className="text-sm text-gray-500 font-medium">{t("header.operationPrice")}</p>
             <p className="text-3xl font-black text-blue-600 flex items-center md:justify-end mt-0.5">
               <Euro size={28} className="mr-1" />
               {typeof property.price === "number"
-                ? property.price.toLocaleString("es-ES")
+                ? property.price.toLocaleString(locale)
                 : property.price}
             </p>
           </div>
@@ -178,7 +251,7 @@ export default function PropertyDetailPage({
                     >
                       <Image
                         src={img}
-                        alt={`Miniatura ${idx + 1}`}
+                        alt={t("gallery.thumbnailAlt", { index: idx + 1 })}
                         fill
                         className="object-cover"
                         unoptimized={img.startsWith("http")}
@@ -193,17 +266,17 @@ export default function PropertyDetailPage({
             <div className="grid grid-cols-3 gap-4 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center">
               <div className="flex flex-col items-center py-2 border-r border-gray-100">
                 <Bed size={24} className="text-blue-600 mb-2" />
-                <span className="text-sm text-gray-500 font-medium">Dormitorios</span>
+                <span className="text-sm text-gray-500 font-medium">{t("quickSpecs.bedrooms")}</span>
                 <span className="text-lg font-bold text-gray-900 mt-0.5">{property.beds}</span>
               </div>
               <div className="flex flex-col items-center py-2 border-r border-gray-100">
                 <Bath size={24} className="text-blue-600 mb-2" />
-                <span className="text-sm text-gray-500 font-medium">Baños</span>
+                <span className="text-sm text-gray-500 font-medium">{t("quickSpecs.bathrooms")}</span>
                 <span className="text-lg font-bold text-gray-900 mt-0.5">{property.baths}</span>
               </div>
               <div className="flex flex-col items-center py-2">
                 <Maximize size={24} className="text-blue-600 mb-2" />
-                <span className="text-sm text-gray-500 font-medium">Superficie</span>
+                <span className="text-sm text-gray-500 font-medium">{t("quickSpecs.area")}</span>
                 <span className="text-lg font-bold text-gray-900 mt-0.5">{property.area} m²</span>
               </div>
             </div>
@@ -212,18 +285,18 @@ export default function PropertyDetailPage({
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
               <h3 className="text-xl font-bold text-gray-900 flex items-center mb-4">
                 <FileText size={20} className="text-blue-600 mr-2" />
-                Descripción de la propiedad
+                {t("sections.propertyDescription")}
               </h3>
               <div className="text-gray-600 leading-relaxed space-y-4 whitespace-pre-line text-justify">
                 {formattedDescription}
               </div>
             </div>
 
-            {/* Ficha completa de Datos y Especificaciones (Como en CRM Inmovilla) */}
+            {/* Especificaciones */}
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
               <h3 className="text-xl font-bold text-gray-900 flex items-center mb-6">
                 <Building size={20} className="text-blue-600 mr-2" />
-                Características y Cualidades
+                {t("sections.featuresAndQualities")}
               </h3>
 
               <div className="overflow-x-auto">
@@ -247,17 +320,17 @@ export default function PropertyDetailPage({
               </div>
             </div>
 
-            {/* Lista de Equipamiento y Comodidades (Checklist) */}
-            {property.features && property.features.length > 0 && (
+            {/* Equipamiento */}
+            {checklistItems.length > 0 && (
               <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                 <h3 className="text-xl font-bold text-gray-900 flex items-center mb-6">
                   <ShieldCheck size={20} className="text-blue-600 mr-2" />
-                  Equipamiento y Servicios
+                  {t("sections.equipmentAndServices")}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                  {property.features.map((feature, idx) => (
+                  {checklistItems.map((feature, idx) => (
                     <div
-                      key={idx}
+                      key={`${feature}-${idx}`}
                       className="flex items-center text-gray-700 bg-gray-50 px-4 py-3 rounded-xl border border-gray-100"
                     >
                       <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center mr-3 shrink-0">
@@ -271,12 +344,12 @@ export default function PropertyDetailPage({
             )}
           </div>
 
-          {/* Tarjeta Agente */}
+          {/* Tarjeta Agente & Formulario EmailJS */}
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-100 sticky top-6">
               <h4 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
                 <User size={18} className="text-blue-600 mr-2" />
-                Contacto del Agente
+                {t("sections.agentContact")}
               </h4>
 
               <div className="p-4 bg-blue-50/50 rounded-xl mb-6 border border-blue-100/50 flex items-center gap-4">
@@ -298,7 +371,7 @@ export default function PropertyDetailPage({
                     {agentName}
                   </p>
                   <p className="text-xs text-blue-600 font-medium">
-                    {property.agency || "RE/MAX Viven"}
+                    {property.agency || t("fallbacks.defaultAgency")}
                   </p>
                 </div>
               </div>
@@ -326,28 +399,71 @@ export default function PropertyDetailPage({
 
               <hr className="border-gray-100 my-4" />
 
-              <form onSubmit={(e) => e.preventDefault()} className="space-y-3">
-                <p className="text-sm font-bold text-gray-800 mb-2">Solicitar información</p>
+              {/* Formulario conectado con EmailJS */}
+              <form onSubmit={handleSubmitForm} className="space-y-3">
+                <p className="text-sm font-bold text-gray-800 mb-2">
+                  {t("sections.requestInformation")}
+                </p>
+
+                {submitSuccess && (
+                  <div className="p-3 bg-green-50 border border-green-200 text-green-700 text-xs rounded-xl">
+                    {t("status.success")}
+                  </div>
+                )}
+
+                {submitError && (
+                  <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl">
+                    {submitError}
+                  </div>
+                )}
+
                 <input
                   type="text"
-                  placeholder="Tu nombre completo"
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder={t("form.fullNamePlaceholder")}
                   className="w-full text-sm px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all text-gray-900"
                 />
                 <input
                   type="email"
-                  placeholder="Correo electrónico"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder={t("form.emailPlaceholder")}
+                  className="w-full text-sm px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all text-gray-900"
+                />
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder={t("form.phonePlaceholder")}
                   className="w-full text-sm px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all text-gray-900"
                 />
                 <textarea
+                  name="message"
+                  required
                   rows={3}
-                  defaultValue={`Hola, estoy interesado en el inmueble con Referencia ${property.reference}. Me gustaría recibir más detalles.`}
+                  value={formData.message}
+                  onChange={handleInputChange}
                   className="w-full text-sm px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all text-gray-900 resize-none"
                 />
                 <button
                   type="submit"
-                  className="w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-colors shadow-sm"
+                  disabled={isSending}
+                  className="w-full flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-colors shadow-sm disabled:opacity-50"
                 >
-                  Enviar mensaje
+                  {isSending ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin mr-2" />
+                      {t("form.sending")}
+                    </>
+                  ) : (
+                    t("actions.sendMessage")
+                  )}
                 </button>
               </form>
             </div>

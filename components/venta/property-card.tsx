@@ -2,16 +2,19 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Bed, Bath, Maximize, Euro, Phone, Info, User } from "lucide-react";
 import type { Property } from "@/types/property";
 import { mapInmovillaToProperty } from "@/lib/format-property";
+import { useLocale, useTranslations } from "next-intl";
 
 interface PropertyCardProps {
   property: Property;
 }
 
 export default function PropertyCard({ property: rawProperty }: PropertyCardProps) {
+  const t = useTranslations("venta.propertyCard");
+  const locale = useLocale();
   const [isHovered, setIsHovered] = useState(false);
 
   // Mapeo seguro dinámico
@@ -19,11 +22,13 @@ export default function PropertyCard({ property: rawProperty }: PropertyCardProp
 
   const formattedPrice =
     typeof property.price === "number"
-      ? property.price.toLocaleString("es-ES")
-      : property.price || "Consulte";
+      ? property.price.toLocaleString(
+          locale === "ca" ? "ca-ES" : locale === "en" ? "en-US" : locale === "fr" ? "fr-FR" : "es-ES"
+        )
+      : property.price || t("fallbacks.consultPrice");
 
   const agent = property.agent;
-  const agentName = agent?.name || property.agency || "RE/MAX Viven";
+  const agentName = agent?.name || property.agency || t("fallbacks.defaultAgency");
   const agentPhone = agent?.phone || "";
   const agentPhoto = agent?.photo || "";
 
@@ -63,7 +68,7 @@ export default function PropertyCard({ property: rawProperty }: PropertyCardProp
             }`}
           >
             <div className="text-center w-full">
-              <div className="relative w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border-2 border-white bg-blue-100 flex items-center justify-center">
+              <div className="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white bg-blue-100 flex items-center justify-center">
                 {agentPhoto ? (
                   <Image
                     src={agentPhoto}
@@ -76,10 +81,10 @@ export default function PropertyCard({ property: rawProperty }: PropertyCardProp
                   <User size={36} className="text-blue-600" />
                 )}
               </div>
-              <h4 className="text-white font-bold text-base mb-1 line-clamp-1">
+              <h4 className="text-white font-bold text-base line-clamp-1">
                 {agentName}
               </h4>
-              <p className="text-white/80 text-xs mb-3">Agente inmobiliario</p>
+              <p className="text-white/80 text-xs mb-3">{t("agentLabel")}</p>
 
               {agentPhone ? (
                 <a
@@ -90,7 +95,7 @@ export default function PropertyCard({ property: rawProperty }: PropertyCardProp
                   {agentPhone}
                 </a>
               ) : (
-                <span className="text-white/70 text-xs">RE/MAX Viven</span>
+                <span className="text-white/70 text-xs">{t("fallbacks.defaultAgency")}</span>
               )}
             </div>
           </div>
@@ -100,6 +105,7 @@ export default function PropertyCard({ property: rawProperty }: PropertyCardProp
             className="md:hidden absolute bottom-4 right-4 bg-white/90 text-blue-600 p-2 rounded-full shadow-md z-10"
             onClick={() => setIsHovered(!isHovered)}
             type="button"
+            aria-label={t("actions.toggleAgentInfo")}
           >
             <Info size={18} />
           </button>
@@ -123,15 +129,15 @@ export default function PropertyCard({ property: rawProperty }: PropertyCardProp
           <div className="flex justify-between text-gray-700 text-sm">
             <div className="flex items-center">
               <Bed size={16} className="mr-1 text-gray-500" />
-              <span>{property.beds} hab.</span>
+              <span>{property.beds} {t("units.beds")}</span>
             </div>
             <div className="flex items-center">
               <Bath size={16} className="mr-1 text-gray-500" />
-              <span>{property.baths} baños</span>
+              <span>{property.baths} {t("units.baths")}</span>
             </div>
             <div className="flex items-center">
               <Maximize size={16} className="mr-1 text-gray-500" />
-              <span>{property.area} m²</span>
+              <span>{property.area} {t("units.area")}</span>
             </div>
           </div>
         </div>
@@ -142,7 +148,7 @@ export default function PropertyCard({ property: rawProperty }: PropertyCardProp
           href={`/propiedades/${property.id}`}
           className="block w-full text-center bg-gray-100 hover:bg-black hover:text-white text-gray-800 font-medium py-2 rounded-xl transition-colors duration-300 text-sm"
         >
-          Ver detalles
+          {t("actions.viewDetails")}
         </Link>
       </div>
     </div>

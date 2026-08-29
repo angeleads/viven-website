@@ -1,7 +1,10 @@
 import type React from "react"
-import { MapPin, Phone, Mail, Clock, MessageSquare, Users } from "lucide-react"
+import { MapPin, Phone, Mail, Clock } from "lucide-react"
+import { getTranslations } from "next-intl/server"
 
-export default function ContactInfo() {
+export default async function ContactInfo() {
+  const t = await getTranslations("contact.info")
+
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -9,7 +12,7 @@ export default function ContactInfo() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ContactCard
               icon={<Phone className="h-8 w-8 text-blue-600" />}
-              title="Llámanos"
+              title={t("callUs")}
               content={
                 <>
                   <p className="mb-2">
@@ -23,7 +26,7 @@ export default function ContactInfo() {
 
             <ContactCard
               icon={<Mail className="h-8 w-8 text-blue-600" />}
-              title="Escríbenos"
+              title={t("writeUs")}
               content={
                 <>
                   <p className="mb-2">
@@ -37,7 +40,7 @@ export default function ContactInfo() {
 
             <ContactCard
               icon={<MapPin className="h-8 w-8 text-blue-600" />}
-              title="Visítanos"
+              title={t("visitUs")}
               content={
                 <>
                   <p className="text-gray-700">
@@ -51,10 +54,10 @@ export default function ContactInfo() {
 
             <ContactCard
               icon={<Clock className="h-8 w-8 text-blue-600" />}
-              title="Horario"
+              title={t("schedule")}
               content={
                 <>
-                  <p className="mb-2 text-gray-700">Lunes a Jueves: 9:00 - 19:00 y Viernes: 8:00 - 15:00</p>
+                  <p className="mb-2 text-gray-700">{t("scheduleValue")}</p>
                 </>
               }
             />

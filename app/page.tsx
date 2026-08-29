@@ -1,6 +1,5 @@
-import Hero from "@/components/showcase/hero";
 import Navbar from "@/components/navbar";
-import PropertySection from "@/components/showcase/property-section";
+import HomePropertiesBlock from "@/components/showcase/home-properties-block";
 import ServicesSection from "@/components/showcase/services-section";
 import AppSection from "@/components/showcase/app-section";
 import RemaxStatsSection from "@/components/showcase/remax-stats-section";
@@ -12,8 +11,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Navbar />
-      <Hero />
-      <PropertySection />
+      <HomePropertiesBlock />
       <AppSection />
       <RemaxStatsSection />
       <ServicesSection />
