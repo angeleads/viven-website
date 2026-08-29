@@ -1,1 +1,3 @@
-export {default} from "../../invesion/page";
+export default function InvesionPage() {
+  return null;
+}
