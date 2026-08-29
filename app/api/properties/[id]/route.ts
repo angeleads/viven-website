@@ -92,7 +92,8 @@ export async function GET(
     };
 
     // Mapear con la lógica unificada
-    const propertyDetail = mapInmovillaToProperty(combinedRaw);
+    const rawLocale = request.nextUrl.searchParams.get("idioma") || "es";
+    const propertyDetail = mapInmovillaToProperty(combinedRaw, rawLocale);
     return NextResponse.json(propertyDetail, {
       headers: {
         "Cache-Control": "public, max-age=60, s-maxage=120, stale-while-revalidate=300",

@@ -159,17 +159,38 @@ export default function PropertyDetailPage({
   const agentEmail = agent?.email || "";
   const agentPhoto = agent?.photo || "";
 
-  const specDetails = [
+  const specDetails: Array<{ label: string; value: string | number }> = [
     { label: t("specs.reference"), value: property.reference },
     { label: t("specs.operationType"), value: property.operationType },
     { label: t("specs.propertyType"), value: property.propertyType || t("fallbacks.propertyType") },
     { label: t("specs.zoneCity"), value: property.location },
-    { label: t("specs.usefulArea"), value: property.usefulArea ? `${property.usefulArea} m²` : "-" },
-    { label: t("specs.builtArea"), value: property.builtArea ? `${property.builtArea} m²` : `${property.area} m²` },
-    { label: t("specs.condition"), value: property.conservation || t("fallbacks.notSpecified") },
-    { label: t("specs.bedrooms"), value: property.beds },
-    { label: t("specs.bathrooms"), value: property.baths },
-    { label: t("specs.distanceToSea"), value: property.distMar || "-" },
+    ...(property.usefulArea ? [{ label: t("specs.usefulArea"), value: `${property.usefulArea} m²` }] : []),
+    ...(property.builtArea ? [{ label: t("specs.builtArea"), value: `${property.builtArea} m²` }] : [{ label: t("specs.builtArea"), value: `${property.area} m²` }]),
+    ...(property.plotArea ? [{ label: t("specs.plotArea") || "Superficie Parcela", value: `${property.plotArea} m²` }] : []),
+    ...(property.terraceArea ? [{ label: t("specs.terraceArea") || "Superficie Terraza", value: `${property.terraceArea} m²` }] : []),
+    ...(property.conservation ? [{ label: t("specs.condition"), value: property.conservation }] : []),
+    ...(property.category === "residential" || property.beds > 0
+      ? [{ label: t("specs.bedrooms"), value: property.beds }]
+      : []),
+    ...(property.baths > 0 ? [{ label: t("specs.bathrooms"), value: property.baths }] : []),
+    ...(property.toilets ? [{ label: t("specs.toilets") || "Aseos", value: property.toilets }] : []),
+    ...(property.orientation ? [{ label: t("specs.orientation") || "Orientación", value: property.orientation }] : []),
+    ...(property.heating ? [{ label: t("specs.heating") || "Calefacción", value: property.heating }] : []),
+    ...(property.kitchenType ? [{ label: t("specs.kitchenType") || "Tipo de Cocina", value: property.kitchenType }] : []),
+    ...(property.floorType ? [{ label: t("specs.floorType") || "Tipo de Suelo", value: property.floorType }] : []),
+    ...(property.exteriorCarpentry ? [{ label: t("specs.exteriorCarpentry") || "Carpintería Exterior", value: property.exteriorCarpentry }] : []),
+    ...(property.interiorCarpentry ? [{ label: t("specs.interiorCarpentry") || "Carpintería Interior", value: property.interiorCarpentry }] : []),
+    ...(property.views ? [{ label: t("specs.views") || "Vistas", value: property.views }] : []),
+    ...(property.commercialActivity ? [{ label: t("specs.commercialActivity") || "Actividad Comercial", value: property.commercialActivity }] : []),
+    ...(property.hasSmokeVent ? [{ label: t("specs.smokeVent") || "Salida de Humos", value: "Sí" }] : []),
+    ...(property.floorNumber !== undefined ? [{ label: t("specs.floor") || "Planta", value: property.floorNumber }] : []),
+    ...(property.yearBuilt ? [{ label: t("specs.yearBuilt") || "Año Construcción", value: property.yearBuilt }] : []),
+    ...(property.communityFees ? [{ label: t("specs.communityFees") || "Gastos de Comunidad", value: `${property.communityFees} €/mes` }] : []),
+    ...(property.energyRating ? [{ label: t("specs.energyRating") || "Consumo Energía", value: property.energyRating }] : []),
+    ...(property.emissionsRating ? [{ label: t("specs.emissionsRating") || "Emisiones", value: property.emissionsRating }] : []),
+    ...(property.distMar ? [{ label: t("specs.distanceToSea"), value: property.distMar }] : []),
+    ...(property.transferPrice ? [{ label: t("specs.transferPrice") || "Precio Traspaso", value: `${property.transferPrice.toLocaleString(locale)} €` }] : []),
+    ...(property.rentalPrice ? [{ label: t("specs.rentalPrice") || "Precio Alquiler", value: `${property.rentalPrice.toLocaleString(locale)} €/mes` }] : []),
   ];
 
   const enabledCharacteristics = (property.characteristics || [])
@@ -213,11 +234,16 @@ export default function PropertyDetailPage({
           <div className="text-left md:text-right bg-white p-4 rounded-xl shadow-sm border border-gray-100 min-w-[220px]">
             <p className="text-sm text-gray-500 font-medium">{t("header.operationPrice")}</p>
             <p className="text-3xl font-black text-blue-600 flex items-center md:justify-end mt-0.5">
-              <Euro size={28} className="mr-1" />
+              {typeof property.price === "number" && <Euro size={28} className="mr-1" />}
               {typeof property.price === "number"
                 ? property.price.toLocaleString(locale)
                 : property.price}
             </p>
+            {property.rentalPrice && property.transferPrice && (
+              <p className="text-xs text-gray-600 font-medium mt-1">
+                + {property.rentalPrice.toLocaleString(locale)} €/mes {t("header.rentSuffix") || "alquiler"}
+              </p>
+            )}
           </div>
         </div>
 
@@ -262,23 +288,63 @@ export default function PropertyDetailPage({
               )}
             </div>
 
-            {/* Ficha técnica rápida */}
+            {/* Ficha técnica rápida adaptada a categoría */}
             <div className="grid grid-cols-3 gap-4 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center">
-              <div className="flex flex-col items-center py-2 border-r border-gray-100">
-                <Bed size={24} className="text-blue-600 mb-2" />
-                <span className="text-sm text-gray-500 font-medium">{t("quickSpecs.bedrooms")}</span>
-                <span className="text-lg font-bold text-gray-900 mt-0.5">{property.beds}</span>
-              </div>
-              <div className="flex flex-col items-center py-2 border-r border-gray-100">
-                <Bath size={24} className="text-blue-600 mb-2" />
-                <span className="text-sm text-gray-500 font-medium">{t("quickSpecs.bathrooms")}</span>
-                <span className="text-lg font-bold text-gray-900 mt-0.5">{property.baths}</span>
-              </div>
-              <div className="flex flex-col items-center py-2">
-                <Maximize size={24} className="text-blue-600 mb-2" />
-                <span className="text-sm text-gray-500 font-medium">{t("quickSpecs.area")}</span>
-                <span className="text-lg font-bold text-gray-900 mt-0.5">{property.area} m²</span>
-              </div>
+              {property.category === "commercial" ? (
+                <>
+                  <div className="flex flex-col items-center py-2 border-r border-gray-100">
+                    <Bath size={24} className="text-blue-600 mb-2" />
+                    <span className="text-sm text-gray-500 font-medium">{t("specs.toilets") || "Aseos"}</span>
+                    <span className="text-lg font-bold text-gray-900 mt-0.5">{property.toilets || property.baths || 1}</span>
+                  </div>
+                  <div className="flex flex-col items-center py-2 border-r border-gray-100">
+                    <Maximize size={24} className="text-blue-600 mb-2" />
+                    <span className="text-sm text-gray-500 font-medium">{t("quickSpecs.area")}</span>
+                    <span className="text-lg font-bold text-gray-900 mt-0.5">{property.area} m²</span>
+                  </div>
+                  <div className="flex flex-col items-center py-2">
+                    <Building size={24} className="text-blue-600 mb-2" />
+                    <span className="text-sm text-gray-500 font-medium">{t("specs.activity") || "Actividad"}</span>
+                    <span className="text-sm font-bold text-gray-900 mt-1 truncate max-w-[120px]">{property.commercialActivity || property.propertyType}</span>
+                  </div>
+                </>
+              ) : property.category === "land" ? (
+                <>
+                  <div className="flex flex-col items-center py-2 border-r border-gray-100">
+                    <Maximize size={24} className="text-blue-600 mb-2" />
+                    <span className="text-sm text-gray-500 font-medium">{t("specs.plotArea") || "Parcela"}</span>
+                    <span className="text-lg font-bold text-gray-900 mt-0.5">{property.plotArea || property.area} m²</span>
+                  </div>
+                  <div className="flex flex-col items-center py-2 border-r border-gray-100">
+                    <Building size={24} className="text-blue-600 mb-2" />
+                    <span className="text-sm text-gray-500 font-medium">{t("specs.propertyType")}</span>
+                    <span className="text-sm font-bold text-gray-900 mt-1">{property.propertyType}</span>
+                  </div>
+                  <div className="flex flex-col items-center py-2">
+                    <MapPin size={24} className="text-blue-600 mb-2" />
+                    <span className="text-sm text-gray-500 font-medium">{t("specs.city") || "Ciudad"}</span>
+                    <span className="text-lg font-bold text-gray-900 mt-0.5">{property.city || "-"}</span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex flex-col items-center py-2 border-r border-gray-100">
+                    <Bed size={24} className="text-blue-600 mb-2" />
+                    <span className="text-sm text-gray-500 font-medium">{t("quickSpecs.bedrooms")}</span>
+                    <span className="text-lg font-bold text-gray-900 mt-0.5">{property.beds}</span>
+                  </div>
+                  <div className="flex flex-col items-center py-2 border-r border-gray-100">
+                    <Bath size={24} className="text-blue-600 mb-2" />
+                    <span className="text-sm text-gray-500 font-medium">{t("quickSpecs.bathrooms")}</span>
+                    <span className="text-lg font-bold text-gray-900 mt-0.5">{property.baths}</span>
+                  </div>
+                  <div className="flex flex-col items-center py-2">
+                    <Maximize size={24} className="text-blue-600 mb-2" />
+                    <span className="text-sm text-gray-500 font-medium">{property.plotArea ? (t("specs.plotArea") || "Parcela") : t("quickSpecs.area")}</span>
+                    <span className="text-lg font-bold text-gray-900 mt-0.5">{property.plotArea ? `${property.plotArea} m²` : `${property.area} m²`}</span>
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Descripción */}
@@ -336,7 +402,7 @@ export default function PropertyDetailPage({
                       <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center mr-3 shrink-0">
                         <Check size={12} className="text-white stroke-[3]" />
                       </div>
-                      <span className="text-sm font-medium capitalize">{feature}</span>
+                      <span className="text-sm font-medium">{feature}</span>
                     </div>
                   ))}
                 </div>

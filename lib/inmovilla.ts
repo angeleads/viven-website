@@ -34,8 +34,8 @@ function clearExpiredCacheEntries() {
 export enum InmovillaIdioma {
   ESPANOL = 1,
   INGLES = 2,
-  FRANCES = 3,
-  CATALAN_VALENCIANO = 8,
+  FRANCES = 4,
+  CATALAN_VALENCIANO = 12,
 }
 
 export interface InmovillaConsulta {
@@ -65,12 +65,12 @@ export function parseInmovillaIdioma(value?: string | null): InmovillaIdioma {
     return InmovillaIdioma.INGLES;
   }
 
-  if (normalized === "3" || normalized === "fr" || normalized === "frances" || normalized === "francés") {
+  if (normalized === "4" || normalized === "fr" || normalized === "frances" || normalized === "francés") {
     return InmovillaIdioma.FRANCES;
   }
 
   if (
-    normalized === "8" ||
+    normalized === "12" ||
     normalized === "ca" ||
     normalized === "val" ||
     normalized === "cat" ||

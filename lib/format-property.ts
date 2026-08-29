@@ -1,14 +1,38 @@
 import type { Property, Agent, PropertyCharacteristic } from "@/types/property";
+import {
+  normalizeLocale,
+  getPropertyCategory,
+  getPropertyTypeName,
+  getOperationName,
+  getOrientationName,
+  getConservationName,
+  getHeatingName,
+  getFloorTypeName,
+  getKitchenTypeName,
+  getViewsName,
+  getExtCarpentryName,
+  getIntCarpentryName,
+  getCommercialActivityName,
+  parseXEntorno,
+} from "./inmovilla-dict";
 
-export function mapInmovillaToProperty(raw: any): Property {
+export function mapInmovillaToProperty(raw: any, locale?: string): Property {
   if (!raw) return {} as Property;
+
+  const normLocale = normalizeLocale(locale);
 
   const toBooleanFlag = (value: unknown): boolean => {
     if (typeof value === "boolean") return value;
     if (typeof value === "number") return value === 1;
     if (typeof value === "string") {
       const normalized = value.trim().toLowerCase();
-      return normalized === "1" || normalized === "true" || normalized === "si" || normalized === "sí";
+      return (
+        normalized === "1" ||
+        normalized === "true" ||
+        normalized === "si" ||
+        normalized === "sí" ||
+        normalized === "yes"
+      );
     }
     return false;
   };
@@ -16,10 +40,26 @@ export function mapInmovillaToProperty(raw: any): Property {
   const id = String(raw.id || raw.cod_ofer || raw.ref || Math.random());
   const reference = String(raw.reference || raw.ref || raw.cod_ofer || id);
 
-  // Título y Tipo
-  const propertyType = raw.nbtipo || raw.des_tipo || raw.tipo || "Inmueble";
-  const city = raw.ciudad || raw.pobla || raw.poblacion || "";
-  const zone = raw.zona || raw.des_zona || "";
+  // Categoría y Tipo de Inmueble
+  const propertyTypeCode = Number(raw.propertyTypeCode ?? raw.key_tipo ?? 0);
+  const category = raw.category || getPropertyCategory(propertyTypeCode);
+  const propertyType =
+    (propertyTypeCode > 0
+      ? getPropertyTypeName(
+          propertyTypeCode,
+          raw.nbtipo || raw.des_tipo || raw.tipo,
+          normLocale
+        )
+      : null) ||
+    raw.propertyType ||
+    getPropertyTypeName(
+      propertyTypeCode,
+      raw.nbtipo || raw.des_tipo || raw.tipo,
+      normLocale
+    );
+
+  const city = raw.city || raw.ciudad || raw.pobla || raw.poblacion || "";
+  const zone = raw.zone || raw.zona || raw.des_zona || "";
   const title =
     raw.title ||
     raw.tituloes ||
@@ -37,50 +77,195 @@ export function mapInmovillaToProperty(raw: any): Property {
     raw.locationDetail ||
     [raw.nomcalle || raw.calle, raw.numero].filter(Boolean).join(", ");
 
-  // Precio
-  const rawPrice =
-    raw.precioreal ??
-    raw.precioinmo ??
-    raw.preciotraspaso ??
-    raw.precioalq ??
-    raw.precio;
-  const price =
-    typeof raw.price === "number"
+  // Tipo de Operación
+  const operationTypeCode = Number(raw.operationTypeCode ?? raw.keyacci ?? 0);
+  let operationType =
+    (operationTypeCode > 0
+      ? getOperationName(operationTypeCode, raw.operationType, normLocale)
+      : null) ||
+    raw.operationType ||
+    getOperationName(operationTypeCode, raw.operationType, normLocale);
+
+  // Extracción exhaustiva de todos los campos de precio de Inmovilla
+  const agencyPriceNum = Number(raw.precioinmo ?? 0);
+  const basePriceNum = Number(
+    raw.precio !== undefined && raw.precio !== null && raw.precio !== ""
+      ? raw.precio
+      : typeof raw.price === "number"
       ? raw.price
-      : Number(rawPrice) || "Consulte";
+      : 0
+  );
+  const realPriceNum = Number(raw.precioreal ?? raw.preciopvp ?? 0);
+  const transferPriceNum = Number(raw.transferPrice ?? raw.preciotraspaso ?? 0);
+  const rentalPriceNum = Number(raw.rentalPrice ?? raw.precioalq ?? 0);
+  const vacationPriceNum = Number(raw.precioalqvacacional ?? raw.precioalqvaca ?? 0);
+  const isConsultPriceFlag = raw.aconsultar === "1" || raw.aconsultar === 1;
 
-  // Mapeo exacto según la tabla keyacci de Inmovilla
-  let operationType = "Venta";
-  const keyacci = Number(raw.keyacci);
+  // Detección de tipos comerciales de hostelería/negocios típicos de traspaso
+  const isHospitalityOrBusiness = [4499, 7799, 7899, 7999, 8299, 9899, 1299].includes(propertyTypeCode);
+  const isExplicitTransferOp = [3, 5, 6, 7, 18].includes(operationTypeCode);
+  const isExplicitRentOp = [2, 9, 16, 20].includes(operationTypeCode) || raw.tipomensual === "MES";
 
-  if (keyacci === 1) {
-    operationType = "Venta";
-  } else if (keyacci === 2) {
-    operationType = "Alquiler";
-  } else if (keyacci === 3) {
-    operationType = "Traspaso";
-  } else if (raw.operationType) {
-    operationType = raw.operationType;
-  } else if (Number(raw.preciotraspaso) > 0) {
-    operationType = "Traspaso";
-  } else if (Number(raw.precioalq) > 0 || raw.tipomensual === "MES") {
-    operationType = "Alquiler";
+  let price: number | string = "Consulte";
+  let transferPrice: number | undefined = undefined;
+  let rentalPrice: number | undefined = undefined;
+
+  if (
+    isExplicitTransferOp ||
+    (isHospitalityOrBusiness && transferPriceNum > 0) ||
+    (transferPriceNum > 0 && agencyPriceNum === 0 && basePriceNum === 0)
+  ) {
+    // 1. Caso Traspaso (Locales, Bares, Cafeterías o keyacci de traspaso)
+    price =
+      transferPriceNum > 0
+        ? transferPriceNum
+        : agencyPriceNum > 0
+        ? agencyPriceNum
+        : basePriceNum > 0
+        ? basePriceNum
+        : "Consulte";
+    transferPrice = transferPriceNum > 0 ? transferPriceNum : undefined;
+    rentalPrice = rentalPriceNum > 0 ? rentalPriceNum : undefined;
+
+    if (operationTypeCode === 0 || !isExplicitTransferOp) {
+      operationType = getOperationName(3, "Traspaso", normLocale);
+    }
+  } else if (
+    isExplicitRentOp ||
+    (rentalPriceNum > 0 && agencyPriceNum === 0 && basePriceNum === 0)
+  ) {
+    // 2. Caso Alquiler
+    price =
+      rentalPriceNum > 0
+        ? rentalPriceNum
+        : vacationPriceNum > 0
+        ? vacationPriceNum
+        : agencyPriceNum > 0
+        ? agencyPriceNum
+        : basePriceNum > 0
+        ? basePriceNum
+        : "Consulte";
+    rentalPrice =
+      typeof price === "number"
+        ? price
+        : rentalPriceNum > 0
+        ? rentalPriceNum
+        : undefined;
+
+    if (operationTypeCode === 0 && !isExplicitRentOp) {
+      operationType = getOperationName(2, "Alquiler", normLocale);
+    }
+  } else {
+    // 3. Caso Venta estándar (Masías 899, Chalets 499, Pisos 3399, Solares 3899, etc.)
+    if (agencyPriceNum > 0) {
+      price = agencyPriceNum;
+    } else if (basePriceNum > 0) {
+      price = basePriceNum;
+    } else if (realPriceNum > 0) {
+      price = realPriceNum;
+    } else if (transferPriceNum > 0) {
+      price = transferPriceNum;
+      transferPrice = transferPriceNum;
+    } else if (rentalPriceNum > 0) {
+      price = rentalPriceNum;
+      rentalPrice = rentalPriceNum;
+    } else if (typeof raw.price === "number" && raw.price > 0) {
+      price = raw.price;
+    } else {
+      price = "Consulte";
+    }
   }
 
-  // Medidas y Estancias
+  if (isConsultPriceFlag && price === "Consulte") {
+    price = "Consulte";
+  }
+
+  // Medidas y Estancias adaptadas
   const beds = Number(
-    raw.beds || raw.total_hab || raw.habdobles || raw.habitaciones || 0
+    raw.beds ?? raw.total_hab ?? raw.habdobles ?? raw.habitaciones ?? 0
   );
-  const baths = Number(
-    raw.baths || raw.banyos || raw.sumaseos || raw.aseos || 0
+  const baths = Number(raw.baths ?? raw.banyos ?? 0);
+  const toilets = Number(raw.toilets ?? raw.aseos ?? raw.sumaseos ?? 0);
+
+  const usefulArea = Number(raw.usefulArea ?? raw.m_utiles ?? raw.m_uties ?? 0);
+  const builtArea = Number(raw.builtArea ?? raw.m_cons ?? raw.area ?? 0);
+  const plotArea = Number(raw.plotArea ?? raw.m_parcela ?? 0);
+  const terraceArea = Number(raw.terraceArea ?? raw.m_terraza ?? 0);
+  const area = builtArea || usefulArea || plotArea;
+
+  // Orientación, conservación y características técnicas
+  const orientation =
+    raw.orientation ||
+    getOrientationName(raw.keyori, normLocale) ||
+    undefined;
+  const conservation =
+    raw.conservation ||
+    getConservationName(raw.conservacion, raw.nbconservacion, normLocale);
+  const heating =
+    raw.heating ||
+    getHeatingName(raw.keycalefa, normLocale) ||
+    undefined;
+  const floorType =
+    raw.floorType ||
+    getFloorTypeName(raw.keysuelo, normLocale) ||
+    undefined;
+  const kitchenType =
+    raw.kitchenType ||
+    getKitchenTypeName(raw.cocina_inde, normLocale) ||
+    undefined;
+  const views =
+    raw.views ||
+    getViewsName(raw.keyvista, normLocale) ||
+    undefined;
+  const interiorCarpentry =
+    raw.interiorCarpentry ||
+    getIntCarpentryName(raw.keycarpin, normLocale) ||
+    undefined;
+  const exteriorCarpentry =
+    raw.exteriorCarpentry ||
+    getExtCarpentryName(raw.keycarpinext, normLocale) ||
+    undefined;
+  const commercialActivity =
+    raw.commercialActivity ||
+    getCommercialActivityName(
+      raw.actividad_comercial ?? raw.actividadcomercial,
+      normLocale
+    ) ||
+    undefined;
+  const hasSmokeVent =
+    raw.hasSmokeVent !== undefined
+      ? Boolean(raw.hasSmokeVent)
+      : toBooleanFlag(raw.salida_humos);
+  const floorNumber = raw.floorNumber ?? raw.numplanta ?? raw.planta ?? undefined;
+  const yearBuilt =
+    raw.yearBuilt ??
+    (Number(raw.antiguedad || 0) > 1800 ? Number(raw.antiguedad) : undefined);
+  const communityFees =
+    raw.communityFees ??
+    (Number(raw.gastos_com || 0) > 0 ? Number(raw.gastos_com) : undefined);
+  const energyRating =
+    raw.energyRating ??
+    (raw.energialetra && raw.energialetra !== "0"
+      ? String(raw.energialetra).toUpperCase()
+      : undefined);
+  const emissionsRating =
+    raw.emissionsRating ??
+    (raw.emisionesletra && raw.emisionesletra !== "0"
+      ? String(raw.emisionesletra).toUpperCase()
+      : undefined);
+  const garagePlaces = Number(
+    raw.garagePlaces ?? raw.plaza_gara ?? raw.parking ?? raw.nplazasparking ?? 0
   );
-  const usefulArea = Number(raw.m_uties || 0);
-  const builtArea = Number(raw.m_cons || raw.area || 0);
-  const area = builtArea || usefulArea;
 
   // Distancia al mar formateada
-  let distMar: string | null = null;
-  if (raw.distmar !== undefined && raw.distmar !== null && raw.distmar !== "") {
+  let distMar: string | null = raw.distMar ?? null;
+  if (
+    !distMar &&
+    raw.distmar !== undefined &&
+    raw.distmar !== null &&
+    raw.distmar !== "" &&
+    Number(raw.distmar) > 0
+  ) {
     const meters = Number(raw.distmar);
     distMar = meters >= 1000 ? `${(meters / 1000).toFixed(1)} Km` : `${meters} m`;
   }
@@ -109,7 +294,7 @@ export function mapInmovillaToProperty(raw: any): Property {
   }
   if (images.length === 0) images.push("/placeholder.svg?height=600&width=800");
 
-  // Agente
+  // Agente asignado
   const extractedName =
     raw.agent?.name ||
     [raw.nombreagente || raw.nomagente, raw.apellidosagente || raw.apeagente]
@@ -118,6 +303,7 @@ export function mapInmovillaToProperty(raw: any): Property {
       .trim() ||
     (typeof raw.agente === "string" ? raw.agente : raw.agente?.nombre) ||
     raw.agencia ||
+    raw.agency ||
     "RE/MAX Viven";
 
   let extractedPhone = raw.agent?.phone || "";
@@ -151,145 +337,157 @@ export function mapInmovillaToProperty(raw: any): Property {
     phone: extractedPhone,
     email: extractedEmail,
     photo: extractedPhoto,
-  }; 
+  };
 
-  // Características y equipamiento
-  // const featuresSet = new Set<string>();
-
-  // if (raw.nbconservacion) featuresSet.add(raw.nbconservacion);
-  // if (Number(raw.muebles) === 1) featuresSet.add("Amueblado");
-  // if (Number(raw.ascensor) === 1) featuresSet.add("Ascensor");
-  // if (Number(raw.balcon) === 1) featuresSet.add("Balcón");
-  // if (Number(raw.terraza) === 1 || Number(raw.m_terraza) > 0) featuresSet.add("Terraza");
-  // if (Number(raw.piscina_com) === 1) featuresSet.add("Piscina Comunitaria");
-  // if (Number(raw.piscina_prop) === 1) featuresSet.add("Piscina Privada");
-  // if (Number(raw.parking) > 0 || Number(raw.plaza_gara) > 0) featuresSet.add("Parking Incluido");
-  // if (Number(raw.airecentral) === 1) featuresSet.add("Aire Acond. Central");
-  // else if (Number(raw.aire_con) === 1) featuresSet.add("Aire Acondicionado");
-  // if (Number(raw.calefacentral) === 1) featuresSet.add("Calefacción Central");
-  // else if (Number(raw.calefaccion) === 1) featuresSet.add("Calefacción");
-  // if (Number(raw.vistasalmar) === 1) featuresSet.add("Vistas al Mar");
-  // if (Number(raw.primera_line) === 1) featuresSet.add("Zona de Costa / 1ª Línea");
-  // if (Number(raw.vistasdespejadas) === 1) featuresSet.add("Vistas Despejadas");
-  // if (Number(raw.todoext) > 0) featuresSet.add("Exterior");
-  // if (Number(raw.tour_virtual) === 1) featuresSet.add("Tour Virtual");
-
-  // if (Array.isArray(raw.features)) {
-  //   raw.features.forEach((f: string) => featuresSet.add(f));
-  // }
-
-  const characteristicDefinitions: Array<{ key: string; label: string }> = [
-    { key: "adaptadominus", label: "Adaptado minusválidos" },
-    { key: "agua", label: "Agua" },
-    { key: "airecentral", label: "Aire central" },
-    { key: "aire_con", label: "Aire acondicionado" },
-    { key: "alarma", label: "Alarma" },
-    { key: "alarmaincendio", label: "Alarma de incendio" },
-    { key: "alarmarobo", label: "Alarma de robo" },
-    { key: "apartseparado", label: "Apartamento separado" },
-    { key: "arboles", label: "Árboles" },
-    { key: "arma_empo", label: "Armarios empotrados" },
-    { key: "ascensor", label: "Ascensor" },
-    { key: "autobuses", label: "Autobuses" },
-    { key: "balcon", label: "Balcón" },
-    { key: "bar", label: "Bar" },
-    { key: "barbacoa", label: "Barbacoa" },
-    { key: "bombafriocalor", label: "Bomba frío/calor" },
-    { key: "buhardilla", label: "Buhardilla" },
-    { key: "cajafuerte", label: "Caja fuerte" },
-    { key: "calefaccion", label: "Calefacción" },
-    { key: "calefacentral", label: "Calefacción central" },
-    { key: "centrico", label: "Céntrico" },
-    { key: "centros_comerciales", label: "Centros comerciales" },
-    { key: "centros_medicos", label: "Centros médicos" },
-    { key: "cerca_de_universidad", label: "Cerca de universidad" },
-    { key: "chimenea", label: "Chimenea" },
-    { key: "colegios", label: "Colegios" },
-    { key: "comunidadincluida", label: "Comunidad incluida" },
-    { key: "costa", label: "Costa" },
-    { key: "depoagua", label: "Depósito de agua" },
-    { key: "descalcificador", label: "Descalcificador" },
-    { key: "despensa", label: "Despensa" },
-    { key: "diafano", label: "Diáfano" },
-    { key: "esquina", label: "Esquina" },
-    { key: "exclu", label: "Exclusiva" },
-    { key: "galeria", label: "Galería" },
-    { key: "garajedoble", label: "Garaje doble" },
-    { key: "gasciudad", label: "Gas ciudad" },
-    { key: "gimnasio", label: "Gimnasio" },
-    { key: "golf", label: "Golf" },
-    { key: "habjuegos", label: "Habitación de juegos" },
-    { key: "haycartel", label: "Hay cartel" },
-    { key: "hidromasaje", label: "Hidromasaje" },
-    { key: "hilomusical", label: "Hilo musical" },
-    { key: "hospitales", label: "Hospitales" },
-    { key: "jacuzzi", label: "Jacuzzi" },
-    { key: "jardin", label: "Jardín" },
-    { key: "lavanderia", label: "Lavandería" },
-    { key: "linea_tlf", label: "Línea telefónica" },
-    { key: "luminoso", label: "Luminoso" },
-    { key: "luz", label: "Luz" },
-    { key: "metro", label: "Metro" },
-    { key: "mirador", label: "Mirador" },
-    { key: "montacargas", label: "Montacargas" },
-    { key: "montana", label: "Montaña" },
-    { key: "muebles", label: "Muebles" },
-    { key: "nodisponible", label: "No disponible" },
-    { key: "ojobuey", label: "Ojo de buey" },
-    { key: "opcioncompra", label: "Opción compra" },
-    { key: "parques", label: "Parques" },
-    { key: "patio", label: "Patio" },
-    { key: "pergola", label: "Pérgola" },
-    { key: "piscina_com", label: "Piscina comunitaria" },
-    { key: "piscina_prop", label: "Piscina privada" },
-    { key: "preinstaacc", label: "Preinstalación A/A" },
-    { key: "preinsthmusi", label: "Preinstalación hilo musical" },
-    { key: "primera_linea", label: "Primera línea" },
-    { key: "prospecto", label: "Prospecto" },
-    { key: "puertasauto", label: "Puertas automáticas" },
-    { key: "puerta_blin", label: "Puerta blindada" },
-    { key: "riegoauto", label: "Riego automático" },
-    { key: "rural", label: "Rural" },
-    { key: "satelite", label: "Satélite" },
-    { key: "sauna", label: "Sauna" },
-    { key: "solarium", label: "Solarium" },
-    { key: "sotano", label: "Sótano" },
-    { key: "supermercados", label: "Supermercados" },
-    { key: "tenis", label: "Tenis" },
-    { key: "teniscom", label: "Tenis comunitario" },
-    { key: "terraza", label: "Terraza" },
-    { key: "terrazaacris", label: "Terraza acristalada" },
-    { key: "tranvia", label: "Tranvía" },
-    { key: "trastero", label: "Trastero" },
-    { key: "tren", label: "Tren" },
-    { key: "trifasica", label: "Trifásica" },
-    { key: "tv", label: "TV" },
-    { key: "urbanizacion", label: "Urbanización" },
-    { key: "vallado", label: "Vallado" },
-    { key: "vestuarios", label: "Vestuarios" },
-    { key: "video_port", label: "Videoportero" },
-    { key: "vigilancia_24", label: "Vigilancia 24h" },
-    { key: "vistasalmar", label: "Vistas al mar" },
-    { key: "zonasinfantiles", label: "Zonas infantiles" },
-    { key: "zona_de_paso", label: "Zona de paso" },
+  const characteristicDefinitions: Array<{
+    key: string;
+    label: string;
+    getValue?: (r: any) => any;
+  }> = [
+    { key: "patio", label: "Patio", getValue: (r) => r.patio },
+    { key: "linea_tlf", label: "Línea Telefónica", getValue: (r) => r.linea_tlf ?? r.linea_telefono },
+    { key: "arma_empo", label: "Armarios Empotrados", getValue: (r) => r.arma_empo ?? r.armarios_empotrados },
+    { key: "buardilla", label: "Buhardilla", getValue: (r) => r.buardilla ?? r.buhardilla },
+    { key: "muebles", label: "Muebles", getValue: (r) => r.muebles },
+    { key: "calefaccion", label: "Calefacción", getValue: (r) => r.calefaccion },
+    { key: "calefacentral", label: "Calefacción Central", getValue: (r) => r.calefacentral },
+    { key: "aire_con", label: "Aire Acondicionado", getValue: (r) => r.aire_con ?? r.aireacondicionado },
+    { key: "airecentral", label: "Aire Central", getValue: (r) => r.airecentral },
+    { key: "luz", label: "Luz", getValue: (r) => r.luz },
+    { key: "agua", label: "Agua", getValue: (r) => r.agua },
+    { key: "gasciudad", label: "Gas Ciudad", getValue: (r) => r.gasciudad },
+    { key: "chimenea", label: "Chimenea", getValue: (r) => r.chimenea },
+    { key: "depoagua", label: "Deposito Agua", getValue: (r) => r.depoagua ?? r.deposito_agua },
+    { key: "barbacoa", label: "Barbacoa", getValue: (r) => r.barbacoa },
+    { key: "tv", label: "T.V.", getValue: (r) => r.tv },
+    { key: "apartseparado", label: "Apart. Separado", getValue: (r) => r.apartseparado ?? r.apartamento_separado },
+    { key: "todoext", label: "Exterior", getValue: (r) => r.todoext === 1 || r.todoext === 2 || r.todoext === "1" || r.todoext === "2" },
+    { key: "jardin", label: "Jardín", getValue: (r) => r.jardin },
+    { key: "bombafriocalor", label: "Bomba Frío Y Calor", getValue: (r) => r.bombafriocalor },
+    { key: "luminoso", label: "Luminoso", getValue: (r) => r.luminoso },
+    { key: "esquina", label: "Esquina", getValue: (r) => r.esquina },
+    { key: "vistasdespejadas", label: "Vistas Despejadas", getValue: (r) => r.vistasdespejadas },
+    { key: "parques", label: "Zonas Verdes", getValue: (r) => r.parques ?? r.zonasverdes },
+    { key: "urbanizacion", label: "Urbanización", getValue: (r) => r.urbanizacion },
+    { key: "arboles", label: "Arboles", getValue: (r) => r.arboles },
+    { key: "hospitales", label: "Hospitales", getValue: (r) => r.hospitales },
+    { key: "golf", label: "Golf", getValue: (r) => r.golf },
+    { key: "montana", label: "Montaña", getValue: (r) => r.montana },
+    { key: "costa", label: "Zona De Costa", getValue: (r) => r.costa },
+    { key: "colegios", label: "Colegios", getValue: (r) => r.colegios },
+    { key: "supermercados", label: "Supermercados", getValue: (r) => r.supermercados },
+    { key: "centrosalud", label: "Centros Médicos", getValue: (r) => r.centrosalud ?? r.centros_medicos },
+    { key: "centrico", label: "Céntrico", getValue: (r) => r.centrico },
+    { key: "centros_comerciales", label: "Centros Comerciales", getValue: (r) => r.centros_comerciales },
+    { key: "autobuses", label: "Autobuses", getValue: (r) => r.autobuses },
+    { key: "tren", label: "Tren", getValue: (r) => r.tren },
+    { key: "metro", label: "Metro", getValue: (r) => r.metro },
+    { key: "tranvia", label: "Tranvía", getValue: (r) => r.tranvia },
+    { key: "zonasinfantiles", label: "Zonas Infantiles", getValue: (r) => r.zonasinfantiles },
+    { key: "cerca_de_universidad", label: "Cerca de Universidad", getValue: (r) => r.cerca_de_universidad ?? r["Cerca de Universidad"] },
+    { key: "zona_de_paso", label: "Zona de Paso", getValue: (r) => r.zona_de_paso ?? r["zona de paso"] },
+    { key: "rural", label: "Rural", getValue: (r) => r.rural },
+    { key: "primera_linea", label: "Primera Línea", getValue: (r) => r.primera_linea ?? r.primera_line },
+    { key: "vistasalmar", label: "Vistas al Mar", getValue: (r) => r.vistasalmar },
+    { key: "piscina_prop", label: "Piscina Privada", getValue: (r) => r.piscina_prop ?? r.piscina_privada },
+    { key: "piscina_com", label: "Piscina Comunitaria", getValue: (r) => r.piscina_com },
+    { key: "parking", label: "Parking", getValue: (r) => r.parking ?? r.plaza_gara },
+    { key: "garajedoble", label: "Garaje Doble", getValue: (r) => r.garajedoble },
+    { key: "trastero", label: "Trastero", getValue: (r) => r.trastero },
+    { key: "ascensor", label: "Ascensor", getValue: (r) => r.ascensor },
+    { key: "montacargas", label: "Montacargas", getValue: (r) => r.montacargas },
+    { key: "puertasauto", label: "Puertas Automáticas", getValue: (r) => r.puertasauto },
+    { key: "puerta_blin", label: "Puerta Blindada", getValue: (r) => r.puerta_blin },
+    { key: "alarma", label: "Alarma", getValue: (r) => r.alarma },
+    { key: "alarmarobo", label: "Alarma de Robo", getValue: (r) => r.alarmarobo },
+    { key: "alarmaincendio", label: "Alarma de Incendio", getValue: (r) => r.alarmaincendio },
+    { key: "vigilancia_24", label: "Vigilancia 24h", getValue: (r) => r.vigilancia_24 },
+    { key: "cajafuerte", label: "Caja Fuerte", getValue: (r) => r.cajafuerte },
+    { key: "satelite", label: "Satélite", getValue: (r) => r.satelite },
+    { key: "jacuzzi", label: "Jacuzzi", getValue: (r) => r.jacuzzi },
+    { key: "sauna", label: "Sauna", getValue: (r) => r.sauna },
+    { key: "hidromasaje", label: "Hidromasaje", getValue: (r) => r.hidromasaje },
+    { key: "gimnasio", label: "Gimnasio", getValue: (r) => r.gimnasio },
+    { key: "tenis", label: "Tenis", getValue: (r) => r.tenis ?? r.teniscom },
+    { key: "balcon", label: "Balcón", getValue: (r) => r.balcon },
+    { key: "terraza", label: "Terraza", getValue: (r) => r.terraza },
+    { key: "terrazaacris", label: "Terraza Acristalada", getValue: (r) => r.terrazaacris },
+    { key: "solarium", label: "Solárium", getValue: (r) => r.solarium },
+    { key: "mirador", label: "Mirador", getValue: (r) => r.mirador },
+    { key: "pergola", label: "Pérgola", getValue: (r) => r.pergola },
+    { key: "sotano", label: "Sótano", getValue: (r) => r.sotano },
+    { key: "altillo", label: "Altillo", getValue: (r) => r.altillo },
+    { key: "despensa", label: "Despensa", getValue: (r) => r.despensa },
+    { key: "galeria", label: "Galería", getValue: (r) => r.galeria },
+    { key: "lavanderia", label: "Lavandería", getValue: (r) => r.lavanderia },
+    { key: "diafano", label: "Diáfano", getValue: (r) => r.diafano },
+    { key: "vallado", label: "Vallado", getValue: (r) => r.vallado },
+    { key: "riegoauto", label: "Riego Automático", getValue: (r) => r.riegoauto },
+    { key: "descalcificador", label: "Descalcificador", getValue: (r) => r.descalcificador },
+    { key: "hilomusical", label: "Hilo Musical", getValue: (r) => r.hilomusical ?? r.preinsthmusi },
+    { key: "preinstaacc", label: "Preinstalación A/A", getValue: (r) => r.preinstaacc },
+    { key: "trifasica", label: "Trifásica", getValue: (r) => r.trifasica },
+    { key: "video_port", label: "Videoportero", getValue: (r) => r.video_port },
+    { key: "electro", label: "Electrodomésticos", getValue: (r) => r.electro },
+    { key: "salida_humos", label: "Salida de Humos", getValue: (r) => r.salida_humos },
+    { key: "banyo_suite", label: "Baño en Suite", getValue: (r) => r.banyo_suite },
+    { key: "adaptadominus", label: "Adaptado Minusválidos", getValue: (r) => r.adaptadominus },
+    { key: "habjuegos", label: "Habitación de Juegos", getValue: (r) => r.habjuegos },
+    { key: "ojobuey", label: "Ojos de Buey", getValue: (r) => r.ojobuey },
+    { key: "vestuarios", label: "Vestuarios", getValue: (r) => r.vestuarios },
+    { key: "exclu", label: "Exclusiva", getValue: (r) => r.exclu ?? r.exclusiva },
+    { key: "opcioncompra", label: "Opción a Compra", getValue: (r) => r.opcioncompra },
+    { key: "comunidadincluida", label: "Comunidad Incluida", getValue: (r) => r.comunidadincluida },
   ];
 
-  const characteristics: PropertyCharacteristic[] = characteristicDefinitions.map(
-    ({ key, label }) => {
-      const sourceValue =
-        key === "primera_linea"
-          ? raw.primera_linea ?? raw.primera_line
-          : key === "exclu"
-          ? raw.exclu ?? raw.exclusiva
-          : raw[key];
-
+  const baseCharacteristics: PropertyCharacteristic[] =
+    characteristicDefinitions.map(({ key, label, getValue }) => {
+      const sourceValue = getValue ? getValue(raw) : raw[key];
       return {
         key,
         label,
         value: toBooleanFlag(sourceValue),
       };
+    });
+
+  // Integración de x_entorno oficial de Inmovilla
+  const xEntornoItems = parseXEntorno(raw, normLocale);
+  const xEntornoKeySet = new Set(xEntornoItems.map((item) => item.key));
+
+  const mergedCharacteristics: PropertyCharacteristic[] = baseCharacteristics.map(
+    (char) => {
+      if (xEntornoKeySet.has(char.key)) {
+        return {
+          ...char,
+          value: true,
+        };
+      }
+      return char;
     }
   );
+
+  const existingKeys = new Set(mergedCharacteristics.map((c) => c.key));
+  for (const item of xEntornoItems) {
+    if (!existingKeys.has(item.key)) {
+      mergedCharacteristics.push({
+        key: item.key,
+        label: item.label,
+        value: true,
+      });
+    }
+  }
+
+  const characteristics: PropertyCharacteristic[] =
+    raw.characteristics &&
+    Array.isArray(raw.characteristics) &&
+    raw.characteristics.length > 0 &&
+    typeof raw.characteristics[0].value === "boolean" &&
+    !raw.buardilla &&
+    !raw.todoext &&
+    !raw.vistasdespejadas &&
+    !raw.x_entorno
+      ? raw.characteristics
+      : mergedCharacteristics;
 
   return {
     id,
@@ -304,27 +502,49 @@ export function mapInmovillaToProperty(raw: any): Property {
     location,
     locationDetail,
     price,
+    transferPrice,
+    rentalPrice,
     image: images[0],
     images,
+    category,
     beds,
     baths,
+    toilets,
     area,
     usefulArea,
     builtArea,
+    plotArea,
+    terraceArea,
     propertyType,
-    conservation: raw.nbconservacion || "No especificado",
+    propertyTypeCode,
+    conservation,
+    orientation,
+    heating,
+    floorType,
+    kitchenType,
+    views,
+    interiorCarpentry,
+    exteriorCarpentry,
+    commercialActivity,
+    hasSmokeVent,
+    floorNumber,
+    yearBuilt,
+    communityFees,
+    energyRating,
+    emissionsRating,
+    garagePlaces,
     city,
     zone,
     distMar,
     operationType,
+    operationTypeCode,
     date: raw.date || raw.fechaact || raw.fecha || new Date().toISOString(),
-    //features: Array.from(featuresSet),
     characteristics,
     agency: raw.agency || raw.agencia || "RE/MAX Viven",
     agencyPhone: extractedPhone,
     agencyEmail: extractedEmail,
     agent,
     alarmarobo: toBooleanFlag(raw.alarmarobo),
-    descrip: raw.descrip || raw.descripciones || raw.observaciones || "",
+    descrip: raw.descripciones || "",
   };
 }

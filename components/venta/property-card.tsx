@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { Bed, Bath, Maximize, Euro, Phone, Info, User } from "lucide-react";
+import { Bed, Bath, Maximize, Euro, Phone, Info, User, Store, Trees, Car } from "lucide-react";
 import type { Property } from "@/types/property";
 import { mapInmovillaToProperty } from "@/lib/format-property";
 import { useLocale, useTranslations } from "next-intl";
@@ -17,8 +17,8 @@ export default function PropertyCard({ property: rawProperty }: PropertyCardProp
   const locale = useLocale();
   const [isHovered, setIsHovered] = useState(false);
 
-  // Mapeo seguro dinámico
-  const property = mapInmovillaToProperty(rawProperty);
+  // Mapeo seguro dinámico pasando el locale actual
+  const property = mapInmovillaToProperty(rawProperty, locale);
 
   const formattedPrice =
     typeof property.price === "number"
@@ -52,13 +52,18 @@ export default function PropertyCard({ property: rawProperty }: PropertyCardProp
           </div>
 
           {property.operationType && (
-            <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider z-10">
+            <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider z-10 shadow-sm">
               {property.operationType}
             </div>
           )}
 
-          <div className="absolute top-4 right-4 bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full z-10">
-            {formattedPrice} €
+          <div className="absolute top-4 right-4 bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full z-10 shadow-sm">
+            {formattedPrice}{typeof property.price === "number" ? " €" : ""}
+            {property.rentalPrice && property.transferPrice && (
+              <span className="text-[10px] block text-white/90 font-normal">
+                + {property.rentalPrice.toLocaleString(locale === "ca" ? "ca-ES" : locale === "en" ? "en-US" : locale === "fr" ? "fr-FR" : "es-ES")} €/mes
+              </span>
+            )}
           </div>
 
           {/* Overlay del Agente en Hover */}
@@ -116,29 +121,67 @@ export default function PropertyCard({ property: rawProperty }: PropertyCardProp
             <h3 className="text-lg font-bold text-gray-900 hover:text-blue-600 transition-colors line-clamp-1">
               {property.title}
             </h3>
-            <p className="text-lg font-bold text-blue-600 whitespace-nowrap flex items-center">
-              <Euro size={18} className="inline mr-1" />
-              {formattedPrice}
-            </p>
           </div>
 
           <p className="text-gray-600 mb-4 line-clamp-1 text-sm">
             {property.location}
           </p>
 
-          <div className="flex justify-between text-gray-700 text-sm">
-            <div className="flex items-center">
-              <Bed size={16} className="mr-1 text-gray-500" />
-              <span>{property.beds} {t("units.beds")}</span>
-            </div>
-            <div className="flex items-center">
-              <Bath size={16} className="mr-1 text-gray-500" />
-              <span>{property.baths} {t("units.baths")}</span>
-            </div>
-            <div className="flex items-center">
-              <Maximize size={16} className="mr-1 text-gray-500" />
-              <span>{property.area} {t("units.area")}</span>
-            </div>
+          {/* Especificaciones dinámicas según Categoría */}
+          <div className="flex justify-between text-gray-700 text-sm border-t border-gray-100 pt-3">
+            {property.category === "commercial" ? (
+              <>
+                <div className="flex items-center">
+                  <Bath size={16} className="mr-1 text-gray-500" />
+                  <span>{property.toilets || property.baths || 1} {t("units.baths") || "Aseos"}</span>
+                </div>
+                <div className="flex items-center">
+                  <Maximize size={16} className="mr-1 text-gray-500" />
+                  <span>{property.area} {t("units.area")}</span>
+                </div>
+                <div className="flex items-center">
+                  <Store size={16} className="mr-1 text-gray-500" />
+                  <span className="truncate max-w-[100px]">{property.commercialActivity || property.propertyType}</span>
+                </div>
+              </>
+            ) : property.category === "land" ? (
+              <>
+                <div className="flex items-center">
+                  <Trees size={16} className="mr-1 text-gray-500" />
+                  <span>{property.plotArea || property.area} {t("units.area")}</span>
+                </div>
+                <div className="flex items-center">
+                  <Maximize size={16} className="mr-1 text-gray-500" />
+                  <span>{property.propertyType}</span>
+                </div>
+              </>
+            ) : property.category === "garage_storage" ? (
+              <>
+                <div className="flex items-center">
+                  <Car size={16} className="mr-1 text-gray-500" />
+                  <span>{property.garagePlaces || 1} {t("units.places") || "Plaza(s)"}</span>
+                </div>
+                <div className="flex items-center">
+                  <Maximize size={16} className="mr-1 text-gray-500" />
+                  <span>{property.area} {t("units.area")}</span>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center">
+                  <Bed size={16} className="mr-1 text-gray-500" />
+                  <span>{property.beds} {t("units.beds")}</span>
+                </div>
+                <div className="flex items-center">
+                  <Bath size={16} className="mr-1 text-gray-500" />
+                  <span>{property.baths} {t("units.baths")}</span>
+                </div>
+                <div className="flex items-center">
+                  <Maximize size={16} className="mr-1 text-gray-500" />
+                  <span>{property.area} {t("units.area")}</span>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

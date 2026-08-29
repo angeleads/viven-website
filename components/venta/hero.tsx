@@ -91,6 +91,16 @@ export default function Hero({
                 >
                   {t("tabs.rent")}
                 </button>
+                <button
+                  type="button"
+                  onClick={() => handleOperationChange("traspaso")}
+                  className={`px-6 py-2 text-sm font-semibold rounded-xl transition-all duration-300 ease-in-out active:scale-95 ${filters.operation === "traspaso"
+                      ? "bg-white text-blue-900 shadow-lg scale-100"
+                      : "text-white/80 hover:text-white hover:bg-white/10"
+                    }`}
+                >
+                  {t("tabs.transfer") || "Traspaso"}
+                </button>
               </div>
             </div>
 

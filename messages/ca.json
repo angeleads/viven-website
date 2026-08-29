@@ -619,7 +619,8 @@
       "tabs": {
         "all": "Tots",
         "sale": "Venda",
-        "rent": "Lloguer"
+        "rent": "Lloguer",
+        "transfer": "Traspàs"
       },
       "filters": {
         "search": {
@@ -751,9 +752,30 @@
         "zoneCity": "Zona / Ciutat",
         "usefulArea": "Superfície útil",
         "builtArea": "Superfície construïda",
+        "plotArea": "Superfície Parcel·la",
+        "terraceArea": "Superfície Terrassa",
         "condition": "Conservació",
         "bedrooms": "Habitacions",
         "bathrooms": "Banys",
+        "toilets": "Lavabos / Aseos",
+        "orientation": "Orientació",
+        "heating": "Calefacció",
+        "kitchenType": "Tipus de Cuina",
+        "floorType": "Tipus de Sòl",
+        "exteriorCarpentry": "Fusteria Exterior",
+        "interiorCarpentry": "Fusteria Interior",
+        "views": "Vistes",
+        "commercialActivity": "Activitat Comercial",
+        "smokeVent": "Sortida de Fums",
+        "floor": "Planta",
+        "yearBuilt": "Any Construcció",
+        "communityFees": "Despeses de Comunitat",
+        "energyRating": "Consum d'Energia",
+        "emissionsRating": "Emissions",
+        "transferPrice": "Preu Traspàs",
+        "rentalPrice": "Preu Lloguer",
+        "activity": "Activitat",
+        "city": "Ciutat",
         "distanceToSea": "Distància al mar"
       },
       "form": {

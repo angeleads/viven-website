@@ -619,7 +619,8 @@
       "tabs": {
         "all": "Todos",
         "sale": "Venta",
-        "rent": "Alquiler"
+        "rent": "Alquiler",
+        "transfer": "Traspaso"
       },
       "filters": {
         "search": {
@@ -751,9 +752,30 @@
         "zoneCity": "Zona / Ciudad",
         "usefulArea": "Superficie Útil",
         "builtArea": "Superficie Construida",
+        "plotArea": "Superficie Parcela",
+        "terraceArea": "Superficie Terraza",
         "condition": "Conservación",
         "bedrooms": "Habitaciones",
         "bathrooms": "Baños",
+        "toilets": "Aseos",
+        "orientation": "Orientación",
+        "heating": "Calefacción",
+        "kitchenType": "Tipo de Cocina",
+        "floorType": "Tipo de Suelo",
+        "exteriorCarpentry": "Carpintería Exterior",
+        "interiorCarpentry": "Carpintería Interior",
+        "views": "Vistas",
+        "commercialActivity": "Actividad Comercial",
+        "smokeVent": "Salida de Humos",
+        "floor": "Planta",
+        "yearBuilt": "Año Construcción",
+        "communityFees": "Gastos de Comunidad",
+        "energyRating": "Consumo Energía",
+        "emissionsRating": "Emisiones",
+        "transferPrice": "Precio Traspaso",
+        "rentalPrice": "Precio Alquiler",
+        "activity": "Actividad",
+        "city": "Ciudad",
         "distanceToSea": "Distancia al mar"
       },
       "form": {

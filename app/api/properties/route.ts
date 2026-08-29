@@ -37,7 +37,10 @@ export async function GET(request: NextRequest) {
       (item: any) => item && typeof item === "object" && !("posicion" in item)
     );
 
-    const propiedades = realProperties.map(mapInmovillaToProperty);
+    const rawLocale = params.get("idioma") || "es";
+    const propiedades = realProperties.map((item: any) =>
+      mapInmovillaToProperty(item, rawLocale)
+    );
     return NextResponse.json(propiedades, {
       headers: {
         "Cache-Control": "public, max-age=60, s-maxage=120, stale-while-revalidate=300",

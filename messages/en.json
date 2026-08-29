@@ -619,7 +619,8 @@
       "tabs": {
         "all": "All",
         "sale": "Sale",
-        "rent": "Rent"
+        "rent": "Rent",
+        "transfer": "Transfer"
       },
       "filters": {
         "search": {
@@ -751,9 +752,30 @@
         "zoneCity": "Area / City",
         "usefulArea": "Usable area",
         "builtArea": "Built area",
+        "plotArea": "Plot Area",
+        "terraceArea": "Terrace Area",
         "condition": "Condition",
         "bedrooms": "Bedrooms",
         "bathrooms": "Bathrooms",
+        "toilets": "Toilets",
+        "orientation": "Orientation",
+        "heating": "Heating",
+        "kitchenType": "Kitchen Type",
+        "floorType": "Floor Type",
+        "exteriorCarpentry": "Exterior Carpentry",
+        "interiorCarpentry": "Interior Carpentry",
+        "views": "Views",
+        "commercialActivity": "Commercial Activity",
+        "smokeVent": "Smoke Vent",
+        "floor": "Floor",
+        "yearBuilt": "Year Built",
+        "communityFees": "Community Fees",
+        "energyRating": "Energy Rating",
+        "emissionsRating": "Emissions Rating",
+        "transferPrice": "Transfer Price",
+        "rentalPrice": "Rental Price",
+        "activity": "Activity",
+        "city": "City",
         "distanceToSea": "Distance to sea"
       },
       "form": {

@@ -55,10 +55,37 @@ export function filterProperties(properties: Property[], filters: FilterState): 
   if (!Array.isArray(properties)) return [];
 
   return properties.filter((property) => {
-    // 1. Operation filter (Venta / Alquiler)
+    // 1. Operation filter (Venta / Alquiler / Traspaso)
     if (filters.operation) {
-      const propOp = property.operationType?.toLowerCase();
-      if (propOp && propOp !== filters.operation.toLowerCase()) {
+      const opFilter = filters.operation.toLowerCase();
+      const propOp = (property.operationType || "").toLowerCase();
+      const opCode = property.operationTypeCode;
+
+      if (opFilter === "traspaso") {
+        const isTransfer =
+          propOp.includes("traspas") ||
+          propOp.includes("transfer") ||
+          propOp.includes("cession") ||
+          [3, 5, 6, 7, 18].includes(opCode || 0) ||
+          (property.transferPrice !== undefined && property.transferPrice > 0);
+        if (!isTransfer) return false;
+      } else if (opFilter === "alquiler") {
+        const isRent =
+          (propOp.includes("alquiler") ||
+            propOp.includes("lloguer") ||
+            propOp.includes("rent") ||
+            propOp.includes("louer")) &&
+          !propOp.includes("traspas");
+        if (!isRent && ![2, 9, 16, 20].includes(opCode || 0)) return false;
+      } else if (opFilter === "venta") {
+        const isSale =
+          (propOp.includes("venta") ||
+            propOp.includes("venda") ||
+            propOp.includes("sale") ||
+            propOp.includes("vendre")) &&
+          !propOp.includes("traspas");
+        if (!isSale && ![1, 13, 14].includes(opCode || 0)) return false;
+      } else if (propOp && !propOp.includes(opFilter)) {
         return false;
       }
     }
