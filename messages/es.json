@@ -506,28 +506,64 @@
       "linkedinProfile": "Perfil de LinkedIn",
       "members": {
         "cesar": {
-          "position": "Fundador y CEO",
-          "description": "Algunas personas quieren que algo ocurra, otras sueñan con que pase, otras hacen que suceda"
+          "position": "Broker - CEO VIVEN",
+          "description": "«Algunas personas quieren que algo ocurra, otras sueñan con que pase, otras hacen que suceda». – Michael Jordan"
         },
         "merche": {
-          "position": "Subdirectora y responsable de equipo de Administración de Fincas",
-          "description": "Especialista en comercialización de propiedades de lujo, Merche lidera el equipo de agentes asociados de RE/MAX VIVEN."
+          "position": "Administradora",
+          "description": "Subdirectora y responsable del equipo de Administración de Comunidades."
         },
         "duglaiska": {
-          "position": "Agente comercial",
-          "description": "Experto en gestión patrimonial, Miguel ha revolucionado la administración de comunidades con un enfoque transparente y eficiente."
+          "position": "Agente asociado",
+          "description": "Agente asociado."
         },
-        "isabel": {
-          "position": "Directora financiera",
-          "description": "Con formación en finanzas y experiencia en el sector inmobiliario, Laura gestiona la estabilidad económica de Viven."
+        "michel": {
+          "position": "Responsable de reclutamiento",
+          "description": "Agente asociado."
         },
-        "maria": {
-          "position": "Director de tecnología",
-          "description": "Responsable de la implementación de soluciones tecnológicas que mejoran la eficiencia y transparencia en todos los servicios."
+        "agathaJose": {
+          "position": "Agente asociado",
+          "description": "Agente asociado."
         },
-        "fran": {
-          "position": "Directora de marketing",
-          "description": "Especialista en marketing digital y comunicación, Elena desarrolla estrategias para posicionar la marca Viven en el mercado."
+        "ingo": {
+          "position": "Agente asociado",
+          "description": "Cuidados inmobiliarios"
+        },
+        "joseAntonio": {
+          "position": "Agente asociado",
+          "description": "Agente asociado."
+        },
+        "yuri": {
+          "position": "Agente asociado",
+          "description": "Calafell - Vendrell - Baix Penedès"
+        },
+        "luis": {
+          "position": "Agente asociado",
+          "description": "Cunit - Cubelles - Vilanova i la Geltrú"
+        },
+        "igor": {
+          "position": "Asesor inmobiliario",
+          "description": "Agente asociado."
+        },
+        "xavier": {
+          "position": "Agente asociado",
+          "description": "Agente asociado."
+        },
+        "pepi": {
+          "position": "Agente asociado",
+          "description": "Agente asociado."
+        },
+        "jorge": {
+          "position": "Agente asociado",
+          "description": "Vilanova i la Geltrú"
+        },
+        "lorena": {
+          "position": "Agente asociado",
+          "description": "Agente asociado."
+        },
+        "pilar": {
+          "position": "Recepción",
+          "description": "Recepción y atención al cliente."
         }
       }
     },

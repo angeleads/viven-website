@@ -506,28 +506,64 @@
       "linkedinProfile": "LinkedIn profile",
       "members": {
         "cesar": {
-          "position": "Founder and CEO",
-          "description": "Some people want things to happen, others dream of it, and others make it happen"
+          "position": "Broker - CEO VIVEN",
+          "description": "“Some people want things to happen, others dream of it, and others make it happen.” – Michael Jordan"
         },
         "merche": {
-          "position": "Deputy Director and Head of Community Management Team",
-          "description": "Specialist in luxury property commercialization, Merche leads the RE/MAX VIVEN associate agents team."
+          "position": "Administrator",
+          "description": "Deputy Director and head of the Community Management team."
         },
         "duglaiska": {
-          "position": "Sales agent",
-          "description": "An expert in asset management, Miguel has transformed community management with a transparent and efficient approach."
+          "position": "Associate agent",
+          "description": "Associate agent."
         },
-        "isabel": {
-          "position": "Chief Financial Officer",
-          "description": "With training in finance and real estate sector experience, Laura manages Viven's financial stability."
+        "michel": {
+          "position": "Recruitment Manager",
+          "description": "Associate agent."
         },
-        "maria": {
-          "position": "Technology Director",
-          "description": "Responsible for implementing technological solutions that improve efficiency and transparency across all services."
+        "agathaJose": {
+          "position": "Associate agent",
+          "description": "Associate agent."
         },
-        "fran": {
-          "position": "Marketing Director",
-          "description": "Specialist in digital marketing and communication, Elena develops strategies to position the Viven brand in the market."
+        "ingo": {
+          "position": "Associate agent",
+          "description": "Real estate care services"
+        },
+        "joseAntonio": {
+          "position": "Associate agent",
+          "description": "Associate agent."
+        },
+        "yuri": {
+          "position": "Associate agent",
+          "description": "Calafell - Vendrell - Baix Penedès"
+        },
+        "luis": {
+          "position": "Associate agent",
+          "description": "Cunit - Cubelles - Vilanova i la Geltrú"
+        },
+        "igor": {
+          "position": "Real estate advisor",
+          "description": "Associate agent."
+        },
+        "xavier": {
+          "position": "Associate agent",
+          "description": "Associate agent."
+        },
+        "pepi": {
+          "position": "Associate agent",
+          "description": "Associate agent."
+        },
+        "jorge": {
+          "position": "Associate agent",
+          "description": "Vilanova i la Geltrú"
+        },
+        "lorena": {
+          "position": "Associate agent",
+          "description": "Associate agent."
+        },
+        "pilar": {
+          "position": "Reception",
+          "description": "Reception and customer support."
         }
       }
     },

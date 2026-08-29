@@ -506,28 +506,64 @@
       "linkedinProfile": "Perfil de LinkedIn",
       "members": {
         "cesar": {
-          "position": "Fundador i CEO",
-          "description": "Algunes persones volen que alguna cosa passi, altres somien que passi, i altres fan que passi"
+          "position": "Broker - CEO VIVEN",
+          "description": "«Algunes persones volen que alguna cosa passi, altres somien que passi, i altres fan que passi». – Michael Jordan"
         },
         "merche": {
-          "position": "Subdirectora i responsable d'equip d'Administració de Finques",
-          "description": "Especialista en comercialització de propietats de luxe, Merche lidera l'equip d'agents associats de RE/MAX VIVEN."
+          "position": "Administradora",
+          "description": "Subdirectora i responsable de l'equip d'Administració de Comunitats."
         },
         "duglaiska": {
-          "position": "Agent comercial",
-          "description": "Expert en gestió patrimonial, Miguel ha revolucionat l'administració de comunitats amb un enfocament transparent i eficient."
+          "position": "Agent associat",
+          "description": "Agent associat."
         },
-        "isabel": {
-          "position": "Directora financera",
-          "description": "Amb formació en finances i experiència en el sector immobiliari, Laura gestiona l'estabilitat econòmica de Viven."
+        "michel": {
+          "position": "Responsable de reclutament",
+          "description": "Agent associat."
         },
-        "maria": {
-          "position": "Director de tecnologia",
-          "description": "Responsable de la implementació de solucions tecnològiques que milloren l'eficiència i la transparència en tots els serveis."
+        "agathaJose": {
+          "position": "Agent associat",
+          "description": "Agent associat."
         },
-        "fran": {
-          "position": "Directora de màrqueting",
-          "description": "Especialista en màrqueting digital i comunicació, Elena desenvolupa estratègies per posicionar la marca Viven al mercat."
+        "ingo": {
+          "position": "Agent associat",
+          "description": "Cures immobiliàries"
+        },
+        "joseAntonio": {
+          "position": "Agent associat",
+          "description": "Agent associat."
+        },
+        "yuri": {
+          "position": "Agent associat",
+          "description": "Calafell - Vendrell - Baix Penedès"
+        },
+        "luis": {
+          "position": "Agent associat",
+          "description": "Cunit - Cubelles - Vilanova i la Geltrú"
+        },
+        "igor": {
+          "position": "Assessor immobiliari",
+          "description": "Agent associat."
+        },
+        "xavier": {
+          "position": "Agent associat",
+          "description": "Agent associat."
+        },
+        "pepi": {
+          "position": "Agent associat",
+          "description": "Agent associat."
+        },
+        "jorge": {
+          "position": "Agent associat",
+          "description": "Vilanova i la Geltrú"
+        },
+        "lorena": {
+          "position": "Agent associat",
+          "description": "Agent associat."
+        },
+        "pilar": {
+          "position": "Recepció",
+          "description": "Recepció i atenció al client."
         }
       }
     },

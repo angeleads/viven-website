@@ -22,29 +22,6 @@ interface HeroProps {
   loading?: boolean;
 }
 
-// Propiedad por defecto si la API está vacía o fallase (Garantiza que SIEMPRE se muestre algo)
-const DEFAULT_FEATURED: Property = {
-  id: "featured-default",
-  reference: "VIVEN-EXCLUSIV",
-  title: "",
-  description: "",
-  location: "",
-  locationDetail: "",
-  price: 650000,
-  image: "/pictures/venta-backround.png",
-  images: ["/pictures/venta-backround.png"],
-  beds: 4,
-  baths: 3,
-  area: 165,
-  operationType: "",
-  date: new Date().toISOString(),
-  features: [],
-  agency: "RE/MAX Viven",
-  agencyPhone: "",
-  agencyEmail: "",
-  agent: { name: "RE/MAX Viven", phone: "", email: "", photo: "" },
-};
-
 // Función para calcular la propiedad con mayor precio
 function getMostExpensive(list: Property[]): Property | null {
   if (!Array.isArray(list) || list.length === 0) return null;
@@ -117,23 +94,24 @@ export default function Hero({
   }, [propProperty, propLoading, locale]);
 
   // Selección final de la propiedad a renderizar
-  const activeProperty = propProperty || fetchedProperty || DEFAULT_FEATURED;
+  const activeProperty = propProperty || fetchedProperty || null;
   const isLoading = propLoading !== undefined ? propLoading : internalLoading;
+  const shouldShowFeaturedSection = Boolean(activeProperty);
 
   // Extraer valores formateados
-  const title = activeProperty.title || t("fallback.title");
-  const location = activeProperty.location || t("fallback.location");
-  const beds = activeProperty.beds ?? 0;
-  const baths = activeProperty.baths ?? 0;
-  const area = activeProperty.area ?? 0;
-  const formattedPrice = formatPrice(activeProperty.price, locale, t("fallback.consultPrice"));
+  const title = activeProperty?.title || t("fallback.title");
+  const location = activeProperty?.location || t("fallback.location");
+  const beds = activeProperty?.beds ?? 0;
+  const baths = activeProperty?.baths ?? 0;
+  const area = activeProperty?.area ?? 0;
+  const formattedPrice = formatPrice(activeProperty?.price, locale, t("fallback.consultPrice"));
 
   const imageUrl =
-    activeProperty.image ||
-    activeProperty.images?.[0] ||
+    activeProperty?.image ||
+    activeProperty?.images?.[0] ||
     "/pictures/venta-backround.png";
 
-  const propertyLink = activeProperty.id && activeProperty.id !== "featured-default"
+  const propertyLink = activeProperty?.id
     ? `/propiedades/${activeProperty.id}`
     : "/venta";
 
@@ -160,7 +138,7 @@ export default function Hero({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* COLUMNA IZQUIERDA (7 columnas) */}
-          <div className="lg:col-span-7 space-y-8 text-left mt-4 md:mt-0">
+          <div className={`${shouldShowFeaturedSection ? "lg:col-span-7" : "lg:col-span-12"} space-y-8 text-left mt-4 md:mt-0`}>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs md:text-sm font-medium shadow-inner">
               <span>{t("badge")}</span>
             </div>
@@ -194,7 +172,7 @@ export default function Hero({
             </div>
 
             {/* Métricas */}
-            <div className="pt-6 border-t border-white/15 grid grid-cols-3 gap-4">
+            <div className="pt-6 border-t border-white/15 grid md:grid-cols-3 gap-4">
               <div className="flex items-center gap-3">
                 <div className="p-2.5 rounded-xl bg-blue-500/20 border border-blue-400/30">
                   <Building2 className="w-5 h-5 text-blue-400" />
@@ -228,6 +206,7 @@ export default function Hero({
           </div>
 
           {/* COLUMNA DERECHA: Tarjeta de Inmueble Más Caro de la API (5 columnas) */}
+          {shouldShowFeaturedSection && (
           <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
             
             {isLoading ? (
@@ -270,7 +249,7 @@ export default function Hero({
                 <div className="space-y-3 px-1 text-white">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-medium text-sky-300 uppercase tracking-wider">
-                      {activeProperty.operationType || t("card.defaultOperation")} · {t("card.referenceShort")} {activeProperty.reference}
+                      {activeProperty?.operationType || t("card.defaultOperation")} · {t("card.referenceShort")} {activeProperty?.reference ?? "-"}
                     </span>
                     <div className="flex items-center gap-1 text-amber-400 text-xs font-semibold">
                       <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
@@ -341,6 +320,7 @@ export default function Hero({
             </div>
 
           </div>
+          )}
 
         </div>
       </div>
