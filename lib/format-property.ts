@@ -489,16 +489,42 @@ export function mapInmovillaToProperty(raw: any, locale?: string): Property {
       ? raw.characteristics
       : mergedCharacteristics;
 
+  const cleanDescription = ((): string => {
+    let text = "";
+    if (normLocale === "en") {
+      text = raw.descripcionen || raw.descripen || "";
+    } else if (normLocale === "ca") {
+      text = raw.descripcionca || raw.descripca || "";
+    } else if (normLocale === "fr") {
+      text = raw.descripcionfr || raw.descripfr || "";
+    }
+
+    if (!text) {
+      text =
+        raw.descripciones ||
+        raw.description ||
+        raw.descripcion ||
+        raw.descrip ||
+        raw.observaciones ||
+        "";
+    }
+
+    if (!text) return "Sin descripción disponible.";
+
+    return text
+      .replace(/~{2,}/g, "\n\n")
+      .replace(/~/g, "\n\n")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+  })();
+
   return {
     id,
     reference,
     title,
-    description:
-      raw.description ||
-      raw.descripciones ||
-      raw.descripcion ||
-      raw.observaciones ||
-      "Sin descripción disponible.",
+    description: cleanDescription,
+    descripciones: cleanDescription,
+    descrip: cleanDescription,
     location,
     locationDetail,
     price,
@@ -545,6 +571,5 @@ export function mapInmovillaToProperty(raw: any, locale?: string): Property {
     agencyEmail: extractedEmail,
     agent,
     alarmarobo: toBooleanFlag(raw.alarmarobo),
-    descrip: raw.descripciones || "",
   };
 }

@@ -149,8 +149,18 @@ export default function PropertyDetailPage({
     );
   }
 
-  const formattedDescription = property.descrip
-    ? property.descrip.replaceAll("~~", "\n\n")
+  const rawDescriptionText =
+    property.description ||
+    property.descripciones ||
+    property.descrip ||
+    "";
+
+  const formattedDescription = rawDescriptionText
+    ? rawDescriptionText
+        .replace(/~{2,}/g, "\n\n")
+        .replace(/~/g, "\n\n")
+        .replace(/\n{3,}/g, "\n\n")
+        .trim()
     : t("fallbacks.description");
 
   const agent = property.agent;
