@@ -8,7 +8,6 @@ import ProductsSection from "@/components/inversion/products-section";
 import StatsSection from "@/components/inversion/stats-section";
 import HowItWorksSection from "@/components/inversion/how-it-works-section";
 import ProcessSection from "@/components/inversion/process-section";
-import TeamSection from "@/components/inversion/team-section";
 
 export const metadata = {
   title: "Inversión Inmobiliaria | Viven Capital",
@@ -26,7 +25,6 @@ export default function InversionPage() {
       <StatsSection />
       <HowItWorksSection />
       <ProcessSection />
-      <TeamSection />
       <Footer />
     </main>
   );
