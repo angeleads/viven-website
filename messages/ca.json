@@ -693,6 +693,27 @@
         "next": "Pàgina següent"
       }
     },
+    "mapExplorer": {
+      "badge": "Mapa Interactiu",
+      "title": "Explora les nostres propietats al mapa",
+      "description": "Troba immobles al Garraf, Alt Penedès, Baix Penedès, Costa Daurada i Barcelona.",
+      "propertiesFound": "{count} propietats al mapa",
+      "zones": {
+        "all": "Totes les zones",
+        "vilanova": "Vilanova i la Geltrú",
+        "sitges": "Sitges",
+        "calafell": "Calafell",
+        "cubelles": "Cubelles i Cunit",
+        "ribes": "Sant Pere de Ribes",
+        "penedes": "Vilafranca / Penedès",
+        "barcelona": "Barcelona"
+      },
+      "actions": {
+        "viewProperty": "Veure propietat",
+        "centerMap": "Centrar al Garraf",
+        "close": "Tancar"
+      }
+    },
     "propertyCard": {
       "agentLabel": "Agent immobiliari",
       "units": {
@@ -719,7 +740,8 @@
       "actions": {
         "backToList": "Tornar al llistat",
         "backToProperties": "Tornar al llistat de propietats",
-        "sendMessage": "Enviar missatge"
+        "sendMessage": "Enviar missatge",
+        "viewInGoogleMaps": "Obrir a Google Maps"
       },
       "fallbacks": {
         "description": "Sense descripció disponible.",
@@ -744,7 +766,8 @@
         "featuresAndQualities": "Característiques i qualitats",
         "equipmentAndServices": "Equipament i serveis",
         "agentContact": "Contacte de l'agent",
-        "requestInformation": "Sol·licitar informació"
+        "requestInformation": "Sol·licitar informació",
+        "locationMap": "Ubicació de l'immoble"
       },
       "specs": {
         "reference": "Referència",

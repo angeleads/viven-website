@@ -693,6 +693,27 @@
         "next": "Next page"
       }
     },
+    "mapExplorer": {
+      "badge": "Interactive Map",
+      "title": "Explore our properties on the map",
+      "description": "Find properties across Garraf, Alt Penedès, Baix Penedès, Costa Daurada, and Barcelona.",
+      "propertiesFound": "{count} properties on map",
+      "zones": {
+        "all": "All areas",
+        "vilanova": "Vilanova i la Geltrú",
+        "sitges": "Sitges",
+        "calafell": "Calafell",
+        "cubelles": "Cubelles & Cunit",
+        "ribes": "Sant Pere de Ribes",
+        "penedes": "Vilafranca / Penedès",
+        "barcelona": "Barcelona"
+      },
+      "actions": {
+        "viewProperty": "View property",
+        "centerMap": "Center on Garraf",
+        "close": "Close"
+      }
+    },
     "propertyCard": {
       "agentLabel": "Real estate agent",
       "units": {
@@ -719,7 +740,8 @@
       "actions": {
         "backToList": "Back to listing",
         "backToProperties": "Back to property listing",
-        "sendMessage": "Send message"
+        "sendMessage": "Send message",
+        "viewInGoogleMaps": "Open in Google Maps"
       },
       "fallbacks": {
         "description": "No description available.",
@@ -744,7 +766,8 @@
         "featuresAndQualities": "Features and qualities",
         "equipmentAndServices": "Equipment and services",
         "agentContact": "Agent contact",
-        "requestInformation": "Request information"
+        "requestInformation": "Request information",
+        "locationMap": "Property Location"
       },
       "specs": {
         "reference": "Reference",

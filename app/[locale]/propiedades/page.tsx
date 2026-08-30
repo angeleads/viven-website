@@ -4,6 +4,7 @@ import { useEffect, useState, useMemo } from "react";
 import { useLocale } from "next-intl";
 import Hero from "@/components/venta/hero";
 import PropertyGrid from "@/components/venta/property-grid";
+import PropertiesMapExplorer from "@/components/venta/properties-map-explorer";
 import Pagination from "@/components/venta/pagination";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
@@ -99,7 +100,10 @@ export default function PropiedadesPage() {
         ) : error ? (
           <div className="text-center py-16 text-red-600 font-medium">{error}</div>
         ) : (
-          <PropertyGrid properties={filteredProperties} />
+          <>
+            <PropertyGrid properties={filteredProperties} />
+            <PropertiesMapExplorer properties={properties} />
+          </>
         )}
       </div>
       <Footer />

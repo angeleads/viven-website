@@ -20,6 +20,7 @@ import {
   Building,
   Check,
   Loader2,
+  ExternalLink,
 } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
@@ -168,6 +169,29 @@ export default function PropertyDetailPage({
   const agentPhone = agent?.phone || "";
   const agentEmail = agent?.email || "";
   const agentPhoto = agent?.photo || "";
+
+  const latitude = property.latitude ?? property.latitud;
+  const longitude = property.longitude ?? property.longitud;
+
+  const hasCoordinates =
+    typeof latitude === "number" &&
+    typeof longitude === "number" &&
+    !isNaN(latitude) &&
+    !isNaN(longitude) &&
+    latitude !== 0 &&
+    longitude !== 0;
+
+  const addressQuery = [
+    property.locationDetail,
+    property.zone,
+    property.city || property.location,
+  ]
+    .filter(Boolean)
+    .join(", ");
+
+  const googleMapsUrl = hasCoordinates
+    ? `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`
+    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addressQuery || "España")}`;
 
   const specDetails: Array<{ label: string; value: string | number }> = [
     { label: t("specs.reference"), value: property.reference },
@@ -418,11 +442,52 @@ export default function PropertyDetailPage({
                 </div>
               </div>
             )}
+
+            {/* Sección de Ubicación y Mapa */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 flex items-center">
+                    <MapPin size={22} className="text-blue-600 mr-2 shrink-0" />
+                    {t("sections.locationMap")}
+                  </h3>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {addressQuery || property.location}
+                  </p>
+                </div>
+
+                <a
+                  href={googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-xl shadow-md hover:shadow-lg transition-all group shrink-0"
+                >
+                  <ExternalLink size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <span>{t("actions.viewInGoogleMaps")}</span>
+                </a>
+              </div>
+
+              <div className="w-full h-80 sm:h-96 rounded-2xl overflow-hidden border border-gray-200 shadow-inner relative bg-gray-100">
+                <iframe
+                  title={t("sections.locationMap")}
+                  width="100%"
+                  height="100%"
+                  loading="lazy"
+                  frameBorder="0"
+                  src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                    hasCoordinates
+                      ? `${latitude},${longitude}`
+                      : `${addressQuery}, España`
+                  )}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                  className="w-full h-full border-0"
+                />
+              </div>
+            </div>
           </div>
 
           {/* Tarjeta Agente & Formulario EmailJS */}
           <div className="space-y-6">
-            <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-100 sticky top-6">
+            <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-100 sticky top-24">
               <h4 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
                 <User size={18} className="text-blue-600 mr-2" />
                 {t("sections.agentContact")}

@@ -518,6 +518,18 @@ export function mapInmovillaToProperty(raw: any, locale?: string): Property {
       .trim();
   })();
 
+  const rawLat = raw.latitude ?? raw.latitud ?? raw.lat;
+  const rawLng = raw.longitude ?? raw.longitud ?? raw.lng ?? raw.lon;
+
+  const parseCoord = (val: any): number | undefined => {
+    if (val === undefined || val === null || val === "") return undefined;
+    const num = typeof val === "number" ? val : Number(String(val).replace(",", "."));
+    return !isNaN(num) && num !== 0 ? num : undefined;
+  };
+
+  const latitude = parseCoord(rawLat);
+  const longitude = parseCoord(rawLng);
+
   return {
     id,
     reference,
@@ -572,5 +584,9 @@ export function mapInmovillaToProperty(raw: any, locale?: string): Property {
     agent,
     alarmarobo: toBooleanFlag(raw.alarmarobo),
     destacado: Number(raw.destacado || 0),
+    latitude,
+    longitude,
+    latitud: latitude,
+    longitud: longitude,
   };
 }

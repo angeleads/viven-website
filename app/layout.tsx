@@ -19,6 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
+          crossOrigin=""
+        />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   )

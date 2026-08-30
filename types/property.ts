@@ -66,6 +66,10 @@ export interface Property {
   agent?: Agent;         // Agente asignado
   alarmarobo?: boolean;
   destacado?: number;    // Nivel destacado Inmovilla (2 = Estrella / Outstanding, 1 = Destacado, 0 = Normal)
+  latitude?: number;     // Latitud geográfica
+  longitude?: number;    // Longitud geográfica
+  latitud?: number;
+  longitud?: number;
   descrip: string;
   descripciones?: string;
   observaciones?: string;

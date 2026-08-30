@@ -30,3 +30,37 @@ body {
 .aspect-h-10 {
   padding-bottom: 62.5%;
 }
+
+/* Leaflet Map Styles */
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  outline: 0;
+  background: #f8fafc;
+  z-index: 10;
+}
+
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+  position: absolute !important;
+  left: 0;
+  top: 0;
+}
+
+.leaflet-tile {
+  visibility: inherit !important;
+}
+
+.custom-map-marker {
+  background: transparent !important;
+  border: none !important;
+}
