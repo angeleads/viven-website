@@ -885,5 +885,225 @@
       },
       "imageAlt": "Real estate investments"
     }
+  },
+  "inversion": {
+    "hero": {
+      "badge": "Viven Capital SL",
+      "titleStart": "Real estate investment",
+      "titleHighlight": "with vision",
+      "description": "Invest in real estate assets across major Spanish cities. Unique opportunities for demanding investors.",
+      "ctaProducts": "Discover our products",
+      "ctaInvest": "Invest with us",
+      "stats": {
+        "stat1Value": "12%",
+        "stat1Label": "Annual yield",
+        "stat2Value": "26%",
+        "stat2Label": "Target max IRR",
+        "stat3Value": "Spain",
+        "stat3Label": "National coverage"
+      }
+    },
+    "about": {
+      "badge": "About Us",
+      "titleStart": "Invest in something you can touch.",
+      "titleHighlight": "Invest in Real Estate.",
+      "p1Part1": "is a real estate investment firm offering access to",
+      "p1Highlight": "unique opportunities",
+      "p1Part2": "not accessible through traditional banking networks, mutual funds, or family offices.",
+      "p2Part1": "Expert market knowledge and a solid network of contacts is our",
+      "p2Highlight": "competitive advantage.",
+      "feature1": "12% annual return",
+      "feature2": "Investment fund in Spain",
+      "badgeProfitValue": "12%",
+      "badgeProfitText": "annual return in under 12 months",
+      "ctaMore": "Learn more",
+      "imageAlt": "Viven Capital residential building"
+    },
+    "values": {
+      "badge": "Our Pillars",
+      "title": "Four principles that guide every investment",
+      "items": {
+        "profitability": {
+          "title": "Profitability",
+          "desc": "Boost our investors' profitability through smart, data-driven investments."
+        },
+        "protection": {
+          "title": "Protection",
+          "desc": "Safeguarding your real estate investments with expert oversight."
+        },
+        "liquidity": {
+          "title": "Liquidity",
+          "desc": "Maximizing property liquidity throughout the investment cycle."
+        },
+        "transparency": {
+          "title": "Transparency",
+          "desc": "Keeping our investors informed of every transaction and operational movement."
+        }
+      }
+    },
+    "products": {
+      "badge": "Our Strategies",
+      "title": "Investment Products",
+      "description": "Three investment vehicles designed for different risk profiles and time horizons.",
+      "featuredBadge": "Featured",
+      "labels": {
+        "strategy": "Strategy:",
+        "goal": "Objective:",
+        "profitability": "Profitability",
+        "horizon": "Time Horizon"
+      },
+      "items": {
+        "participativeLoan": {
+          "name": "Viven Participative Loan",
+          "tag": "Fixed income",
+          "strategy": "Financing real estate investments via mortgage-backed loans.",
+          "goal": "Capital preservation. No fluctuation. Risk-adjusted returns.",
+          "irr": "10 – 12% IRR",
+          "time": "12 months"
+        },
+        "specialSituations": {
+          "name": "Viven Real Estate — Special Situations",
+          "tag": "Growth",
+          "strategy": "Purchase, repositioning, and sale of unique real estate opportunities in special situations.",
+          "goal": "Capital appreciation with a wide margin of safety.",
+          "irr": "24 – 26% IRR",
+          "time": "24 months"
+        },
+        "yieldAsset": {
+          "name": "Viven Income-Generating Asset Purchase",
+          "tag": "Passive income",
+          "strategy": "Carefully selected prime properties for purchase and lease, targeting superior cash-flow yield.",
+          "goal": "Wealth preservation without volatility and consistent passive income.",
+          "irr": "10 – 12% IRR",
+          "time": "Long-term"
+        }
+      }
+    },
+    "stats": {
+      "percentage": "7%",
+      "statText": "of Spanish citizens actively invest their savings",
+      "p1Company": "Viven Capital",
+      "p1Text": "is dedicated to maximizing investors' capital through prime real estate investment opportunities in Spain, ensuring financial security and consistent returns.",
+      "p2Focus": "With a focus on",
+      "p2Trust": "trust",
+      "p2And": "and",
+      "p2Transparency": "transparency",
+      "p2Text": ", the Viven Capital SL team leverages deep expertise and a proven track record, offering assets at competitive valuations with strong guarantees. We invite investors to partner with us to achieve their financial goals safely and effectively."
+    },
+    "howItWorks": {
+      "badge": "Process",
+      "title": "How Does Viven Capital Work?",
+      "description": "Real estate investment fund with targeted 12% returns in under 12 months.",
+      "steps": {
+        "step1": {
+          "title": "Invest in a property",
+          "desc": "Viven Capital allows you to participate via equity or debt in vetted real estate projects with certified partners."
+        },
+        "step2": {
+          "title": "Earn high yields",
+          "desc": "Upon investment exit, you receive your initial capital back alongside your proportional share of profits."
+        },
+        "step3": {
+          "title": "Diversify like professionals",
+          "desc": "Build a robust portfolio diversified across property types, prime locations, time horizons, and asset classes."
+        }
+      }
+    },
+    "process": {
+      "badge": "Our Process",
+      "titleStart": "From high-potential assets to",
+      "titleHighlight": "tangible returns",
+      "description": "We manage the entire property lifecycle: from acquisition to exit, through renovation, permitting, and value creation. The investor participates completely hands-off.",
+      "imageAlts": {
+        "renovatedInterior": "Renovated interior",
+        "renovation": "Renovation",
+        "renovatedKitchen": "Renovated kitchen"
+      },
+      "steps": {
+        "step1": {
+          "n": "01",
+          "title": "Direct purchase or adjudication",
+          "desc": "We identify and acquire undervalued assets with a margin of safety: court auctions, bank repossessions, and direct off-market owners."
+        },
+        "step2": {
+          "n": "02",
+          "title": "Legal regularization and handover",
+          "desc": "We handle tenancy regularizations whenever necessary, with rigorous legal backing and full regulatory compliance."
+        },
+        "step3": {
+          "n": "03",
+          "title": "Technical inspection",
+          "desc": "Structural, architectural, and documentary audit before intervention. Fixed-price budget with zero surprises."
+        },
+        "step4": {
+          "n": "04",
+          "title": "Full renovation",
+          "desc": "Our in-house architecture and construction teams coordinate complete turnkey renovations, elevating asset value."
+        },
+        "step5": {
+          "n": "05",
+          "title": "Updated legal documentation",
+          "desc": "Occupancy licenses, building inspections, energy certificates, and registry encumbrance clearance: fully certified turnkey asset."
+        },
+        "step6": {
+          "n": "06",
+          "title": "Sale and investor returns",
+          "desc": "Market launch with our proprietary sales network. Generated capital gains translate directly into investor profits."
+        }
+      }
+    },
+    "team": {
+      "badge": "Our Team",
+      "title": "People Behind Viven Capital",
+      "description": "A dedicated team of professionals committed to the success of your investments.",
+      "cesar": {
+        "name": "César Sanjurjo",
+        "role": "Founding Partner",
+        "bio": "With extensive experience in the real estate industry, César leads Viven Capital's investment strategy, driving vision and rigor across every transaction."
+      },
+      "placeholder": {
+        "name": "Coming Soon",
+        "role": "Team Member",
+        "bio": "Future team member."
+      }
+    },
+    "contact": {
+      "badge": "Contact",
+      "titleStart": "Invest with",
+      "titleHighlight": "us",
+      "description": "We are at your service to present our investment strategies in detail and help you build sustainable long-term wealth.",
+      "officeTitle": "Office",
+      "officeAddress": "C/ Pelegrí Ballester, 23 LOCAL VIVEN\n08800 Vilanova i la Geltrú",
+      "phoneTitle": "Phone Numbers",
+      "emailTitle": "Email",
+      "formTitle": "Request Information",
+      "successTitle": "Request Received!",
+      "successText": "Thank you for reaching out. We will get back to you shortly.",
+      "fields": {
+        "name": "Name",
+        "namePlaceholder": "Your full name",
+        "email": "Email",
+        "emailPlaceholder": "you@email.com",
+        "phone": "Phone",
+        "phonePlaceholder": "+34 600 000 000",
+        "interestArea": "Investment area of interest",
+        "selectOption": "Select an option",
+        "optionLoan": "Viven Participative Loan (Fixed income · 10–12% IRR)",
+        "optionSpecial": "Real Estate — Special Situations (24–26% IRR)",
+        "optionIncome": "Income-Generating Asset Purchase (Passive income)",
+        "optionAdvice": "Not sure yet — I would like personalized advisory",
+        "amount": "Available investment amount",
+        "selectRange": "Select a range",
+        "range1": "€10,000 – €50,000",
+        "range2": "€50,000 – €100,000",
+        "range3": "€100,000 – €250,000",
+        "range4": "€250,000 – €500,000",
+        "range5": "More than €500,000",
+        "message": "Message",
+        "messagePlaceholder": "Briefly tell us about your investment goals (optional)",
+        "submit": "Submit Request",
+        "disclaimer": "By submitting, you agree to be contacted by Viven Capital SL."
+      }
+    }
   }
 }

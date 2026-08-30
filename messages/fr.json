@@ -885,5 +885,225 @@
       },
       "imageAlt": "Investissements immobiliers"
     }
+  },
+  "inversion": {
+    "hero": {
+      "badge": "Viven Capital SL",
+      "titleStart": "Investissement immobilier",
+      "titleHighlight": "avec vision",
+      "description": "Investissez dans des actifs immobiliers dans les principales villes d'Espagne. Des opportunités uniques pour les investisseurs exigeants.",
+      "ctaProducts": "Découvrez nos produits",
+      "ctaInvest": "Investissez avec nous",
+      "stats": {
+        "stat1Value": "12%",
+        "stat1Label": "Rendement annuel",
+        "stat2Value": "26%",
+        "stat2Label": "TRI cible maximum",
+        "stat3Value": "Espagne",
+        "stat3Label": "Couverture nationale"
+      }
+    },
+    "about": {
+      "badge": "Qui sommes-nous",
+      "titleStart": "Investissez dans quelque chose que vous pouvez toucher.",
+      "titleHighlight": "Investissez dans l'Immobilier.",
+      "p1Part1": "est une société d'investissement immobilier qui donne accès à des",
+      "p1Highlight": "opportunités uniques",
+      "p1Part2": "non accessibles via les réseaux bancaires traditionnels, fonds communs et family offices.",
+      "p2Part1": "Notre connaissance experte du marché et un réseau solide de contacts constituent notre",
+      "p2Highlight": "avantage compétitif.",
+      "feature1": "12% de rendement annuel",
+      "feature2": "Fonds d'investissement en Espagne",
+      "badgeProfitValue": "12%",
+      "badgeProfitText": "de rendement annuel en moins de 12 mois",
+      "ctaMore": "En savoir plus",
+      "imageAlt": "Bâtiment résidentiel Viven Capital"
+    },
+    "values": {
+      "badge": "Nos piliers",
+      "title": "Quatre principes qui guident chaque investissement",
+      "items": {
+        "profitability": {
+          "title": "Rentabilité",
+          "desc": "Maximiser la rentabilité de nos investisseurs grâce à des investissements intelligents."
+        },
+        "protection": {
+          "title": "Protection",
+          "desc": "Sauvegarder vos investissements immobiliers avec une gestion experte."
+        },
+        "liquidity": {
+          "title": "Liquidité",
+          "desc": "Optimiser la liquidité des biens tout au long du cycle."
+        },
+        "transparency": {
+          "title": "Transparence",
+          "desc": "Informer en permanence nos investisseurs de nos opérations et démarches."
+        }
+      }
+    },
+    "products": {
+      "badge": "Nos stratégies",
+      "title": "Produits d'investissement",
+      "description": "Trois véhicules conçus pour différents profils de risque et horizons temporels.",
+      "featuredBadge": "En vedette",
+      "labels": {
+        "strategy": "Stratégie :",
+        "goal": "Objectif :",
+        "profitability": "Rendement",
+        "horizon": "Horizon"
+      },
+      "items": {
+        "participativeLoan": {
+          "name": "Viven Prêt Participatif",
+          "tag": "Revenu fixe",
+          "strategy": "Financement d'investissements immobiliers via des prêts avec garantie hypothécaire.",
+          "goal": "Préservation du capital. Sans fluctuation. Rendements ajustés au risque.",
+          "irr": "10 – 12% TRI",
+          "time": "12 mois"
+        },
+        "specialSituations": {
+          "name": "Viven Real Estate — Situations Spéciales",
+          "tag": "Croissance",
+          "strategy": "Achat, valorisation et revente d'opportunités immobilières dans des situations spéciales.",
+          "goal": "Croissance du capital investi avec une marge de sécurité importante.",
+          "irr": "24 – 26% TRI",
+          "time": "24 mois"
+        },
+        "yieldAsset": {
+          "name": "Viven Achat d'Actif à Rendement",
+          "tag": "Revenus passifs",
+          "strategy": "Sélection rigoureuse des meilleurs biens pour l'achat et la location avec un rendement supérieur.",
+          "goal": "Préservation patrimoniale sans volatilité et revenus passifs réguliers.",
+          "irr": "10 – 12% TRI",
+          "time": "Permanent"
+        }
+      }
+    },
+    "stats": {
+      "percentage": "7%",
+      "statText": "des citoyens espagnols investissent activement leur épargne",
+      "p1Company": "Viven Capital",
+      "p1Text": "se consacre à maximiser l'épargne des investisseurs à travers des opportunités d'investissement immobilier en Espagne, garantissant sécurité financière et rendements stables.",
+      "p2Focus": "Avec un accent sur la",
+      "p2Trust": "confiance",
+      "p2And": "et la",
+      "p2Transparency": "transparence",
+      "p2Text": ", l'équipe de Viven Capital SL bénéficie d'une solide expérience et d'un historique éprouvé, offrant des biens à des valorisations compétitives avec de fortes garanties. Nous invitons nos investisseurs à collaborer pour atteindre leurs objectifs financiers en toute sécurité et efficacité."
+    },
+    "howItWorks": {
+      "badge": "Processus",
+      "title": "Comment fonctionne Viven Capital ?",
+      "description": "Fonds d'investissement immobilier avec des rendements cibles de 12% en moins de 12 mois.",
+      "steps": {
+        "step1": {
+          "title": "Investissez dans un bien",
+          "desc": "Viven Capital vous permet de participer, en fonds propres ou en dette, à des projets immobiliers de nos partenaires certifiés."
+        },
+        "step2": {
+          "title": "Obtenez des rendements élevés",
+          "desc": "À la clôture de l'investissement, vous récupérez votre capital ainsi que votre part proportionnelle des bénéfices générés."
+        },
+        "step3": {
+          "title": "Diversifiez comme les professionnels",
+          "desc": "Construisez votre portefeuille avec des projets diversifiés par type, emplacement, durée et segment (résidentiel, commercial, industriel, etc.)."
+        }
+      }
+    },
+    "process": {
+      "badge": "Notre processus",
+      "titleStart": "De l'actif à potentiel au",
+      "titleHighlight": "retour tangible",
+      "description": "Nous prenons en charge l'ensemble du cycle du bien : de l'acquisition à la vente, en passant par la rénovation, les démarches administratives et la valorisation. L'investisseur participe sans contrainte opérationnelle.",
+      "imageAlts": {
+        "renovatedInterior": "Intérieur rénové",
+        "renovation": "Rénovation",
+        "renovatedKitchen": "Cuisine rénovée"
+      },
+      "steps": {
+        "step1": {
+          "n": "01",
+          "title": "Adjudication ou achat direct",
+          "desc": "Nous identifions et acquérons des actifs avec une marge de sécurité : enchères judiciaires, adjudications bancaires et achat direct aux propriétaires."
+        },
+        "step2": {
+          "n": "02",
+          "title": "Régularisation et libération",
+          "desc": "Nous gérons la libération des lieux si nécessaire, avec un encadrement juridique rigoureux et dans le respect des procédures."
+        },
+        "step3": {
+          "n": "03",
+          "title": "Inspection technique",
+          "desc": "Audit structurel, technique et documentaire avant toute intervention. Budget forfaitaire garanti, sans mauvaises surprises."
+        },
+        "step4": {
+          "n": "04",
+          "title": "Rénovation intégrale",
+          "desc": "Notre équipe d'architecture et de travaux coordonne la rénovation complète, augmentant significativement la valeur du bien."
+        },
+        "step5": {
+          "n": "05",
+          "title": "Conformité documentaire",
+          "desc": "Permis d'habiter, contrôle technique, certificat énergétique, levée des charges : livraison du bien clés en main avec documents certifiés."
+        },
+        "step6": {
+          "n": "06",
+          "title": "Vente et rendement",
+          "desc": "Commercialisation via notre réseau dédié. La plus-value générée se traduit directement en rendement pour l'investisseur."
+        }
+      }
+    },
+    "team": {
+      "badge": "Notre équipe",
+      "title": "L'équipe derrière Viven Capital",
+      "description": "Une équipe de professionnels dédiée à la réussite de vos investissements.",
+      "cesar": {
+        "name": "César Sanjurjo",
+        "role": "Associé Fondateur",
+        "bio": "Fort d'une vaste expérience dans le secteur immobilier, César pilote la stratégie d'investissement de Viven Capital, apportant vision et rigueur à chaque opération."
+      },
+      "placeholder": {
+        "name": "À venir",
+        "role": "Membre de l'équipe",
+        "bio": "Futur membre de l'équipe."
+      }
+    },
+    "contact": {
+      "badge": "Contact",
+      "titleStart": "Investissez avec",
+      "titleHighlight": "nous",
+      "description": "Nous sommes à votre entière disposition pour vous présenter en détail nos stratégies d'investissement et vous aider à bâtir un patrimoine solide.",
+      "officeTitle": "Bureau",
+      "officeAddress": "C/ Pelegrí Ballester, 23 LOCAL VIVEN\n08800 Vilanova i la Geltrú",
+      "phoneTitle": "Téléphones",
+      "emailTitle": "Email",
+      "formTitle": "Demander des informations",
+      "successTitle": "Demande bien reçue !",
+      "successText": "Merci de nous avoir contactés. Nous reviendrons vers vous très prochainement.",
+      "fields": {
+        "name": "Nom",
+        "namePlaceholder": "Votre nom complet",
+        "email": "Email",
+        "emailPlaceholder": "vous@email.com",
+        "phone": "Téléphone",
+        "phonePlaceholder": "+34 600 000 000",
+        "interestArea": "Domaine d'investissement souhaité",
+        "selectOption": "Sélectionnez une option",
+        "optionLoan": "Viven Prêt Participatif (Revenu fixe · 10–12% TRI)",
+        "optionSpecial": "Real Estate — Situations Spéciales (24–26% TRI)",
+        "optionIncome": "Achat d'Actif à Rendement (Revenus passifs)",
+        "optionAdvice": "Je ne sais pas encore — je souhaite un conseil personnalisé",
+        "amount": "Montant disponible pour investir",
+        "selectRange": "Sélectionnez une tranche",
+        "range1": "10 000 € – 50 000 €",
+        "range2": "50 000 € – 100 000 €",
+        "range3": "100 000 € – 250 000 €",
+        "range4": "250 000 € – 500 000 €",
+        "range5": "Plus de 500 000 €",
+        "message": "Message",
+        "messagePlaceholder": "Présentez brièvement vos objectifs (facultatif)",
+        "submit": "Envoyer la demande",
+        "disclaimer": "En envoyant ce formulaire, vous acceptez d'être contacté par Viven Capital SL."
+      }
+    }
   }
 }

@@ -885,5 +885,225 @@
       },
       "imageAlt": "Inversions immobiliàries"
     }
+  },
+  "inversion": {
+    "hero": {
+      "badge": "Viven Capital SL",
+      "titleStart": "Inversió immobiliària",
+      "titleHighlight": "amb visió",
+      "description": "Inverteix en actius immobiliaris de les principals ciutats d'Espanya. Oportunitats úniques per a inversors exigents.",
+      "ctaProducts": "Coneix els nostres productes",
+      "ctaInvest": "Inverteix amb nosaltres",
+      "stats": {
+        "stat1Value": "12%",
+        "stat1Label": "Rendibilitat anual",
+        "stat2Value": "26%",
+        "stat2Label": "TIR objectiu màxim",
+        "stat3Value": "Espanya",
+        "stat3Label": "Cobertura nacional"
+      }
+    },
+    "about": {
+      "badge": "Qui som",
+      "titleStart": "Inverteix en alguna cosa que puguis tocar.",
+      "titleHighlight": "Inverteix en Real Estate.",
+      "p1Part1": "és una empresa d'inversió immobiliària que dóna accés a",
+      "p1Highlight": "oportunitats úniques",
+      "p1Part2": "no accessibles a través de la xarxa tradicional de bancs, fons d'inversió i societats patrimonials.",
+      "p2Part1": "El coneixement expert del mercat i una sòlida xarxa de contactes és el nostre",
+      "p2Highlight": "avantatge competitiu.",
+      "feature1": "12% anual de rendibilitat",
+      "feature2": "Fons d'inversió a Espanya",
+      "badgeProfitValue": "12%",
+      "badgeProfitText": "de rendibilitat anual en menys de 12 mesos",
+      "ctaMore": "Coneix més",
+      "imageAlt": "Edifici residencial Viven Capital"
+    },
+    "values": {
+      "badge": "Els nostres pilars",
+      "title": "Quatre principis que guien cada inversió",
+      "items": {
+        "profitability": {
+          "title": "Rendibilitat",
+          "desc": "Impulsar la rendibilitat dels nostres inversors a través d'inversions intel·ligents."
+        },
+        "protection": {
+          "title": "Protecció",
+          "desc": "Salvaguardant les seves inversions immobiliàries amb atenció experta."
+        },
+        "liquidity": {
+          "title": "Liquiditat",
+          "desc": "Maximitzar la liquiditat de la propietat."
+        },
+        "transparency": {
+          "title": "Transparència",
+          "desc": "Informant en tot moment els nostres inversors dels nostres moviments i operacions."
+        }
+      }
+    },
+    "products": {
+      "badge": "Les nostres estratègies",
+      "title": "Productes d'inversió",
+      "description": "Tres vehicles dissenyats per a diferents perfils de risc i horitzó temporal.",
+      "featuredBadge": "Destacat",
+      "labels": {
+        "strategy": "Estratègia:",
+        "goal": "Objectiu:",
+        "profitability": "Rendibilitat",
+        "horizon": "Horitzó"
+      },
+      "items": {
+        "participativeLoan": {
+          "name": "Viven Préstec Participatiu",
+          "tag": "Renda fixa",
+          "strategy": "Finançament d'inversions immobiliàries mitjançant préstecs amb garantia hipotecària.",
+          "goal": "Preservació del capital. Sense fluctuació. Rendiments ajustats al risc.",
+          "irr": "10 – 12% TIR",
+          "time": "12 mesos"
+        },
+        "specialSituations": {
+          "name": "Viven Real Estate — Situacions Especials",
+          "tag": "Creixement",
+          "strategy": "Compra, transformació i venda d'oportunitats immobiliàries en situacions especials.",
+          "goal": "Creixement del capital invertit. Marge de seguretat ampli.",
+          "irr": "24 – 26% TIR",
+          "time": "24 mesos"
+        },
+        "yieldAsset": {
+          "name": "Viven Compra Actiu amb Rendibilitat",
+          "tag": "Ingressos passius",
+          "strategy": "Seleccionem acuradament els millors immobles per a compra i lloguer, buscant una rendibilitat superior.",
+          "goal": "Preservació de patrimoni sense fluctuació i ingressos passius.",
+          "irr": "10 – 12% TIR",
+          "time": "Permanent"
+        }
+      }
+    },
+    "stats": {
+      "percentage": "7%",
+      "statText": "dels ciutadans espanyols inverteix els seus diners",
+      "p1Company": "Viven Capital",
+      "p1Text": "es dedica a maximitzar els estalvis dels inversors a través d'oportunitats d'inversió immobiliària a Espanya, garantint seguretat financera i rendiments estables.",
+      "p2Focus": "Amb un enfocament en la",
+      "p2Trust": "confiança",
+      "p2And": "i la",
+      "p2Transparency": "transparència",
+      "p2Text": ", l'equip de Viven Capital SL compta amb experiència i un historial provat, oferint propietats a preus competitius i amb garanties sòlides. Invitem els nostres inversors a col·laborar per assolir les seves metes financeres de forma segura i eficaç."
+    },
+    "howItWorks": {
+      "badge": "Procés",
+      "title": "Com funciona Viven Capital?",
+      "description": "Fons d'inversió immobiliari amb rendiments del 12% en menys de 12 mesos.",
+      "steps": {
+        "step1": {
+          "title": "Inverteix en una propietat",
+          "desc": "Viven Capital et permet participar, ja sigui mitjançant capital o deute, en projectes immobiliaris dels nostres col·laboradors certificats."
+        },
+        "step2": {
+          "title": "Obtingues alts rendiments",
+          "desc": "En recuperar la inversió, rebràs els teus diners juntament amb la part proporcional dels beneficis generats."
+        },
+        "step3": {
+          "title": "Diversifica com els professionals",
+          "desc": "Construeix la teva cartera amb projectes diferenciats per tipus, ubicació, termini i segment (residencial, comercial, industrial, etc.)."
+        }
+      }
+    },
+    "process": {
+      "badge": "El nostre procés",
+      "titleStart": "De l'actiu amb potencial al",
+      "titleHighlight": "retorn tangible",
+      "description": "Ens ocupem de tot el cicle de l'immoble: des de l'adquisició fins a la venda, passant per reforma, documentació i posada en valor. L'inversor participa sense la càrrega operativa.",
+      "imageAlts": {
+        "renovatedInterior": "Interior reformat",
+        "renovation": "Reforma",
+        "renovatedKitchen": "Cuina reformada"
+      },
+      "steps": {
+        "step1": {
+          "n": "01",
+          "title": "Adjudicació o compra directa",
+          "desc": "Identifiquem i adquirim actius amb marge de seguretat: subhastes judicials, adjudicacions bancàries i compra directa a propietari."
+        },
+        "step2": {
+          "n": "02",
+          "title": "Desocupació i regularització",
+          "desc": "Gestionem la desocupació quan és necessària, amb el suport legal adequat i respectant tots els procediments."
+        },
+        "step3": {
+          "n": "03",
+          "title": "Inspecció tècnica",
+          "desc": "Auditoria estructural, tècnica i documental de l'immoble abans d'intervenir. Pressupost tancat, sense sorpreses."
+        },
+        "step4": {
+          "n": "04",
+          "title": "Reforma integral",
+          "desc": "Coordinem la reforma completa amb el nostre equip d'arquitectura i execució, elevant l'estàndard i el valor de l'actiu."
+        },
+        "step5": {
+          "n": "05",
+          "title": "Documentació al dia",
+          "desc": "Cèdula, ITE, certificat energètic, notes simples, càrregues: entreguem l'immoble amb tota la documentació en regla."
+        },
+        "step6": {
+          "n": "06",
+          "title": "Venda i rendibilitat",
+          "desc": "Sortida al mercat amb estratègia comercial pròpia. La plusvàlua generada es tradueix en rendibilitat per a l'inversor."
+        }
+      }
+    },
+    "team": {
+      "badge": "El nostre equip",
+      "title": "Persones darrere de Viven Capital",
+      "description": "Un equip de professionals dedicats a l'èxit de les seves inversions.",
+      "cesar": {
+        "name": "César Sanjurjo",
+        "role": "Soci Fundador",
+        "bio": "Amb àmplia experiència en el sector immobiliari, César lidera l'estratègia d'inversió de Viven Capital, aportant visió i rigor a cada operació."
+      },
+      "placeholder": {
+        "name": "Properament",
+        "role": "Membre de l'equip",
+        "bio": "Proper membre de l'equip."
+      }
+    },
+    "contact": {
+      "badge": "Contacte",
+      "titleStart": "Inverteix amb",
+      "titleHighlight": "nosaltres",
+      "description": "Estem a la seva disposició per presentar-li en detall les nostres estratègies d'inversió i ajudar-lo a construir un patrimoni sòlid.",
+      "officeTitle": "Oficina",
+      "officeAddress": "C/ Pelegrí Ballester, 23 LOCAL VIVEN\n08800 Vilanova i la Geltrú",
+      "phoneTitle": "Telèfons",
+      "emailTitle": "Email",
+      "formTitle": "Sol·liciti informació",
+      "successTitle": "Sol·licitud rebuda!",
+      "successText": "Gràcies per contactar-nos. Ens posarem en contacte en breu.",
+      "fields": {
+        "name": "Nom",
+        "namePlaceholder": "El teu nom complet",
+        "email": "Email",
+        "emailPlaceholder": "el-teu@email.com",
+        "phone": "Telèfon",
+        "phonePlaceholder": "+34 600 000 000",
+        "interestArea": "Àrea d'inversió d'interès",
+        "selectOption": "Selecciona una opció",
+        "optionLoan": "Viven Préstec Participatiu (Renda fixa · 10–12% TIR)",
+        "optionSpecial": "Real Estate — Situacions Especials (24–26% TIR)",
+        "optionIncome": "Compra Actiu amb Rendibilitat (Ingressos passius)",
+        "optionAdvice": "Encara no ho tinc clar — vull assessorament",
+        "amount": "Import disponible per invertir",
+        "selectRange": "Selecciona un tram",
+        "range1": "10.000 € – 50.000 €",
+        "range2": "50.000 € – 100.000 €",
+        "range3": "100.000 € – 250.000 €",
+        "range4": "250.000 € – 500.000 €",
+        "range5": "Més de 500.000 €",
+        "message": "Missatge",
+        "messagePlaceholder": "Expliqui'ns breument el seu objectiu (opcional)",
+        "submit": "Enviar sol·licitud",
+        "disclaimer": "En enviar accepta ser contactat per Viven Capital SL."
+      }
+    }
   }
 }
