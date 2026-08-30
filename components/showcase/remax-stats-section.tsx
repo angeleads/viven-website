@@ -1,9 +1,9 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { useTranslations } from "next-intl"
+import Image from "next/image"
 import { Building2, Globe, Users, Home, Target, Languages, Phone } from "lucide-react"
 
 export default function RemaxStatsSection() {
@@ -11,8 +11,19 @@ export default function RemaxStatsSection() {
   const [activeTab, setActiveTab] = useState<"europe" | "global">("europe")
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-blue-900 to-blue-800 text-white">
-      <div className="container mx-auto px-4">
+    <section className="relative py-16 md:py-24 bg-gradient-to-b from-blue-900 to-blue-800 text-white overflow-hidden">
+      {/* Background Globe: Scaled up and anchored further down & to the right */}
+      <div className="absolute right-[-140px] bottom-[-100px] md:right-[-120px] md:bottom-[-120px] lg:right-[-80px] lg:bottom-[-150px] xl:right-[-130px] xl:bottom-[-10px] w-[450px] h-[450px] md:w-[650px] md:h-[650px] lg:w-[800px] lg:h-[800px] opacity-40 pointer-events-none z-0 select-none transition-all duration-500">
+        <Image
+          src="/logos/globo-2026-logo.png"
+          alt="RE/MAX Globe"
+          fill
+          className="object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.3)]"
+          sizes="(max-width: 768px) 450px, (max-width: 1024px) 650px, 800px"
+        />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">{t("title")}</h2>
           <div className="inline-block bg-red-600 text-white px-4 py-1 rounded-full text-sm font-medium mb-6">
@@ -44,6 +55,7 @@ export default function RemaxStatsSection() {
             </button>
           </div>
         </div>
+
         {/* Europe Stats */}
         <div className={`${activeTab === "europe" ? "block" : "hidden"}`}>
           <div className="flex justify-center items-center">
@@ -94,7 +106,7 @@ export default function RemaxStatsSection() {
         <div className={`${activeTab === "global" ? "block" : "hidden"}`}>
           <div className="flex justify-center items-center">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-            <div className="grid grid-cols-2 gap-14">
+              <div className="grid grid-cols-2 gap-14">
                 <StatItem
                   icon={<Home className="h-8 w-8 text-red-500" />}
                   value="663.410"
