@@ -33,7 +33,10 @@ export default function Navbar() {
   // Cerrar el dropdown de idioma al hacer clic fuera de él
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
+      if (
+        langDropdownRef.current &&
+        !langDropdownRef.current.contains(event.target as Node)
+      ) {
         setIsLangOpen(false);
       }
     }
@@ -45,23 +48,52 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/logos/logo-viven-remax-black-blue.png"
-              alt="Viven Inmobiliaria"
-              width={120}
-              height={40}
-              className="h-14 w-auto"
-            />
-          </Link>
+          <div className="flex items-center">
+            <Link
+              href="/"
+              className="flex items-center"
+              aria-label="Viven Inmobiliaria home"
+            >
+              <Image
+                src="/logos/viven-plus-logo.png"
+                alt="Viven Plus"
+                width={140}
+                height={60}
+                className="h-14 w-auto"
+              />
+            </Link>
+            <Link
+              href="https://www.remax.es/buscador-de-oficinas/barcelona/vilanova-i-la-geltru/todos/remax-viven/"
+              className="ml-5 flex items-center"
+              aria-label="Viven Plus company page"
+            >
+              <Image
+                src="/logos/logo-viven-remax-black-blue.png"
+                alt="Viven Inmobiliaria"
+                width={120}
+                height={40}
+                className="h-14 w-auto"
+              />
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <NavLink href="/" pathname={pathname}>{t("nav.home")}</NavLink>
-            <NavLink href="/propiedades" pathname={pathname}>{t("nav.properties")}</NavLink>
-            <NavLink href="/administrador-de-fincas" pathname={pathname}>{t("nav.propertyManager")}</NavLink>
-            <NavLink href="/empresa" pathname={pathname}>{t("nav.company")}</NavLink>
-            <NavLink href="/contacto" pathname={pathname}>{t("nav.contact")}</NavLink>
+            <NavLink href="/" pathname={pathname}>
+              {t("nav.home")}
+            </NavLink>
+            <NavLink href="/propiedades" pathname={pathname}>
+              {t("nav.properties")}
+            </NavLink>
+            <NavLink href="/administrador-de-fincas" pathname={pathname}>
+              {t("nav.propertyManager")}
+            </NavLink>
+            <NavLink href="/empresa" pathname={pathname}>
+              {t("nav.company")}
+            </NavLink>
+            <NavLink href="/contacto" pathname={pathname}>
+              {t("nav.contact")}
+            </NavLink>
 
             {/* Selector de Idioma Desktop Estilizado */}
             <div className="relative" ref={langDropdownRef}>
@@ -72,8 +104,12 @@ export default function Navbar() {
                 aria-expanded={isLangOpen}
               >
                 <Globe className="h-4 w-4 text-gray-500" />
-                <span className="uppercase font-semibold text-xs tracking-wider">{locale}</span>
-                <ChevronDown className={`h-3.5 w-3.5 text-gray-400 transition-transform duration-200 ${isLangOpen ? "rotate-180" : ""}`} />
+                <span className="uppercase font-semibold text-xs tracking-wider">
+                  {locale}
+                </span>
+                <ChevronDown
+                  className={`h-3.5 w-3.5 text-gray-400 transition-transform duration-200 ${isLangOpen ? "rotate-180" : ""}`}
+                />
               </button>
 
               {isLangOpen && (
@@ -97,7 +133,9 @@ export default function Navbar() {
                           </span>
                           {t(lang.labelKey)}
                         </span>
-                        {isSelected && <Check className="h-3.5 w-3.5 text-blue-600" />}
+                        {isSelected && (
+                          <Check className="h-3.5 w-3.5 text-blue-600" />
+                        )}
                       </button>
                     );
                   })}
@@ -121,19 +159,39 @@ export default function Navbar() {
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
           <div className="container mx-auto px-4 py-3">
             <nav className="flex flex-col space-y-3 py-2">
-              <MobileNavLink href="/" pathname={pathname} onClick={() => setIsMenuOpen(false)}>
+              <MobileNavLink
+                href="/"
+                pathname={pathname}
+                onClick={() => setIsMenuOpen(false)}
+              >
                 {t("nav.home")}
               </MobileNavLink>
-              <MobileNavLink href="/propiedades" pathname={pathname} onClick={() => setIsMenuOpen(false)}>
+              <MobileNavLink
+                href="/propiedades"
+                pathname={pathname}
+                onClick={() => setIsMenuOpen(false)}
+              >
                 {t("nav.properties")}
               </MobileNavLink>
-              <MobileNavLink href="/administrador-de-fincas" pathname={pathname} onClick={() => setIsMenuOpen(false)}>
+              <MobileNavLink
+                href="/administrador-de-fincas"
+                pathname={pathname}
+                onClick={() => setIsMenuOpen(false)}
+              >
                 {t("nav.propertyManager")}
               </MobileNavLink>
-              <MobileNavLink href="/empresa" pathname={pathname} onClick={() => setIsMenuOpen(false)}>
+              <MobileNavLink
+                href="/empresa"
+                pathname={pathname}
+                onClick={() => setIsMenuOpen(false)}
+              >
                 {t("nav.company")}
               </MobileNavLink>
-              <MobileNavLink href="/contacto" pathname={pathname} onClick={() => setIsMenuOpen(false)}>
+              <MobileNavLink
+                href="/contacto"
+                pathname={pathname}
+                onClick={() => setIsMenuOpen(false)}
+              >
                 {t("nav.contact")}
               </MobileNavLink>
 
@@ -160,10 +218,14 @@ export default function Navbar() {
                         }`}
                       >
                         <span className="flex items-center gap-1.5">
-                          <span className="uppercase text-[10px] font-mono">{lang.code}</span>
+                          <span className="uppercase text-[10px] font-mono">
+                            {lang.code}
+                          </span>
                           <span>{t(lang.labelKey)}</span>
                         </span>
-                        {isSelected && <Check className="h-3.5 w-3.5 text-blue-600" />}
+                        {isSelected && (
+                          <Check className="h-3.5 w-3.5 text-blue-600" />
+                        )}
                       </button>
                     );
                   })}
@@ -177,13 +239,23 @@ export default function Navbar() {
   );
 }
 
-function NavLink({ href, pathname, children }: { href: string; pathname: string; children: React.ReactNode }) {
+function NavLink({
+  href,
+  pathname,
+  children,
+}: {
+  href: string;
+  pathname: string;
+  children: React.ReactNode;
+}) {
   const isActive = pathname === href;
   return (
     <Link
       href={href}
       className={`text-sm font-medium transition-colors duration-200 ${
-        isActive ? "text-blue-600 font-semibold" : "text-gray-700 hover:text-blue-600"
+        isActive
+          ? "text-blue-600 font-semibold"
+          : "text-gray-700 hover:text-blue-600"
       }`}
     >
       {children}
@@ -191,13 +263,25 @@ function NavLink({ href, pathname, children }: { href: string; pathname: string;
   );
 }
 
-function MobileNavLink({ href, pathname, onClick, children }: { href: string; pathname: string; onClick: () => void; children: React.ReactNode }) {
+function MobileNavLink({
+  href,
+  pathname,
+  onClick,
+  children,
+}: {
+  href: string;
+  pathname: string;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
   const isActive = pathname === href;
   return (
     <Link
       href={href}
       className={`text-sm font-medium transition-colors duration-200 block py-1.5 ${
-        isActive ? "text-blue-600 font-semibold pl-2 border-l-2 border-blue-600" : "text-gray-700 hover:text-blue-600"
+        isActive
+          ? "text-blue-600 font-semibold pl-2 border-l-2 border-blue-600"
+          : "text-gray-700 hover:text-blue-600"
       }`}
       onClick={onClick}
     >

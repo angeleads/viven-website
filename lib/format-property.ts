@@ -571,5 +571,6 @@ export function mapInmovillaToProperty(raw: any, locale?: string): Property {
     agencyEmail: extractedEmail,
     agent,
     alarmarobo: toBooleanFlag(raw.alarmarobo),
+    destacado: Number(raw.destacado || 0),
   };
 }

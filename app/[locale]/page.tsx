@@ -1,7 +1,6 @@
 import Navbar from "@/components/navbar";
 import HomePropertiesBlock from "@/components/showcase/home-properties-block";
 import ServicesSection from "@/components/showcase/services-section";
-import AppSection from "@/components/showcase/app-section";
 import RemaxStatsSection from "@/components/showcase/remax-stats-section";
 import PartnersSection from "@/components/showcase/partners-section";
 import ContactSection from "@/components/showcase/contact-section";
@@ -12,7 +11,6 @@ export default function Home() {
     <main className="min-h-screen">
       <Navbar />
       <HomePropertiesBlock />
-      <AppSection />
       <RemaxStatsSection />
       <ServicesSection />
       <PartnersSection />

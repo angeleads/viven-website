@@ -65,6 +65,7 @@ export interface Property {
   agencyEmail: string;
   agent?: Agent;         // Agente asignado
   alarmarobo?: boolean;
+  destacado?: number;    // Nivel destacado Inmovilla (2 = Estrella / Outstanding, 1 = Destacado, 0 = Normal)
   descrip: string;
   descripciones?: string;
   observaciones?: string;

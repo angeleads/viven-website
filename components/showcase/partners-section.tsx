@@ -1,9 +1,7 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
 import { useTranslations } from "next-intl"
 import Image from "next/image"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 
 interface Partner {
   id: number
@@ -21,127 +19,55 @@ export default function PartnersSection() {
     { id: 3, name: "Aszende", logo: "/logos/partners/aszende-logo.png", website: "https://www.example.com" },
     { id: 4, name: "Eninter", logo: "/logos/partners/eninter-logo.png", website: "https://www.example.com" },
     { id: 5, name: "Solca", logo: "/logos/partners/solca-logo.png", website: "https://www.example.com" },
-    { id: 6, name: "Ocsara Construcciones", logo: "/logos/partners/construccions-logo.png", website: "https://www.example.com" },
+    { id: 6, name: "C&C", logo: "/logos/partners/c&c-logo.png", website: "https://www.example.com" },
     { id: 7, name: "Botanics", logo: "/logos/partners/botanics-logo.png", website: "https://www.example.com" },
     { id: 8, name: "Finestec", logo: "/logos/partners/finestec-logo.png", website: "https://www.example.com" },
     { id: 9, name: "Ocsara", logo: "/logos/partners/ocasar-logo.png", website: "https://www.example.com" },
     { id: 10, name: "Ventanas", logo: "/logos/partners/ventana-logo.png", website: "https://www.example.com" },
   ]
 
-  // For mobile carousel
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isMobile, setIsMobile] = useState(false)
-  const sliderRef = useRef<HTMLDivElement>(null)
-
-  // Check if mobile on mount and window resize
-  useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-
-    checkIfMobile()
-    window.addEventListener("resize", checkIfMobile)
-
-    return () => {
-      window.removeEventListener("resize", checkIfMobile)
-    }
-  }, [])
-
-  const nextSlide = () => {
-    if (isMobile) {
-      setCurrentSlide((prev) => (prev === Math.ceil(partners.length / 2) - 1 ? 0 : prev + 1))
-    } else {
-      setCurrentSlide((prev) => (prev === Math.ceil(partners.length / 5) - 1 ? 0 : prev + 1))
-    }
-  }
-
-  const prevSlide = () => {
-    if (isMobile) {
-      setCurrentSlide((prev) => (prev === 0 ? Math.ceil(partners.length / 2) - 1 : prev - 1))
-    } else {
-      setCurrentSlide((prev) => (prev === 0 ? Math.ceil(partners.length / 5) - 1 : prev - 1))
-    }
-  }
-
-  // Auto-scroll effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide()
-    }, 5000)
-
-    return () => clearInterval(interval)
-  }, [currentSlide, isMobile])
-
-  // Update slider position when currentSlide changes
-  useEffect(() => {
-    if (sliderRef.current) {
-      const slideWidth = isMobile ? 100 : 100
-      sliderRef.current.style.transform = `translateX(-${currentSlide * slideWidth}%)`
-    }
-  }, [currentSlide, isMobile])
+  // Triplicate the list to ensure screen width is completely covered at all screen sizes
+  const seamlessPartners = [...partners, ...partners, ...partners]
 
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-12">
+    <section className="py-16 md:py-24 bg-white overflow-hidden">
+      {/* Inline styles for keyframe animation - no tailwind.config editing required */}
+      <style jsx>{`
+        @keyframes ticker {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-33.333%);
+          }
+        }
+        .animate-ticker {
+          display: flex;
+          width: max-content;
+          animation: ticker 25s linear infinite;
+        }
+        .animate-ticker:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
+      <div className="container mx-auto px-4 mb-12">
+        <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t("title")}</h2>
           <p className="text-lg text-gray-600">
-           {t("description.start")} <span className="font-bold">{t("description.brand")}</span> {t("description.middle")} <span className="font-bold">{t("description.values")}</span> {t("description.end")}
+            {t("description.start")} <span className="font-bold">{t("description.brand")}</span> {t("description.middle")} <span className="font-bold">{t("description.values")}</span> {t("description.end")}
           </p>
         </div>
+      </div>
 
-        {/* Desktop view - Grid layout */}
-        <div className="hidden md:block">
-          <div className="grid grid-cols-5 gap-6">
-            {partners.map((partner) => (
-              <PartnerLogo key={partner.id} partner={partner} />
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile view - Carousel */}
-        <div className="md:hidden relative">
-          <div className="overflow-hidden">
-            <div
-              ref={sliderRef}
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ width: `${partners.length * 50}%` }}
-            >
-              {partners.map((partner) => (
-                <div key={partner.id} className="w-1/2">
-                  <PartnerLogo partner={partner} />
-                </div>
-              ))}
+      {/* Infinite Horizontal Carousel Container */}
+      <div className="relative w-full overflow-hidden py-4 [mask-image:_linear-gradient(to_right,transparent_0,_black_64px,_black_calc(100%-64px),transparent_100%)]">
+        <div className="animate-ticker flex-nowrap">
+          {seamlessPartners.map((partner, index) => (
+            <div key={`${partner.id}-${index}`} className="w-44 md:w-52 px-3 flex-shrink-0">
+              <PartnerLogo partner={partner} />
             </div>
-          </div>
-
-          {/* Navigation buttons */}
-          <button
-            onClick={prevSlide}
-            className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 bg-white rounded-full p-2 z-10"
-            aria-label={t("aria.previousPartners")}
-          >
-            <ChevronLeft className="h-5 w-5 text-gray-600" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 bg-white rounded-full p-2 z-10"
-            aria-label={t("aria.nextPartners")}
-          >
-            <ChevronRight className="h-5 w-5 text-gray-600" />
-          </button>
-
-          {/* Dots indicator */}
-          <div className="flex justify-center mt-6 space-x-2">
-            {Array.from({ length: Math.ceil(partners.length / 2) }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-2 h-2 rounded-full ${currentSlide === index ? "bg-blue-600" : "bg-gray-300"}`}
-                aria-label={t("aria.goToSlide", { slide: index + 1 })}
-              />
-            ))}
-          </div>
+          ))}
         </div>
       </div>
     </section>
@@ -156,19 +82,14 @@ function PartnerLogo({ partner }: PartnerLogoProps) {
   const t = useTranslations("showcase.partnersSection")
 
   return (
-    <div className="group">
-      <div
-        //href={partner.website}
-        //target="_blank"
-        rel="noopener noreferrer"
-        className=" bg-white rounded-lg p-6 h-32 flex items-center justify-center  hover:shadow-md transition-all duration-300"
-      >
+    <div className="group h-full">
+      <div className="bg-white rounded-xl border border-gray-100 p-5 h-28 flex items-center justify-center hover:shadow-lg hover:border-blue-100 transition-all duration-300">
         <div className="relative w-full h-full">
           <Image
             src={partner.logo || "/placeholder.svg"}
             alt={t("logoAlt", { name: partner.name })}
             fill
-            className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+            className="object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
           />
         </div>
       </div>
