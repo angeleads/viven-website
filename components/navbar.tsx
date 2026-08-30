@@ -91,6 +91,9 @@ export default function Navbar() {
             <NavLink href="/empresa" pathname={pathname}>
               {t("nav.company")}
             </NavLink>
+             <NavLink href="/inversion" pathname={pathname}>
+              {t("nav.inversion")}
+            </NavLink>
             <NavLink href="/contacto" pathname={pathname}>
               {t("nav.contact")}
             </NavLink>
@@ -186,6 +189,13 @@ export default function Navbar() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t("nav.company")}
+              </MobileNavLink>
+              <MobileNavLink
+                href="/inversion"
+                pathname={pathname}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t("nav.inversion")}
               </MobileNavLink>
               <MobileNavLink
                 href="/contacto"
