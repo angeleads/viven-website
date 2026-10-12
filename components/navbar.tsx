@@ -55,11 +55,11 @@ export default function Navbar() {
               aria-label="Viven Inmobiliaria home"
             >
               <Image
-                src="/logos/viven-plus-logo.png"
-                alt="Viven Plus"
+                src="/logos/viven-logo.png"
+                alt="Viven Logo"
                 width={140}
                 height={60}
-                className="h-14 w-auto"
+                className="h-16 w-auto"
               />
             </Link>
             <Link

@@ -24,15 +24,26 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
-            <Link href="/" className="inline-block mb-6">
-              <Image
-                src="/logos/logo-viven-remax-white.png"
-                alt="Viven Inmobiliaria"
-                width={150}
-                height={50}
-                className="h-12 w-auto"
-              />
-            </Link>
+            <div className="flex items-center">
+              <Link href="/" className="inline-block">
+                <Image
+                  src="/logos/viven-logo-white.png"
+                  alt="Viven Inmobiliaria"
+                  width={200}
+                  height={100}
+                  className="h-16 w-auto"
+                />
+              </Link>
+              <Link href="https://www.remax.es/buscador-de-oficinas/barcelona/vilanova-i-la-geltru/todos/remax-viven/" className="inline-block">
+                <Image
+                  src="/logos/logo-viven-remax-white.png"
+                  alt="Viven Inmobiliaria"
+                  width={150}
+                  height={50}
+                  className="h-16 w-auto"
+                />
+              </Link>
+            </div>
             <p className="text-gray-400 mb-6">
               {t("about")}
             </p>
@@ -100,7 +111,7 @@ export default function Footer() {
                 </li>
               </div>
               <div className="flex items-center">
-              <MailCheck className="text-blue-600 mr-2" />
+                <MailCheck className="text-blue-600 mr-2" />
                 <li>
                   <a
                     href="mailto:hola@viven.es"
