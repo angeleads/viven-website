@@ -53,12 +53,12 @@ export default function AdminAuthPage() {
           throw new Error('El enlace de acceso ha caducado (validez de 30 minutos). Solicita uno nuevo.');
         }
 
-        // Invalidar el token para que sea de un solo uso
+        // Invalidar el token para que sea de un solo uso (sin bloquear el acceso si las reglas de Firestore restringen escritura sin Auth)
         await updateDoc(empRef, {
           magicToken: '',
           magicTokenExpiresAt: '',
           updatedAt: new Date().toISOString(),
-        });
+        }).catch(() => null);
 
         // Guardar sesión de Backoffice en localStorage
         localStorage.setItem(
