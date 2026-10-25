@@ -21,15 +21,15 @@ export default async function StatsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <StatCard
-            percentage="99.9%"
+            percentage="99%"
             title={t("stats.resolvedIncidents")}
           />
           <StatCard
-            percentage="99.9%"
+            percentage="99%"
             title={t("stats.satisfiedClients")}
           />
           <StatCard
-            percentage="99.9%"
+            percentage="99%"
             title={t("stats.successfulContracts")}
           />
         </div>

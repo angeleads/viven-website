@@ -4,6 +4,8 @@ import { useState } from "react"
 import emailjs from "@emailjs/browser"
 import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/navigation"
+import { addDoc, collection } from "firebase/firestore"
+import { db } from "@/lib/firebase"
 
 export default function ContactForm() {
   const t = useTranslations("contact.form")
@@ -30,9 +32,25 @@ export default function ContactForm() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setFormStatus("submitting")
+
+    try {
+      await addDoc(collection(db, "leads"), {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        service: formData.service,
+        subject: formData.subject,
+        message: formData.message,
+        source: "contacto",
+        status: "nuevo",
+        createdAt: new Date().toISOString(),
+      })
+    } catch (firestoreErr) {
+      console.warn("No se pudo registrar el lead en Firestore:", firestoreErr)
+    }
 
   // Los nombres de las propiedades deben coincidir exactamente con los {{variables}} de tu plantilla de EmailJS
     const templateParams = {

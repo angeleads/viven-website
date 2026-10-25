@@ -1,29 +1,64 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { User } from "lucide-react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import { EmployeeProfile } from "@/lib/allowed-employees";
 
 export default function TeamSection() {
   const t = useTranslations("inversion.team");
+  const [dynamicMembers, setDynamicMembers] = useState<EmployeeProfile[]>([]);
 
-  const team = [
-    {
-      name: t("cesar.name"),
-      role: t("cesar.role"),
-      photo: "/team/cesar-sanjurjo.png",
-      bio: t("cesar.bio"),
-    },
+  useEffect(() => {
+    let isMounted = true;
+    async function loadInversionTeam() {
+      try {
+        const snap = await getDocs(collection(db, "employees"));
+        if (!isMounted) return;
+        const list: EmployeeProfile[] = [];
+        snap.forEach((d) => {
+          const data = d.data() as EmployeeProfile;
+          if (
+            data.isPublic !== false &&
+            (data.department === "inversion" || data.department === "direccion")
+          ) {
+            list.push({ ...data, uid: d.id });
+          }
+        });
+        list.sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
+        setDynamicMembers(list);
+      } catch {
+        // Fallback silencioso
+      }
+    }
+    loadInversionTeam();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const fallbackTeam = [
     {
       name: t("placeholder.name"),
       role: t("placeholder.role"),
-      bio: t("placeholder.bio"),
-      placeholder: true,
-    },
-    {
-      name: t("placeholder.name"),
-      role: t("placeholder.role"),
+      photo: "",
       bio: t("placeholder.bio"),
       placeholder: true,
     },
   ];
+
+  const team =
+    dynamicMembers.length > 0
+      ? dynamicMembers.map((emp) => ({
+          name: emp.fullName,
+          role: emp.jobTitle || t("cesar.role"),
+          photo: emp.avatarUrl || "",
+          bio: emp.bio || "",
+          placeholder: false,
+        }))
+      : fallbackTeam;
 
   return (
     <section id="equipo" className="py-20 md:py-28 bg-white">

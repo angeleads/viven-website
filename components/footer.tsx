@@ -124,7 +124,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          {/* <div>
             <h4 className="text-lg font-bold mb-3">{t("newsletterTitle")}</h4>
             <p className="text-gray-400 mb-4">
               {t("newsletterText")}
@@ -154,7 +154,7 @@ export default function Footer() {
               </Link>
               .
             </p>
-          </div>
+          </div> */}
         </div>
 
         <div className="border-t border-gray-800 pt-8">

@@ -7,6 +7,7 @@ interface ProfilePreviewCardProps {
   languages: string[];
   hobbies: string[];
   photosCount: number;
+  avatarUrl?: string;
 }
 
 export default function ProfilePreviewCard({
@@ -16,6 +17,7 @@ export default function ProfilePreviewCard({
   languages,
   hobbies,
   photosCount,
+  avatarUrl,
 }: ProfilePreviewCardProps) {
   return (
     <div className="space-y-4">
@@ -27,8 +29,18 @@ export default function ProfilePreviewCard({
         
         {/* Cabecera Agente */}
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-2xl bg-slate-900 text-white font-extrabold flex items-center justify-center text-lg shadow-sm">
-            {fullName ? fullName.charAt(0).toUpperCase() : 'V'}
+          <div className="w-12 h-12 rounded-2xl bg-slate-900 text-white font-extrabold flex items-center justify-center text-lg shadow-sm overflow-hidden shrink-0">
+            {avatarUrl ? (
+              <img
+                src={avatarUrl}
+                alt={fullName || "Avatar"}
+                className="w-full h-full object-cover"
+              />
+            ) : fullName ? (
+              fullName.charAt(0).toUpperCase()
+            ) : (
+              "V"
+            )}
           </div>
           <div>
             <h4 className="text-lg font-extrabold text-slate-900">
@@ -51,7 +63,7 @@ export default function ProfilePreviewCard({
           <div className="flex flex-wrap gap-1.5">
             {languages.length > 0 ? (
               languages.map((lang, i) => (
-                <span key={i} className="px-2.5 py-1 bg-blue-50 border border-blue-100 text-blue-700 text-[11px] font-semibold rounded-lg">
+                <span key={i} className="px-2.5 py-1 bg-blue-50 border border-blue-100 text-blue-700 text-[11px] font-semibold rounded-full">
                   {lang}
                 </span>
               ))
@@ -67,7 +79,7 @@ export default function ProfilePreviewCard({
           <div className="flex flex-wrap gap-1.5">
             {hobbies.length > 0 ? (
               hobbies.map((hobby, i) => (
-                <span key={i} className="px-2.5 py-1 bg-red-50 border border-red-100 text-red-600 text-[11px] font-semibold rounded-lg">
+                <span key={i} className="px-2.5 py-1 bg-red-50 border border-red-100 text-red-600 text-[11px] font-semibold rounded-full">
                   {hobby}
                 </span>
               ))

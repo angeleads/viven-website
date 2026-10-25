@@ -5,6 +5,8 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import emailjs from "@emailjs/browser";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 import {
   Bed,
   Bath,
@@ -101,6 +103,24 @@ export default function PropertyDetailPage({
     };
 
     try {
+      try {
+        await addDoc(collection(db, "leads"), {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || "",
+          message: formData.message,
+          propertyRef: property.reference,
+          propertyTitle: property.title,
+          assignedAgentEmail: property.agent?.email || "",
+          assignedAgentName: property.agent?.name || "",
+          source: "propiedad",
+          status: "nuevo",
+          createdAt: new Date().toISOString(),
+        });
+      } catch (firestoreErr) {
+        console.warn("No se pudo guardar el lead en Firestore:", firestoreErr);
+      }
+
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,

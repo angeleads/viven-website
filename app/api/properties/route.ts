@@ -1,6 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import { parseInmovillaIdioma, queryInmovilla } from "@/lib/inmovilla";
+import {
+  clearInmovillaCache,
+  getInmovillaCacheStats,
+  parseInmovillaIdioma,
+  queryInmovilla,
+} from "@/lib/inmovilla";
 import { mapInmovillaToProperty } from "@/lib/format-property";
+
+export async function POST() {
+  const clearedEntries = clearInmovillaCache();
+  return NextResponse.json({
+    ok: true,
+    clearedEntries,
+    stats: getInmovillaCacheStats(),
+    timestamp: new Date().toISOString(),
+  });
+}
 
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;

@@ -31,6 +31,20 @@ function clearExpiredCacheEntries() {
   }
 }
 
+export function clearInmovillaCache(): number {
+  const count = inmovillaResponseCache.size;
+  inmovillaResponseCache.clear();
+  return count;
+}
+
+export function getInmovillaCacheStats() {
+  clearExpiredCacheEntries();
+  return {
+    entriesCount: inmovillaResponseCache.size,
+    inFlightCount: inmovillaInFlightRequests.size,
+  };
+}
+
 export enum InmovillaIdioma {
   ESPANOL = 1,
   INGLES = 2,
